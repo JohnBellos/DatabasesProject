@@ -2,23 +2,24 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS sakila;
-CREATE SCHEMA sakila;
-USE sakila;
+DROP SCHEMA IF EXISTS library;
+CREATE SCHEMA library;
+USE library;
 
 --
--- Table structure for table `actor`
+-- Table structure for table `school`
 --
 
-CREATE TABLE IF NOT EXISTS actor (
-  actor_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  first_name VARCHAR(45) NOT NULL,
-  last_name VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS school (
+  school_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  school_name VARCHAR(45) NOT NULL,
+  postal_code CHAR(5) NOT NULL,
+  city VARCHAR(20) NOT NULL,
+  phone CHAR(10) NOT NULL,
+  email VARCHAR(45) NOT NULL,
+  principal_name VARCHAR(45) NOT NULL,
+  operator_name VARCHAR(45) NOT NULL,
   last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY  (actor_id),
-  KEY idx_actor_last_name (last_name)
+  PRIMARY KEY  (school_id),
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Table structure for table `address`
---
