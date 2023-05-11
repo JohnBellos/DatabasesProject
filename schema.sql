@@ -31,5 +31,5 @@ CREATE TABLE IF NOT EXISTS book (
   num_of_pages INT UNSIGNED NOT NULL,
   summary VARCHAR(1024) NOT NULL,
   available_copies INT UNSIGNED NOT NULL,
-)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
