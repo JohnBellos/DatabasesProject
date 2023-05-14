@@ -20,7 +20,6 @@ def users():
     query = "SELECT * FROM {};".format(table)
     
     cur = db.connection.cursor()
-    print('This is the db:---!!!', query)
     cur.execute(query)
     rv = cur.fetchall()
     return str(rv)
