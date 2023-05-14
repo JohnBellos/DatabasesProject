@@ -7,4 +7,4 @@ Changed.
 δσαηψβηασψβααηφβηασ
 Καλην εισπεραν αρχοντες
 
-python, flask
+python, flask, Flask-MySQLdb
