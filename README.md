@@ -17,7 +17,7 @@ How to start da:
 	5. To see version type: SELECT @@version; (current:  10.4.27-MariaDB)
 	6. Insert the database schema:  source C:\{your_path}\schema.sql
 	7. Insert the database data: source C:\{your_path}\insert.sql
-
+       ** IMPORTANT: if the path for sourcing contains greek characters, it won't be able to source the file **
 
 3. Start the app
     python app.py
