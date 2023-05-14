@@ -16,7 +16,7 @@ How to start da:
 	4. Password nothing (press enter)
 	5. To see version type: SELECT @@version; (current:  10.4.27-MariaDB)
 	6. Insert the database schema:  source C:\{your_path}\schema.sql
-	7. Insert the database data: source C:\{your_path}\schema.sql
+	7. Insert the database data: source C:\{your_path}\insert.sql
 
 
 3. Start the app
