@@ -20,15 +20,15 @@ CREATE TABLE IF NOT EXISTS school (
   principal_name VARCHAR(45) NOT NULL,
   operator_name VARCHAR(45) NOT NULL,
   last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY  (school_id),
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (school_id)
+) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS book (
   book_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   title VARCHAR(45) NOT NULL,
   publisher VARCHAR(45) NOT NULL,
   ISBN CHAR(13) NOT NULL, 
-  writter VARCHAR(45) NOT NULL,
+  writer VARCHAR(45) NOT NULL,
   num_of_pages INT UNSIGNED NOT NULL,
   summary VARCHAR(1024) NOT NULL,
   available_copies INT UNSIGNED NOT NULL,
@@ -96,4 +96,10 @@ CREATE TABLE IF NOT EXISTS general_operator(
   PRIMARY KEY(general_operator_id),
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+CREATE TABLE IF NOT EXISTS user (
+  user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_type ENUM('student', 'professor') NOT NULL,
+  PRIMARY KEY (user_id),
+  FOREIGN KEY (user_id) REFERENCES student(student_id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
