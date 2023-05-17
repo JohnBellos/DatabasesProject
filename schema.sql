@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS book (
   PRIMARY KEY (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS school_library (
+CREATE TABLE IF NOT EXISTS school_library ( 
   library_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   library_name VARCHAR(45) NOT NULL,
   library_postal_code CHAR(5) NOT NULL,
