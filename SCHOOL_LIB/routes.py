@@ -23,3 +23,14 @@ def users():
     cur.execute(query)
     rv = cur.fetchall()
     return str(rv)
+
+
+@app.route("/students")
+def students():
+    table = 'student'
+    query = "SELECT * FROM {};".format(table)
+    
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    return str(rv)

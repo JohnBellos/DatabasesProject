@@ -15,3 +15,6 @@ SHOW DATABASES
 
 How to select one:
 USE database_name;
+
+How to view the tables:
+SHOW tables;
