@@ -8,3 +8,10 @@ Changed.
 Καλην εισπεραν αρχοντες
 
 python, flask, Flask-MySQLdb
+
+---------
+How to show the dbs in MariaDB:
+SHOW DATABASES
+
+How to select one:
+USE database_name;
