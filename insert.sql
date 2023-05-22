@@ -51,3 +51,7 @@ VALUES (011, 'Elenore', 'Snook', 'esnook0@wiley.com', 13, 'Female', 4),
        (0344, 'Kent', 'Severs', 'ksevers17@gov.uk', 10, 'Male', 10),
        (0345, 'Jereme', 'Fullun', 'jfullun18@woothemes.com', 15, 'Male', 1),
        (0346, 'Carver', 'Trench', 'ctrench19@dmoz.org', 4, 'Male', 11);
+
+
+INSERT INTO proffessor (professor_id, proffessor_name, proffessor_surname, proffessor_email, proffessor_age, proffessor_sex, proffessor_class)
+VALUES ()
