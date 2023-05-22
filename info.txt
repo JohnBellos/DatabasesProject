@@ -9,6 +9,8 @@ Changed.
 
 python, flask, Flask-MySQLdb
 
+Σημαντικές έννοιες: Views, Triggers
+
 ---------
 How to show the dbs in MariaDB:
 SHOW DATABASES
