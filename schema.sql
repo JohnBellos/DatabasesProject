@@ -10,7 +10,7 @@ USE library;
 -- Table structure for table `school`
 --
 
-CREATE TABLE IF NOT EXISTS school (
+CREATE TABLE IF NOT EXISTS school(
   school_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   school_name VARCHAR(45) NOT NULL,
   postal_code CHAR(5) NOT NULL,
@@ -38,17 +38,6 @@ CREATE TABLE IF NOT EXISTS book (
   PRIMARY KEY (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS school_library (   
-  library_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  library_name VARCHAR(45) NOT NULL,
-  library_postal_code CHAR(5) NOT NULL,
-  library_phone CHAR(10) NOT NULL,
-  library_email VARCHAR(45) NOT NULL,
-  date_of_construction DATE NOT NULL,
-  number_of_books INT UNSIGNED NOT NULL,
-  PRIMARY KEY (library_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE IF NOT EXISTS student (
   student_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   student_name VARCHAR(15) NOT NULL,
@@ -71,27 +60,27 @@ CREATE TABLE IF NOT EXISTS proffessor (
   PRIMARY KEY (proffessor_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS school_operator (
-  school_operator_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  school_operator_name VARCHAR(15) NOT NULL,
-  school_operator_surname VARCHAR(15) NOT NULL,
-  school_operator_age INT UNSIGNED NOT NULL,
-  school_operator_postal_code CHAR(5) NOT NULL,
-  school_operator_phone INT UNSIGNED NOT NULL,
-  school_operator_email VARCHAR(45) NOT NULL,
-  school_operator_sex ENUM('M','F','NB') NOT NULL,
+CREATE TABLE IF NOT EXISTS operator (
+  operator_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  operator_name VARCHAR(15) NOT NULL,
+  operator_surname VARCHAR(15) NOT NULL,
+  operator_age INT UNSIGNED NOT NULL,
+  operator_postal_code CHAR(5) NOT NULL,
+  operator_phone INT UNSIGNED NOT NULL,
+  operator_email VARCHAR(45) NOT NULL,
+  operator_sex ENUM('M','F','NB') NOT NULL,
   PRIMARY KEY (school_operator_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS general_operator(
-  general_operator_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  general_operator_name VARCHAR(15) NOT NULL,
-  general_operator_surname VARCHAR(15) NOT NULL,
-  general_operator_age INT UNSIGNED NOT NULL,
-  general_operator_phone INT UNSIGNED NOT NULL,
-  general_operator_postal_code INT UNSIGNED NOT NULL,
-  general_operator_email VARCHAR(45) NOT NULL,
-  general_operator_sex ENUM('M','F','NB') NOT NULL,
+CREATE TABLE IF NOT EXISTS administrator(
+  administrator_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  administrator_name VARCHAR(15) NOT NULL,
+  administrator_surname VARCHAR(15) NOT NULL,
+  administrator_age INT UNSIGNED NOT NULL,
+  administrator_phone INT UNSIGNED NOT NULL,
+  administrator_postal_code INT UNSIGNED NOT NULL,
+  administrator_email VARCHAR(45) NOT NULL,
+  administrator_sex ENUM('M','F','NB') NOT NULL,
   PRIMARY KEY(general_operator_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -100,5 +89,22 @@ CREATE TABLE IF NOT EXISTS user (
   user_type ENUM('student', 'professor') NOT NULL,
   PRIMARY KEY (user_id),
   FOREIGN KEY (user_id) REFERENCES student(student_id) ON DELETE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE
+  FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS author(
+author_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+author_name VARCHAR(20) NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS category(
+category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+category_name VARCHAR(20) NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS keyword(
+  keyword_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  key_word VARCHAR(20) NOT NULL,
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS
