@@ -102,3 +102,21 @@ CREATE TABLE IF NOT EXISTS user (
   FOREIGN KEY (user_id) REFERENCES student(student_id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+SHOW WARNINGS;
+CREATE TABLE IF NOT EXISTS wrote (
+  author_id INT UNSIGNED NOT NULL,
+  ISBN INT UNSIGNED NOT NULL,
+  PRIMARY KEY (author_id, ISBN),
+  CONSTRAINT fk_book_has_author1
+    FOREIGN KEY (author_author_id)
+    REFERENCES author (author_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT fk_book_has_author2
+    FOREIGN KEY (book_ISBN)
+    REFERENCES book (ISBN)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+)
+ENGINE = InnoDB;
