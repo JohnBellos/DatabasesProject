@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS operator (
   operator_sex ENUM('M','F','NB') NOT NULL,
   school_id INT,
   PRIMARY KEY (operator_id),
-  FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE
+  CONSTRAINT fk_OPschool_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS administrator(
@@ -92,10 +92,11 @@ CREATE TABLE IF NOT EXISTS user (
   password VARCHAR(50),
   user_type ENUM('student', 'professor') NOT NULL,
   school_id INT,
+  typec ENUM('Std','Prf') NOT NULL,
   PRIMARY KEY (user_id),
-  FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE,
-  CONSTRAINT fk_student FOREIGN KEY (user_id) REFERENCES student(student_id) ON DELETE CASCADE,
-  CONSTRAINT fk_teacher FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE
+  CONSTRAINT fk_school_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
+  --CONSTRAINT fk_student FOREIGN KEY (user_id) REFERENCES student(student_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  --CONSTRAINT fk_teacher FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
