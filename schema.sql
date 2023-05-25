@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS operator (
   operator_phone INT UNSIGNED NOT NULL,
   operator_email VARCHAR(45) NOT NULL,
   operator_sex ENUM('M','F','NB') NOT NULL,
-  PRIMARY KEY (school_operator_id)
+  PRIMARY KEY (operator_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS administrator(
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS administrator(
   administrator_postal_code INT UNSIGNED NOT NULL,
   administrator_email VARCHAR(45) NOT NULL,
   administrator_sex ENUM('M','F','NB') NOT NULL,
-  PRIMARY KEY(general_operator_id)
+  PRIMARY KEY(administrator_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS user (
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS user (
   user_type ENUM('student', 'professor') NOT NULL,
   PRIMARY KEY (user_id),
   FOREIGN KEY (user_id) REFERENCES student(student_id) ON DELETE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS author(
@@ -130,3 +130,4 @@ CREATE TABLE IF NOT EXISTS wrote (
     ON UPDATE CASCADE
 )
 ENGINE = InnoDB;
+ 
