@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS student (
   PRIMARY KEY (student_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS profφessor (
+CREATE TABLE IF NOT EXISTS professor (
   professor_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   professor_name  VARCHAR(15) NOT NULL,
   professor_surname VARCHAR(15) NOT NULL,
