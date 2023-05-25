@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS professor (
 
 CREATE TABLE IF NOT EXISTS operator (
   operator_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (operator_id),
   operator_name VARCHAR(15) NOT NULL,
   operator_surname VARCHAR(15) NOT NULL,
   operator_age INT UNSIGNED NOT NULL,
@@ -68,8 +69,7 @@ CREATE TABLE IF NOT EXISTS operator (
   operator_phone INT UNSIGNED NOT NULL,
   operator_email VARCHAR(45) NOT NULL,
   operator_sex ENUM('M','F','NB') NOT NULL,
-  school_id INT,
-  PRIMARY KEY (operator_id),
+  school_id INT UNSIGNED NOT NULL,
   CONSTRAINT fk_OPschool_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -85,64 +85,55 @@ CREATE TABLE IF NOT EXISTS administrator(
   PRIMARY KEY(administrator_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Create the 'user' table
-CREATE TABLE IF NOT EXISTS user (
+-- Create the 'library_user' table
+CREATE TABLE IF NOT EXISTS library_user (
   user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   username VARCHAR(50),
   password VARCHAR(50),
   user_type ENUM('student', 'professor') NOT NULL,
-  school_id INT,
+  school_id INT UNSIGNED,
   typec ENUM('Std','Prf') NOT NULL,
   PRIMARY KEY (user_id),
   CONSTRAINT fk_school_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
-  --CONSTRAINT fk_student FOREIGN KEY (user_id) REFERENCES student(student_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  --CONSTRAINT fk_teacher FOREIGN KEY (user_id) REFERENCES professor(professor_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS author(
-author_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-author_name VARCHAR(20) NOT NULL,
+  author_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  author_name VARCHAR(20) NOT NULL,
+  PRIMARY KEY (author_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS category(
-category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-category_name VARCHAR(20) NOT NULL,
+  category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  category_name VARCHAR(20) NOT NULL,
+  PRIMARY KEY (category_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS keyword(
   keyword_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   key_word VARCHAR(20) NOT NULL,
+  PRIMARY KEY (keyword_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS
 
 
-
+-------------------------------------
 -- Connection tables from here and on
 
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS wrote (
-  author_id INT UNSIGNED NOT NULL,
-  ISBN INT UNSIGNED NOT NULL,
-  PRIMARY KEY (author_id, ISBN),
-  CONSTRAINT fk_book_has_author1
-    FOREIGN KEY (author_id)
-    REFERENCES author (author_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT fk_book_has_author2
-    FOREIGN KEY (book_ISBN)
-    REFERENCES book (ISBN)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-)
-ENGINE = InnoDB;
+  author_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  book_ISBN CHAR(13) NOT NULL,
+  PRIMARY KEY (author_id, book_ISBN),
+  CONSTRAINT fk_book_has_author1 FOREIGN KEY (author_id) REFERENCES author (author_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_book_has_author2 FOREIGN KEY (book_ISBN) REFERENCES book (ISBN) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS has_category (
   category_id INT UNSIGNED NOT NULL,
-  ISBN INT UNSIGNED NOT NULL,
-  PRIMARY KEY (category_id, ISBN),
+  book_ISBN CHAR(13) NOT NULL,
+  PRIMARY KEY (category_id, book_ISBN),
   CONSTRAINT fk_book_has_category1
     FOREIGN KEY (category_id)
     REFERENCES category (category_id)
@@ -158,14 +149,14 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS has_keyword (
   keyword_id INT UNSIGNED NOT NULL,
-  ISBN INT UNSIGNED NOT NULL,
-  PRIMARY KEY (keyword_id, ISBN),
+  book_ISBN CHAR(13) NOT NULL,
+  PRIMARY KEY (keyword_id, book_ISBN),
   CONSTRAINT fk_book_has_keyword1
     FOREIGN KEY (keyword_id)
     REFERENCES category (keyword_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT fk_book_has_category2
+  CONSTRAINT fk_book_has_keyword2
     FOREIGN KEY (book_ISBN)
     REFERENCES book (ISBN)
     ON DELETE CASCADE
@@ -175,11 +166,11 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS borrows (
   user_id INT UNSIGNED NOT NULL,
-  ISBN INT UNSIGNED NOT NULL,
-  PRIMARY KEY (user_id, ISBN),
+  book_ISBN INT UNSIGNED NOT NULL,
+  PRIMARY KEY (user_id, book_ISBN),
   CONSTRAINT fk_user_borrows
     FOREIGN KEY (user_id)
-    REFERENCES user (user_id)
+    REFERENCES library_user (user_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT fk_user_borrows2
@@ -192,15 +183,15 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS reviews (
   user_id INT UNSIGNED NOT NULL,
-  ISBN INT UNSIGNED NOT NULL,
+  book_ISBN INT UNSIGNED NOT NULL,
   review VARCHAR(2000) NOT NULL,
-  PRIMARY KEY (user_id, ISBN),
+  PRIMARY KEY (user_id, book_ISBN),
   CONSTRAINT fk_user_reviews
     FOREIGN KEY (user_id)
-    REFERENCES user (user_id)
+    REFERENCES library_user (user_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT fk_user_reviews
+  CONSTRAINT fk_user_reviews2
     FOREIGN KEY (book_ISBN)
     REFERENCES book (ISBN)
     ON DELETE CASCADE
@@ -210,12 +201,12 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS reservations (
   user_id INT UNSIGNED NOT NULL,
-  ISBN INT UNSIGNED NOT NULL,
+  book_ISBN INT UNSIGNED NOT NULL,
   deadline_of_reservation DATE,
-  PRIMARY KEY (user_id, ISBN),
+  PRIMARY KEY (user_id, book_ISBN),
   CONSTRAINT fk_user_reservations
     FOREIGN KEY (user_id)
-    REFERENCES user (user_id)
+    REFERENCES library_user (user_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT fk_user_reservations2
@@ -228,15 +219,15 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS contains (
   school_id INT UNSIGNED NOT NULL,
-  ISBN INT UNSIGNED NOT NULL,
+  ISBN      INT UNSIGNED NOT NULL,
   PRIMARY KEY (school_id, ISBN),
-  CONSTRAINT fk_school_contains
+  CONSTRAINT
     FOREIGN KEY (school_id)
     REFERENCES school (school_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT fk_school_contains2
-    FOREIGN KEY (book_ISBN)
+  CONSTRAINT
+    FOREIGN KEY (ISBN)
     REFERENCES book (ISBN)
     ON DELETE CASCADE
     ON UPDATE CASCADE

@@ -20,3 +20,7 @@ USE database_name;
 
 How to view the tables:
 SHOW tables;
+
+!!!!!!!!!!!!!!!!!!!
+FOREIGN KEYS MUST BE OF THE SAME TYPE AS THE KEY REFERENCED
+!!!!!!!!!!!!!!!!!!!
