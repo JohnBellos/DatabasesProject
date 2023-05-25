@@ -34,3 +34,13 @@ def students():
     cur.execute(query)
     rv = cur.fetchall()
     return str(rv)
+
+@app.route("/books")
+def books():
+    table = 'book'
+    query = "SELECT * FROM {};".format(table)
+    
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    return str(rv)

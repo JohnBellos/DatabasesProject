@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS operator (
   operator_email VARCHAR(45) NOT NULL,
   operator_sex ENUM('M','F','NB') NOT NULL,
   school_id INT,
-  PRIMARY KEY (school_operator_id),
+  PRIMARY KEY (operator_id),
   FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS administrator(
   administrator_postal_code INT UNSIGNED NOT NULL,
   administrator_email VARCHAR(45) NOT NULL,
   administrator_sex ENUM('M','F','NB') NOT NULL,
-  PRIMARY KEY(general_operator_id)
+  PRIMARY KEY(administrator_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Create the 'user' table
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS wrote (
   ISBN INT UNSIGNED NOT NULL,
   PRIMARY KEY (author_id, ISBN),
   CONSTRAINT fk_book_has_author1
-    FOREIGN KEY (author_author_id)
+    FOREIGN KEY (author_id)
     REFERENCES author (author_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS has_category (
   ISBN INT UNSIGNED NOT NULL,
   PRIMARY KEY (category_id, ISBN),
   CONSTRAINT fk_book_has_category1
-    FOREIGN KEY (category_category_id)
+    FOREIGN KEY (category_id)
     REFERENCES category (category_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS has_keyword (
   ISBN INT UNSIGNED NOT NULL,
   PRIMARY KEY (keyword_id, ISBN),
   CONSTRAINT fk_book_has_keyword1
-    FOREIGN KEY (keyword_keyword_id)
+    FOREIGN KEY (keyword_id)
     REFERENCES category (keyword_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS borrows (
   ISBN INT UNSIGNED NOT NULL,
   PRIMARY KEY (user_id, ISBN),
   CONSTRAINT fk_user_borrows
-    FOREIGN KEY (user_user_id)
+    FOREIGN KEY (user_id)
     REFERENCES user (user_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS reviews (
   review VARCHAR(2000) NOT NULL,
   PRIMARY KEY (user_id, ISBN),
   CONSTRAINT fk_user_reviews
-    FOREIGN KEY (user_user_id)
+    FOREIGN KEY (user_id)
     REFERENCES user (user_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS reservations (
   deadline_of_reservation DATE,
   PRIMARY KEY (user_id, ISBN),
   CONSTRAINT fk_user_reservations
-    FOREIGN KEY (user_user_id)
+    FOREIGN KEY (user_id)
     REFERENCES user (user_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS contains (
   ISBN INT UNSIGNED NOT NULL,
   PRIMARY KEY (school_id, ISBN),
   CONSTRAINT fk_school_contains
-    FOREIGN KEY (school_school_id)
+    FOREIGN KEY (school_id)
     REFERENCES school (school_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
