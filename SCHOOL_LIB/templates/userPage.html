@@ -5,11 +5,9 @@
 <body>
   <h1>Book Titles</h1>
   <ul>
-    <li>Book Title 1</li>
-    <li>Book Title 2</li>
-    <li>Book Title 3</li>
-    <li>Book Title 4</li>
-    <li>Book Title 5</li>
+    {%for item in books%}
+    <li>{{item}}</li>
+    {% endfor %}
   </ul>
 </body>
 </html>
