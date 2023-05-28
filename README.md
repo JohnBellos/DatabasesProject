@@ -12,7 +12,8 @@ How to start da:
 2. Setup the database server
     1. Open xampp control panel and start apache and mysql
 	2. Go to \xampp\mysql\bin
-	3. Type: .\mysql -u root -p -h localhost -P 3306
+	3. Type: 
+    .\mysql -u root -p -h localhost -P 3306
 	4. Password nothing (press enter)
 	5. To see version type: SELECT @@version; (current:  10.4.27-MariaDB)
 	6. Insert the database schema:  source C:/{your_path}/schema.sql   (maybe it's better with forward slashes)

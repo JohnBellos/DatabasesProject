@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS administrator(
 CREATE TABLE IF NOT EXISTS library_user (
   user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   username VARCHAR(50),
-  password VARCHAR(50),
+  user_password VARCHAR(50),
   user_type ENUM('student', 'professor') NOT NULL,
   school_id INT UNSIGNED,
   typec ENUM('Std','Prf') NOT NULL,
