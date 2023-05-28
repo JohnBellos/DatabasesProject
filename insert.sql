@@ -118,3 +118,7 @@ VALUES  ('103997371-X', 'HarperCollins', 'Pride and Prejudice', 'Berton Sparwell
         ('294182365-4', 'HarperCollins', 'Brave New World', 'Costa Kenderdine', 1194, 'Comedy|Horror'),
         ('184858187-4', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Tomaso Tollady', 444, 'Drama');
 
+INSERT INTO operator (id, first_name, last_name, age, postal_code, email, gender) 
+VALUES (1, 'Dierdre', 'Millett', 33, 15151, 'dmillett0@latimes.com', 'Agender'),
+       (2, 'Miller', 'Maunton', 64, 23421, 'mmaunton1@cpanel.net', 'Male'),
+       (3, 'Emmy', 'Klima', 27, 54231, 'eklima2@theguardian.com', 'Female');
