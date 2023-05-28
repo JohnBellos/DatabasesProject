@@ -8,57 +8,6 @@ VALUES ('Dierdre', 'Millett', 33, 15151, 'dmillett0@latimes.com', 'Agender'),
        ('Miller', 'Maunton', 64, 23421, 'mmaunton1@cpanel.net', 'Male'),
        ('Emmy', 'Klima', 27, 54231, 'eklima2@theguardian.com', 'Female');
 
-       (0331, 'Carole', 'Klaaassen', 'cklaaassenu@intel.com', 10, 'F', 10),
-       (0332, 'Shelba', 'Coyle', 'scoylev@elegantthemes.com', 6, 'NB', 6),
-       (0333, 'Nevile', 'Jee', 'njeew@google.cn', 3, 'NB', 4),
-       (0334, 'Karole', 'Paulton', 'kpaulton1a@indiatimes.com', 5, 'F', 3),
-       (0335, 'Bertram', 'Abrahamian', 'babrahamiany@mediafire.com', 11, 'M', 2),
-       (0336, 'Naomi', 'Luscombe', 'nluscombez@irs.gov', 15, 'F', 6),
-       (0337, 'Cindi', 'Hullbrook', 'chullbrook10@newsvine.com', 8, 'F', 8),
-       (0338, 'Averyl', 'Brambley', 'abrambley11@newsvine.com', 5, 'F', 3),
-       (0339, 'Abner', 'Piggen', 'apiggen12@hibu.com', 11, 'M', 3),
-       (0340, 'Zachariah', 'Sarney', 'zsarney13@twitter.com', 13, 'M', 9),
-       (0341, 'Tony', 'Piotr', 'tpiotr14@google.com.br', 16, 'M', 7),
-       (0342, 'Tore', 'Simes', 'tsimes15@seesaa.net', 16, 'NB', 10),
-       (0343, 'Montgomery', 'Trenoweth', 'mtrenoweth16@weibo.com', 13, 'M', 1),
-       (0344, 'Kent', 'Severs', 'ksevers17@gov.uk', 10, 'M', 10),
-       (0345, 'Jereme', 'Fullun', 'jfullun18@woothemes.com', 15, 'M', 1),
-       (0346, 'Carver', 'Trench', 'ctrench19@dmoz.org', 4, 'M', 11);
-
-INSERT INTO professor (professor_id, professor_name, professor_surname, professor_email, professor_age, professor_sex, professor_class)
-VALUES  (011, 'Sal', 'Colls', 'scolls0@bloomberg.com', 27, 'M', 11),
-        (012, 'Hammad', 'Goschalk', 'hgoschalk1@wiley.com', 37, 'M', 2),
-        (013, 'Marshal', 'Bowich', 'mbowich2@google.com', 28, 'M', 10),
-        (014, 'Yehudit', 'Carling', 'ycarling3@blogs.com', 52, 'NB', 11),
-        (015, 'Miles', 'Prescote', 'mprescote4@rambler.ru', 45, 'M', 9),
-        (016, 'Fidole', 'Langsdon', 'flangsdon5@weather.com', 34, 'M', 10),
-        (017, 'Luciana', 'Gricks', 'lgricks6@yelp.com', 63, 'F', 5),
-        (018, 'Eric', 'Ommanney', 'eommanney7@ox.ac.uk', 54, 'M', 6),
-        (019, 'Nonnah', 'Woodgate', 'nwoodgate8@independent.co.uk', 28, 'F', 4),
-        (0110, 'Pet', 'Cosely', 'pcosely9@aol.com', 33, 'F', 3),
-
-        (0211, 'Linn', 'Breissan', 'lbreissana@live.com', 39, 'NB', 3),
-        (0212, 'Fifine', 'De La Salle', 'fdelasalleb@wikispaces.com', 54, 'F', 7),
-        (0213, 'Natka', 'Trayling', 'ntraylingc@4shared.com', 52, 'F', 1),
-        (0214, 'Zacharie', 'Wanell', 'zwanelld@ucoz.ru', 33, 'M', 5),
-        (0215, 'Moe', 'Ovington', 'movingtone@ca.gov', 34, 'M', 5),
-        (0216, 'Juanita', 'Prise', 'jprisef@illinois.edu', 45, 'F', 2),
-        (0217, 'Rem', 'Pairpoint', 'rpairpointg@slashdot.org', 65, 'NB', 12),
-        (0218, 'Kary', 'Boat', 'kboath@cloudflare.com', 50, 'F', 7),
-        (0219, 'Jessamyn', 'La Croce', 'jlacrocei@usgs.gov', 62, 'F', 10),
-        (0220, 'Dagny', 'Cowcha', 'dcowchaj@storify.com', 63, 'M', 12),
-
-        (0321, 'Helenka', 'Faltin', 'hfaltink@tiny.cc', 35, 'F', 3),
-        (0322, 'Roman', 'Helstrip', 'rhelstripl@state.tx.us', 36, 'NB', 10),
-        (0323, 'Reggis', 'Menichi', 'rmenichim@buzzfeed.com', 52, 'M', 7),
-        (0324, 'Christal', 'Libbie', 'clibbien@trellian.com', 32, 'F', 4),
-        (0325, 'Marco', 'Telega', 'mtelegao@cnn.com', 44, 'M', 8),
-        (0326, 'Jesus', 'Waples', 'jwaplesp@lycos.com', 53, 'M', 7),
-        (0327, 'Coleen', 'Swynley', 'cswynleyq@va.gov', 56, 'F', 10),
-        (0328, 'Kayne', 'McReynolds', 'kmcreynoldsr@edublogs.org', 50, 'M', 12),
-        (0329, 'Antoinette', 'Chatteris', 'achatteriss@adobe.com', 25, 'F', 6),
-        (0330, 'Port', 'Jahnig', 'pjahnigt@mac.com', 42, 'M', 4);
-
 INSERT INTO BOOK (ISBN, publisher, title, writer, num_of_pages, category)
 VALUES  ('103997371-X', 'HarperCollins', 'Pride and Prejudice', 'Berton Sparwell', 224, 'Comedy|Drama|Musical'),
         ('953637791-8', 'Macmillan Publishers', 'Animal Farm', 'Farly Cutten', 1169, 'Action|Crime|Drama'),
@@ -90,11 +39,6 @@ VALUES  ('103997371-X', 'HarperCollins', 'Pride and Prejudice', 'Berton Sparwell
         ('394214192-2', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Ros Mateja', 1221, 'Horror|Mystery|Thriller'),
         ('294182365-4', 'HarperCollins', 'Brave New World', 'Costa Kenderdine', 1194, 'Comedy|Horror'),
         ('184858187-4', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Tomaso Tollady', 444, 'Drama');
-
-INSERT INTO operator (id, first_name, last_name, age, postal_code, email, gender) 
-VALUES (1, 'Dierdre', 'Millett', 33, 15151, 'dmillett0@latimes.com', 'Agender'),
-       (2, 'Miller', 'Maunton', 64, 23421, 'mmaunton1@cpanel.net', 'Male'),
-       (3, 'Emmy', 'Klima', 27, 54231, 'eklima2@theguardian.com', 'Female');
 
 INSERT INTO library_user (username, user_password, user_name, user_surname, user_email, user_age, user_sex, user_class) 
 VALUES  ('Karlie', 'Boltwood', 'kboltwood0@youku.com', 11, 'Female', 2);
