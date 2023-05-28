@@ -93,7 +93,6 @@ CREATE TABLE IF NOT EXISTS library_user (
   user_password VARCHAR(50),
   user_type ENUM('student', 'professor') NOT NULL,
   school_id INT UNSIGNED,
-  typec ENUM('Std','Prf') NOT NULL,
   PRIMARY KEY (user_id),
   CONSTRAINT fk_school_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
