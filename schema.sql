@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS has_keyword (
   PRIMARY KEY (keyword_id, book_id),
   CONSTRAINT fk_book_has_keyword1
     FOREIGN KEY (keyword_id)
-    REFERENCES category (keyword_id)
+    REFERENCES keyword (keyword_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT fk_book_has_keyword2
@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS has_keyword (
     REFERENCES book (book_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
+  
 )
 ENGINE = InnoDB;
 
