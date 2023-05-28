@@ -8,37 +8,6 @@ VALUES ('Dierdre', 'Millett', 33, 15151, 'dmillett0@latimes.com', 'Agender'),
        ('Miller', 'Maunton', 64, 23421, 'mmaunton1@cpanel.net', 'Male'),
        ('Emmy', 'Klima', 27, 54231, 'eklima2@theguardian.com', 'Female');
 
-INSERT INTO BOOK (ISBN, publisher, title, writer, num_of_pages, category)
-VALUES  ('103997371-X', 'HarperCollins', 'Pride and Prejudice', 'Berton Sparwell', 224, 'Comedy|Drama|Musical'),
-        ('953637791-8', 'Macmillan Publishers', 'Animal Farm', 'Farly Cutten', 1169, 'Action|Crime|Drama'),
-        ('514898620-4', 'Penguin Random House', 'The Catcher in the Rye', 'Adina Mansion', 1392, 'Comedy|Horror'),
-        ('644989747-3', 'HarperCollins', 'The Catcher in the Rye', 'Jolie Geram', 573, 'Western'),
-        ('509749099-1', 'HarperCollins', 'Pride and Prejudice', 'Laurent Hepher', 102, 'Comedy|Romance'),
-        ('033443326-6', 'Simon & Schuster', 'Brave New World', 'Vinnie Frostdick', 735, 'Documentary'),
-        ('395901653-0', 'Scholastic Corporation', 'Animal Farm', 'Anstice Fearnside', 758, 'Drama'),
-        ('191001945-3', 'HarperCollins', 'The Great Gatsby', 'Janot De Andreis', 1377, 'Crime|Drama|Mystery'),
-        ('893833598-4', 'Pearson Education', '1984', 'Cherlyn Andriveau', 579, 'Drama|Mystery|Romance'),
-        ('150286996-9', 'Macmillan Publishers', 'Pride and Prejudice', 'Dannie Cothey', 335, 'Crime|Mystery|Thriller'),
-        ('972882412-2', 'Simon & Schuster', 'Animal Farm', 'Clayton Targe', 56, 'Documentary'),
-        ('994124758-7', 'Scholastic Corporation', 'Pride and Prejudice', 'Shayna Astbery', 779, 'Horror'),
-        ('410762699-7', 'Macmillan Publishers', 'The Catcher in the Rye', 'Graeme Wank', 565, 'Comedy'),
-        ('038024820-4', 'Scholastic Corporation', 'Lord of the Flies', 'Kore Chimenti', 550, 'Crime|Mystery'),
-        ('420137896-9', 'Macmillan Publishers', 'Animal Farm', 'Nani Squibb', 317, 'Drama'),
-        ('559405846-X', 'Hachette Book Group', 'Pride and Prejudice', 'Guntar Ollivierre', 718, 'Action|Fantasy'),
-        ('823249275-9', 'Pearson Education', 'Animal Farm', 'Danya Piele', 539, 'Mystery|Thriller'),
-        ('520395435-6', 'Penguin Random House', 'The Lord of the Rings', 'Alvera Cartmell', 1281, 'Action|Adventure|Drama|Thriller|War'),
-        ('288441694-3', 'Simon & Schuster', 'To Kill a Mockingbird', 'Rorie Ethridge', 127, 'Comedy'),
-        ('801958873-6', 'Pearson Education', 'Pride and Prejudice', 'Jereme Swinnerton', 1036, 'Action|Sci-Fi'),
-        ('975084101-8', 'Scholastic Corporation', 'The Lord of the Rings', 'Torrence Aspin', 1422, 'Adventure|Comedy|Drama'),
-        ('820723934-4', 'HarperCollins', 'Lord of the Flies', 'Buddie McAvinchey', 1273, 'Drama|Fantasy|Romance'),
-        ('500767606-3', 'Simon & Schuster', 'The Great Gatsby', 'Goldy McKimmie', 1461, 'Action|Crime|Mystery|Romance|Thriller'),
-        ('279203269-3', 'Hachette Book Group', 'Animal Farm', 'Sauveur Whardley', 711, 'Drama'),
-        ('465435301-1', 'Macmillan Publishers', 'To Kill a Mockingbird', 'Darya Tompkinson', 819, 'Action'),
-        ('707443909-6', 'Pearson Education', 'To Kill a Mockingbird', 'Gregoor Sidebottom', 886, 'Drama|Thriller'),
-        ('333670838-9', 'Pearson Education', 'Animal Farm', 'Curr Idenden', 219, 'Drama|Fantasy|Horror|Thriller'),
-        ('394214192-2', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Ros Mateja', 1221, 'Horror|Mystery|Thriller'),
-        ('294182365-4', 'HarperCollins', 'Brave New World', 'Costa Kenderdine', 1194, 'Comedy|Horror'),
-        ('184858187-4', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Tomaso Tollady', 444, 'Drama');
 
 INSERT INTO library_user (username, user_password, user_name, user_surname, user_email, user_age, user_sex, user_class) 
 VALUES  ('Karlie', 'Boltwood', 'kboltwood0@youku.com', 11, 'Female', 2);
