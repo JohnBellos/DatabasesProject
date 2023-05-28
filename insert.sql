@@ -1,23 +1,23 @@
-INSERT INTO school (school_id, school_name, postal_code, city, phone, email, principal_name, operator_name)
-VALUES (01, 'Example School', '12345', 'New York', '1234567890', 'example@email.com', 'John Smith', 'Jane Doe'),
-       (02, 'Example School2', '12342', 'New York2', '1234567892', 'example@email.com2', 'John Smith2', 'Jane Doe2'),
-       (03, 'Example School3', '12343', 'New York3', '1234567893', 'example@email.com3', 'John Smith3', 'Jane Doe3');
-INSERT INTO student (student_id, student_name, student_surname, student_email, student_age, student_sex, student_class)
-VALUES (011, 'Elenore', 'Snook', 'esnook0@wiley.com', 13, 'F', 4),
-       (012, 'Viola', 'Capeling', 'vcapeling1@cdbaby.com', 7, 'F', 4),
-       (013, 'Mannie', 'Ainsworth', 'mainsworth2@edublogs.org', 7, 'M', 8),
-       (014, 'Hollie', 'Barles', 'hbarles3@vinaora.com', 10, 'F', 10),
-       (015, 'Maxim', 'Vern', 'mvern4@epa.gov', 17, 'M', 10),
-       (016, 'Fulton', 'Charnley', 'fcharnley5@reddit.com', 5, 'M', 9),
-       (017, 'Vanessa', 'Feldberger', 'vfeldberger6@lycos.com', 9, 'F', 6),
-       (018, 'Barbaraanne', 'Reddy', 'breddy7@livejournal.com', 4, 'NB', 11),
-       (019, 'Whit', 'Vairow', 'wvairow8@blog.com', 12, 'NB', 4),
-       (0110, 'Colin', 'Jenson', 'cjenson9@stumbleupon.com', 6, 'M', 7),
-       (0111, 'Giorgi', 'Zarfati', 'gzarfatia@yahoo.co.jp', 14, 'M', 11),
-       (0112, 'Ermanno', 'Cawsy', 'ecawsyb@blinklist.com', 3, 'M', 1),
-       (0113, 'Wilhelm', 'Greasley', 'wgreasleyc@spotify.com', 12, 'M', 12),
-       (0114, 'Elmira', 'Ginity', 'eginityd@mayoclinic.com', 3, 'F', 10),
-       (0115, 'Arlin', 'Pleasants', 'apleasantse@imdb.com', 16, 'M', 12),
+INSERT INTO school (school_name, postal_code, city, phone, email, principal_name, operator_name)
+VALUES ('Example School', '12345', 'New York', '1234567890', 'example@email.com', 'John Smith', 'Jane Doe'),
+       ('Example School2', '12342', 'New York2', '1234567892', 'example@email.com2', 'John Smith2', 'Jane Doe2'),
+       ('Example School3', '12343', 'New York3', '1234567893', 'example@email.com3', 'John Smith3', 'Jane Doe3');
+INSERT INTO student (student_name, student_surname, student_email, student_age, student_sex, student_class)
+VALUES ('Elenore', 'Snook', 'esnook0@wiley.com', 13, 'F', 4),
+       ('Viola', 'Capeling', 'vcapeling1@cdbaby.com', 7, 'F', 4),
+       ('Mannie', 'Ainsworth', 'mainsworth2@edublogs.org', 7, 'M', 8),
+       ('Hollie', 'Barles', 'hbarles3@vinaora.com', 10, 'F', 10),
+       ('Maxim', 'Vern', 'mvern4@epa.gov', 17, 'M', 10),
+       ('Fulton', 'Charnley', 'fcharnley5@reddit.com', 5, 'M', 9),
+       ('Vanessa', 'Feldberger', 'vfeldberger6@lycos.com', 9, 'F', 6),
+       ('Barbaraanne', 'Reddy', 'breddy7@livejournal.com', 4, 'NB', 11),
+       ('Whit', 'Vairow', 'wvairow8@blog.com', 12, 'NB', 4),
+       ('Colin', 'Jenson', 'cjenson9@stumbleupon.com', 6, 'M', 7),
+       ('Giorgi', 'Zarfati', 'gzarfatia@yahoo.co.jp', 14, 'M', 11),
+       ('Ermanno', 'Cawsy', 'ecawsyb@blinklist.com', 3, 'M', 1),
+       ('Wilhelm', 'Greasley', 'wgreasleyc@spotify.com', 12, 'M', 12),
+       ('Elmira', 'Ginity', 'eginityd@mayoclinic.com', 3, 'F', 10),
+       ('Arlin', 'Pleasants', 'apleasantse@imdb.com', 16, 'M', 12),
 
        (0216, 'Lanny', 'Pragnell', 'lpragnellf@ycombinator.com', 16, 'M', 3),
        (0217, 'Albertine', 'Olorenshaw', 'aolorenshawg@psu.edu', 3, 'F', 12),
@@ -115,6 +115,6 @@ VALUES  ('103997371-X', 'HarperCollins', 'Pride and Prejudice', 'Berton Sparwell
         ('707443909-6', 'Pearson Education', 'To Kill a Mockingbird', 'Gregoor Sidebottom', 886, 'Drama|Thriller'),
         ('333670838-9', 'Pearson Education', 'Animal Farm', 'Curr Idenden', 219, 'Drama|Fantasy|Horror|Thriller'),
         ('394214192-2', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Ros Mateja', 1221, 'Horror|Mystery|Thriller'),
-        ('294182365-4', 'HarperCollins', 'Brave New World', 'Costa Kenderdine', 1194, 'Comedy|Horror')
+        ('294182365-4', 'HarperCollins', 'Brave New World', 'Costa Kenderdine', 1194, 'Comedy|Horror'),
         ('184858187-4', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Tomaso Tollady', 444, 'Drama');
 
