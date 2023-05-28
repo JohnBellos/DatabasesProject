@@ -115,6 +115,6 @@ VALUES  ('103997371-X', 'HarperCollins', 'Pride and Prejudice', 'Berton Sparwell
         ('707443909-6', 'Pearson Education', 'To Kill a Mockingbird', 'Gregoor Sidebottom', 886, 'Drama|Thriller'),
         ('333670838-9', 'Pearson Education', 'Animal Farm', 'Curr Idenden', 219, 'Drama|Fantasy|Horror|Thriller'),
         ('394214192-2', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Ros Mateja', 1221, 'Horror|Mystery|Thriller'),
-        ('294182365-4', 'HarperCollins', 'Brave New World', 'Costa Kenderdine', 1194, 'Comedy|Horror')
+        ('294182365-4', 'HarperCollins', 'Brave New World', 'Costa Kenderdine', 1194, 'Comedy|Horror'),
         ('184858187-4', 'Bloomsbury Publishing', 'The Catcher in the Rye', 'Tomaso Tollady', 444, 'Drama');
 
