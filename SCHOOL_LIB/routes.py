@@ -61,6 +61,7 @@ def process_data():
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
+    return render_template("/dashboard.html")
     return jsonify(rv)
     response = {'message': 'Data received successfully'}
     return redirect()
