@@ -9,55 +9,55 @@ VALUES ('Dierdre', 'Millett', 33, 15151, '697816423', 'dmillett0@latimes.com', '
        ('Emmy', 'Klima', 27, 54231, '697816425', 'eklima2@theguardian.com', 'F', 5564);
 
 INSERT INTO BOOK (ISBN, title, publisher, writer, num_of_pages, summary, available_copies, category, language_of_book, key_word)
-VALUES  ('167610547-6', '1984', 'Macmillan Publishers', 'Ettie Grinley', 705, 'in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum', 79, 'Drama|Film-Noir', 'Haitian Creole', 'quis');
-        ('360546962-0', 'Brave New World', 'Springer Nature', 'Leon Towey', 47, 'justo morbi ut odio cras mi pede malesuada in imperdiet', 48, 'Action|Crime|Horror|Mystery|Thriller', 'Burmese', 'odio');
-        ('702442664-0', 'Animal Farm', 'Princeton University Press', 'Brandtr Collington', 600, 'felis donec semper sapien a libero nam dui proin leo', 72, 'Drama', 'Thai', 'justo');
-        ('058619755-9', 'The Great Gatsby', 'Riverhead Books', 'Magdalene Moxted', 126, 'imperdiet et commodo vulputate justo in blandit ultrices enim lorem', 34, 'Action|Comedy', 'Māori', 'eleifend');
-        ('325485957-X', 'The Hobbit', 'Wiley', 'Fremont Childs', 260, 'justo in blandit ultrices enim lorem ipsum dolor sit amet', 81, 'Action|Adventure|Fantasy', 'Japanese', 'at');
-        ('543691799-2', 'The Lord of the Rings', 'John Wiley & Sons', 'Alexandre Meddings', 460, 'risus praesent lectus vestibulum quam sapien varius ut blandit non', 39, 'Romance|Sci-Fi', 'Papiamento', 'potenti');
-        ('843154006-0', 'The Great Gatsby', 'Hachette Book Group', 'Abby Crisford', 443, 'nulla pede ullamcorper augue a suscipit nulla elit ac nulla', 15, 'Western', 'Italian', 'sed');
-        ('275576468-6', 'Animal Farm', 'Wiley', 'Clari Attlee', 256, 'congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae', 73, 'Documentary', 'Filipino', 'adipiscing');
-        ('775868174-3', 'The Great Gatsby', 'University of Chicago Press', 'Shamus Rocco', 667, 'quam nec dui luctus rutrum nulla tellus in sagittis dui', 65, 'Drama', 'Chinese', 'eget');
-        ('300124155-1', 'Animal Farm', 'Knopf Doubleday Publishing Group', 'Ellswerth Olliar', 390, 'iaculis justo in hac habitasse platea dictumst etiam faucibus cursus', 65, 'Action|Adventure|Thriller', 'Swati', 'interdum');
-        ('229711790-6', 'The Catcher in the Rye', 'HarperCollins', 'Irvine Dye', 752, 'posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti', 90, 'Comedy', 'Portuguese', 'vestibulum');
-        ('003866714-2', 'Pride and Prejudice', 'Penguin Books', 'Gustavus Gumb', 73, 'at velit eu est congue elementum in hac habitasse platea', 58, 'Drama', 'Sotho', 'nam');
-        ('904042493-4', 'Pride and Prejudice', 'Springer Nature', 'Hulda Carrel', 245, 'sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus', 55, 'Drama', 'Georgian', 'natoque');
-        ('731576212-4', 'The Catcher in the Rye', 'Hachette Book Group', 'Lacey Abels', 442, 'vel nulla eget eros elementum pellentesque quisque porta volutpat erat', 73, 'Action|Comedy', 'Swati', 'habitasse');
-        ('448582639-2', 'Brave New World', 'John Wiley & Sons', 'Tabbatha Pryor', 36, 'tempus sit amet sem fusce consequat nulla nisl nunc nisl', 65, 'Horror', 'Estonian', 'porttitor');
-        ('194526964-2', 'The Great Gatsby', 'St. Martin''s Press', 'Cristian Chue', 447, 'mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus', 17, 'Action|Adventure|Drama|Fantasy', 'Malay', 'varius');
-        ('310182772-8', 'The Great Gatsby', 'Cambridge University Press', 'Mildred Shergill', 44, 'congue risus semper porta volutpat quam pede lobortis ligula sit', 5, 'Animation|Comedy|Fantasy|Musical', 'Kashmiri', 'elit');
-        ('087458072-2', 'The Lord of the Rings', 'Wiley-Blackwell', 'Loise Straniero', 430, 'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque', 3, 'Adventure|Fantasy', 'English', 'sapien');
-        ('917955969-7', 'The Great Gatsby', 'Springer Nature', 'Elspeth Dawidowitsch', 793, 'in leo maecenas pulvinar lobortis est phasellus sit amet erat', 3, 'Crime|Drama|Film-Noir|Thriller', 'Dutch', 'platea');
-        ('389845874-1', 'Brave New World', 'Macmillan Publishers', 'Lyndsey Hauxby', 798, 'faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus', 31, 'Action|Horror', 'Lao', 'integer');
-        ('625217322-3', 'The Catcher in the Rye', 'Palgrave Macmillan', 'Warde Hebard', 683, 'cum sociis natoque penatibus et magnis dis parturient montes nascetur', 99, 'Drama', 'Assamese', 'nascetur');
-        ('018409099-7', 'The Hobbit', 'University of Michigan Press', 'Ginny Fader', 303, 'iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate', 31, '(no genres listed)', 'Hebrew', 'luctus');
-        ('033139384-0', 'To Kill a Mockingbird', 'John Wiley & Sons', 'Therine Goldie', 247, 'hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis', 84, 'Sci-Fi', 'Hindi', 'quam');
-        ('052809696-6', 'The Lord of the Rings', 'Scribner', 'Aretha Jansen', 242, 'id lobortis convallis tortor risus dapibus augue vel accumsan tellus', 6, 'Horror|Sci-Fi', 'Irish Gaelic', 'ultrices');
-        ('855597363-5', 'To Kill a Mockingbird', 'Knopf Doubleday Publishing Group', 'Nanny Beevor', 146, 'ut mauris eget massa tempor convallis nulla neque libero convallis', 76, 'Comedy|Drama', 'Persian', 'euismod');
-        ('681315366-8', 'The Lord of the Rings', 'Hachette Book Group', 'Giustino Ancketill', 191, 'augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent', 12, 'Drama|Horror|Mystery|Thriller', 'Telugu', 'condimentum');
-        ('717802934-X', 'The Catcher in the Rye', 'Princeton University Press', 'Gideon Drewitt', 707, 'dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus', 19, 'Western', 'Arabic', 'sodales');
-        ('145829020-4', 'The Catcher in the Rye', 'Hachette Book Group', 'Christye Masse', 214, 'vel nulla eget eros elementum pellentesque quisque porta volutpat erat', 35, 'Comedy|Drama', 'Irish Gaelic', 'curabitur');
-        ('319306365-7', 'The Catcher in the Rye', 'Princeton University Press', 'Adina Tebbett', 763, 'lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper', 11, 'Western', 'Marathi', 'nec');
-        ('929623927-3', 'The Great Gatsby', 'Riverhead Books', 'Bernardo Rothschild', 382, 'elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor', 58, 'Comedy|Romance', 'Hindi', 'neque');
-        ('209734672-3', 'Pride and Prejudice', 'HarperCollins', 'Fayre Luke', 307, 'adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus', 69, '(no genres listed)', 'Northern Sotho', 'cursus');
-        ('492424719-7', 'Lord of the Flies', 'Cambridge University Press', 'Karleen Fullylove', 397, 'suspendisse potenti cras in purus eu magna vulputate luctus cum', 59, 'Documentary', 'Dhivehi', 'faucibus');
-        ('962089441-3', 'Brave New World', 'McGraw-Hill Education', 'Joey Mangam', 771, 'sapien non mi integer ac neque duis bibendum morbi non', 56, 'Drama', 'West Frisian', 'sociis');
-        ('816225051-4', 'The Catcher in the Rye', 'McGraw-Hill Education', 'Zack Spriddle', 274, 'eget tempus vel pede morbi porttitor lorem id ligula suspendisse', 39, 'Drama', 'German', 'convallis');
-        ('666875754-5', 'The Lord of the Rings', 'Columbia University Press', 'Sebastien Hartell', 318, 'nibh in quis justo maecenas rhoncus aliquam lacus morbi quis', 87, 'Adventure|Documentary|Drama', 'Kannada', 'vestibulum');
-        ('865431520-2', 'The Lord of the Rings', 'Knopf Doubleday Publishing Group', 'Nicolette Dobbinson', 272, 'lectus vestibulum quam sapien varius ut blandit non interdum in', 36, 'Documentary', 'Zulu', 'aliquam');
-        ('843728362-0', 'Brave New World', 'University of Chicago Press', 'Alecia Mycock', 559, 'sapien ut nunc vestibulum ante ipsum primis in faucibus orci', 85, 'Drama|Romance|Western', 'Tetum', 'eget');
-        ('805693828-1', 'The Lord of the Rings', 'Oxford University Press', 'Hermine Vasilchikov', 737, 'volutpat quam pede lobortis ligula sit amet eleifend pede libero', 40, 'Horror|Thriller', 'Papiamento', 'magnis');
-        ('984479612-1', 'To Kill a Mockingbird', 'Bloomsbury Academic', 'Carlyle Eldon', 772, 'aliquet massa id lobortis convallis tortor risus dapibus augue vel', 44, 'Drama|Romance', 'Greek', 'pellentesque');
-        ('353211523-9', 'The Lord of the Rings', 'Farrar', 'Vanessa Barkley', 220, 'tempor convallis nulla neque libero convallis eget eleifend luctus ultricies', 23, 'Thriller', 'Somali', 'suspendisse');
-        ('964673338-7', 'Animal Farm', 'Riverhead Books', 'Laney Frizzell', 225, 'ultrices libero non mattis pulvinar nulla pede ullamcorper augue a', 49, 'Drama', 'Persian', 'in');
-        ('376173598-7', 'The Catcher in the Rye', 'Harvard University Press', 'Bel Gilbee', 721, 'donec odio justo sollicitudin ut suscipit a feugiat et eros', 39, 'Drama|Western', 'Kyrgyz', 'hac');
-        ('611353650-5', 'The Hobbit', 'Scribner', 'Melvin Fulkes', 275, 'lacus purus aliquet at feugiat non pretium quis lectus suspendisse', 36, 'Crime|Thriller', 'Indonesian', 'vitae');
-        ('098836022-5', 'Pride and Prejudice', 'Columbia University Press', 'Niki Durham', 756, 'bibendum felis sed interdum venenatis turpis enim blandit mi in', 24, 'Drama|Romance', 'Greek', 'et');
-        ('286528243-0', '1984', 'Macmillan Publishers', 'Deeyn Beverage', 376, 'non lectus aliquam sit amet diam in magna bibendum imperdiet', 52, 'Comedy|Crime|Mystery|Thriller', 'Tamil', 'aliquet');
-        ('112497832-1', 'The Lord of the Rings', 'Oxford University Press', 'William Sibun', 558, 'vestibulum ac est lacinia nisi venenatis tristique fusce congue diam', 95, 'Drama|Musical', 'Aymara', 'tempus');
-        ('388835201-0', 'Pride and Prejudice', 'Brown and Company', 'Sonia Slym', 409, 'non interdum in ante vestibulum ante ipsum primis in faucibus', 90, 'Comedy|Drama|Romance', 'English', 'pellentesque');
-        ('724503225-4', 'Pride and Prejudice', 'Elsevier', 'Myrta Quare', 57, 'lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus', 36, 'Documentary', 'Khmer', 'euismod');
-        ('815852017-0', 'The Lord of the Rings', 'Oxford University Press', 'Glenn Upcott', 490, 'rutrum at lorem integer tincidunt ante vel ipsum praesent blandit', 27, 'Thriller', 'Tswana', 'erat');
+VALUES  ('167610547-6', '1984', 'Macmillan Publishers', 'Ettie Grinley', 705, 'in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum', 79, 'Drama|Film-Noir', 'Haitian Creole', 'quis'),
+        ('360546962-0', 'Brave New World', 'Springer Nature', 'Leon Towey', 47, 'justo morbi ut odio cras mi pede malesuada in imperdiet', 48, 'Action|Crime|Horror|Mystery|Thriller', 'Burmese', 'odio'),
+        ('702442664-0', 'Animal Farm', 'Princeton University Press', 'Brandtr Collington', 600, 'felis donec semper sapien a libero nam dui proin leo', 72, 'Drama', 'Thai', 'justo'),
+        ('058619755-9', 'The Great Gatsby', 'Riverhead Books', 'Magdalene Moxted', 126, 'imperdiet et commodo vulputate justo in blandit ultrices enim lorem', 34, 'Action|Comedy', 'Māori', 'eleifend'),
+        ('325485957-X', 'The Hobbit', 'Wiley', 'Fremont Childs', 260, 'justo in blandit ultrices enim lorem ipsum dolor sit amet', 81, 'Action|Adventure|Fantasy', 'Japanese', 'at'),
+        ('543691799-2', 'The Lord of the Rings', 'John Wiley & Sons', 'Alexandre Meddings', 460, 'risus praesent lectus vestibulum quam sapien varius ut blandit non', 39, 'Romance|Sci-Fi', 'Papiamento', 'potenti'),
+        ('843154006-0', 'The Great Gatsby', 'Hachette Book Group', 'Abby Crisford', 443, 'nulla pede ullamcorper augue a suscipit nulla elit ac nulla', 15, 'Western', 'Italian', 'sed'),
+        ('275576468-6', 'Animal Farm', 'Wiley', 'Clari Attlee', 256, 'congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae', 73, 'Documentary', 'Filipino', 'adipiscing'),
+        ('775868174-3', 'The Great Gatsby', 'University of Chicago Press', 'Shamus Rocco', 667, 'quam nec dui luctus rutrum nulla tellus in sagittis dui', 65, 'Drama', 'Chinese', 'eget'),
+        ('300124155-1', 'Animal Farm', 'Knopf Doubleday Publishing Group', 'Ellswerth Olliar', 390, 'iaculis justo in hac habitasse platea dictumst etiam faucibus cursus', 65, 'Action|Adventure|Thriller', 'Swati', 'interdum'),
+        ('229711790-6', 'The Catcher in the Rye', 'HarperCollins', 'Irvine Dye', 752, 'posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti', 90, 'Comedy', 'Portuguese', 'vestibulum'),
+        ('003866714-2', 'Pride and Prejudice', 'Penguin Books', 'Gustavus Gumb', 73, 'at velit eu est congue elementum in hac habitasse platea', 58, 'Drama', 'Sotho', 'nam'),
+        ('904042493-4', 'Pride and Prejudice', 'Springer Nature', 'Hulda Carrel', 245, 'sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus', 55, 'Drama', 'Georgian', 'natoque'),
+        ('731576212-4', 'The Catcher in the Rye', 'Hachette Book Group', 'Lacey Abels', 442, 'vel nulla eget eros elementum pellentesque quisque porta volutpat erat', 73, 'Action|Comedy', 'Swati', 'habitasse'),
+        ('448582639-2', 'Brave New World', 'John Wiley & Sons', 'Tabbatha Pryor', 36, 'tempus sit amet sem fusce consequat nulla nisl nunc nisl', 65, 'Horror', 'Estonian', 'porttitor'),
+        ('194526964-2', 'The Great Gatsby', 'St. Martin''s Press', 'Cristian Chue', 447, 'mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus', 17, 'Action|Adventure|Drama|Fantasy', 'Malay', 'varius'),
+        ('310182772-8', 'The Great Gatsby', 'Cambridge University Press', 'Mildred Shergill', 44, 'congue risus semper porta volutpat quam pede lobortis ligula sit', 5, 'Animation|Comedy|Fantasy|Musical', 'Kashmiri', 'elit'),
+        ('087458072-2', 'The Lord of the Rings', 'Wiley-Blackwell', 'Loise Straniero', 430, 'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque', 3, 'Adventure|Fantasy', 'English', 'sapien'),
+        ('917955969-7', 'The Great Gatsby', 'Springer Nature', 'Elspeth Dawidowitsch', 793, 'in leo maecenas pulvinar lobortis est phasellus sit amet erat', 3, 'Crime|Drama|Film-Noir|Thriller', 'Dutch', 'platea'),
+        ('389845874-1', 'Brave New World', 'Macmillan Publishers', 'Lyndsey Hauxby', 798, 'faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus', 31, 'Action|Horror', 'Lao', 'integer'),
+        ('625217322-3', 'The Catcher in the Rye', 'Palgrave Macmillan', 'Warde Hebard', 683, 'cum sociis natoque penatibus et magnis dis parturient montes nascetur', 99, 'Drama', 'Assamese', 'nascetur'),
+        ('018409099-7', 'The Hobbit', 'University of Michigan Press', 'Ginny Fader', 303, 'iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate', 31, '(no genres listed)', 'Hebrew', 'luctus'),
+        ('033139384-0', 'To Kill a Mockingbird', 'John Wiley & Sons', 'Therine Goldie', 247, 'hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis', 84, 'Sci-Fi', 'Hindi', 'quam'),
+        ('052809696-6', 'The Lord of the Rings', 'Scribner', 'Aretha Jansen', 242, 'id lobortis convallis tortor risus dapibus augue vel accumsan tellus', 6, 'Horror|Sci-Fi', 'Irish Gaelic', 'ultrices'),
+        ('855597363-5', 'To Kill a Mockingbird', 'Knopf Doubleday Publishing Group', 'Nanny Beevor', 146, 'ut mauris eget massa tempor convallis nulla neque libero convallis', 76, 'Comedy|Drama', 'Persian', 'euismod'),
+        ('681315366-8', 'The Lord of the Rings', 'Hachette Book Group', 'Giustino Ancketill', 191, 'augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent', 12, 'Drama|Horror|Mystery|Thriller', 'Telugu', 'condimentum'),
+        ('717802934-X', 'The Catcher in the Rye', 'Princeton University Press', 'Gideon Drewitt', 707, 'dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus', 19, 'Western', 'Arabic', 'sodales'),
+        ('145829020-4', 'The Catcher in the Rye', 'Hachette Book Group', 'Christye Masse', 214, 'vel nulla eget eros elementum pellentesque quisque porta volutpat erat', 35, 'Comedy|Drama', 'Irish Gaelic', 'curabitur'),
+        ('319306365-7', 'The Catcher in the Rye', 'Princeton University Press', 'Adina Tebbett', 763, 'lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper', 11, 'Western', 'Marathi', 'nec'),
+        ('929623927-3', 'The Great Gatsby', 'Riverhead Books', 'Bernardo Rothschild', 382, 'elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor', 58, 'Comedy|Romance', 'Hindi', 'neque'),
+        ('209734672-3', 'Pride and Prejudice', 'HarperCollins', 'Fayre Luke', 307, 'adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus', 69, '(no genres listed)', 'Northern Sotho', 'cursus'),
+        ('492424719-7', 'Lord of the Flies', 'Cambridge University Press', 'Karleen Fullylove', 397, 'suspendisse potenti cras in purus eu magna vulputate luctus cum', 59, 'Documentary', 'Dhivehi', 'faucibus'),
+        ('962089441-3', 'Brave New World', 'McGraw-Hill Education', 'Joey Mangam', 771, 'sapien non mi integer ac neque duis bibendum morbi non', 56, 'Drama', 'West Frisian', 'sociis'),
+        ('816225051-4', 'The Catcher in the Rye', 'McGraw-Hill Education', 'Zack Spriddle', 274, 'eget tempus vel pede morbi porttitor lorem id ligula suspendisse', 39, 'Drama', 'German', 'convallis'),
+        ('666875754-5', 'The Lord of the Rings', 'Columbia University Press', 'Sebastien Hartell', 318, 'nibh in quis justo maecenas rhoncus aliquam lacus morbi quis', 87, 'Adventure|Documentary|Drama', 'Kannada', 'vestibulum'),
+        ('865431520-2', 'The Lord of the Rings', 'Knopf Doubleday Publishing Group', 'Nicolette Dobbinson', 272, 'lectus vestibulum quam sapien varius ut blandit non interdum in', 36, 'Documentary', 'Zulu', 'aliquam'),
+        ('843728362-0', 'Brave New World', 'University of Chicago Press', 'Alecia Mycock', 559, 'sapien ut nunc vestibulum ante ipsum primis in faucibus orci', 85, 'Drama|Romance|Western', 'Tetum', 'eget'),
+        ('805693828-1', 'The Lord of the Rings', 'Oxford University Press', 'Hermine Vasilchikov', 737, 'volutpat quam pede lobortis ligula sit amet eleifend pede libero', 40, 'Horror|Thriller', 'Papiamento', 'magnis'),
+        ('984479612-1', 'To Kill a Mockingbird', 'Bloomsbury Academic', 'Carlyle Eldon', 772, 'aliquet massa id lobortis convallis tortor risus dapibus augue vel', 44, 'Drama|Romance', 'Greek', 'pellentesque'),
+        ('353211523-9', 'The Lord of the Rings', 'Farrar', 'Vanessa Barkley', 220, 'tempor convallis nulla neque libero convallis eget eleifend luctus ultricies', 23, 'Thriller', 'Somali', 'suspendisse'),
+        ('964673338-7', 'Animal Farm', 'Riverhead Books', 'Laney Frizzell', 225, 'ultrices libero non mattis pulvinar nulla pede ullamcorper augue a', 49, 'Drama', 'Persian', 'in'),
+        ('376173598-7', 'The Catcher in the Rye', 'Harvard University Press', 'Bel Gilbee', 721, 'donec odio justo sollicitudin ut suscipit a feugiat et eros', 39, 'Drama|Western', 'Kyrgyz', 'hac'),
+        ('611353650-5', 'The Hobbit', 'Scribner', 'Melvin Fulkes', 275, 'lacus purus aliquet at feugiat non pretium quis lectus suspendisse', 36, 'Crime|Thriller', 'Indonesian', 'vitae'),
+        ('098836022-5', 'Pride and Prejudice', 'Columbia University Press', 'Niki Durham', 756, 'bibendum felis sed interdum venenatis turpis enim blandit mi in', 24, 'Drama|Romance', 'Greek', 'et'),
+        ('286528243-0', '1984', 'Macmillan Publishers', 'Deeyn Beverage', 376, 'non lectus aliquam sit amet diam in magna bibendum imperdiet', 52, 'Comedy|Crime|Mystery|Thriller', 'Tamil', 'aliquet'),
+        ('112497832-1', 'The Lord of the Rings', 'Oxford University Press', 'William Sibun', 558, 'vestibulum ac est lacinia nisi venenatis tristique fusce congue diam', 95, 'Drama|Musical', 'Aymara', 'tempus'),
+        ('388835201-0', 'Pride and Prejudice', 'Brown and Company', 'Sonia Slym', 409, 'non interdum in ante vestibulum ante ipsum primis in faucibus', 90, 'Comedy|Drama|Romance', 'English', 'pellentesque'),
+        ('724503225-4', 'Pride and Prejudice', 'Elsevier', 'Myrta Quare', 57, 'lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus', 36, 'Documentary', 'Khmer', 'euismod'),
+        ('815852017-0', 'The Lord of the Rings', 'Oxford University Press', 'Glenn Upcott', 490, 'rutrum at lorem integer tincidunt ante vel ipsum praesent blandit', 27, 'Thriller', 'Tswana', 'erat'),
         ('652548645-9', 'The Hobbit', 'Springer', 'Hansiain Birdsey', 101, 'eget massa tempor convallis nulla neque libero convallis eget eleifend', 60, 'Drama|Romance', 'Fijian', 'vestibulum');
 
 
