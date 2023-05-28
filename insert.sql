@@ -3,15 +3,14 @@ VALUES ('Example School', '12345', 'New York', '1234567890', 'example@email.com'
        ('Example School2', '12342', 'New York2', '1234567892', 'example@email.com2', 'John Smith2', 'Jane Doe2'),
        ('Example School3', '12343', 'New York3', '1234567893', 'example@email.com3', 'John Smith3', 'Jane Doe3');
 
-INSERT INTO operator (first_name, last_name, age, postal_code, email, gender) 
-VALUES ('Dierdre', 'Millett', 33, 15151, 'dmillett0@latimes.com', 'Agender'),
-       ('Miller', 'Maunton', 64, 23421, 'mmaunton1@cpanel.net', 'Male'),
-       ('Emmy', 'Klima', 27, 54231, 'eklima2@theguardian.com', 'Female');
+INSERT INTO operator (operator_name, operator_surname, operator_age, operator_postal_code, operator_phone, operator_email, operator_sex, school_id) 
+VALUES ('Dierdre', 'Millett', 33, 15151, '697816423', 'dmillett0@latimes.com', 'F', 5562),
+       ('Miller', 'Maunton', 64, 23421, '697816424', 'mmaunton1@cpanel.net', 'M', 5563),
+       ('Emmy', 'Klima', 27, 54231, '697816425', 'eklima2@theguardian.com', 'F', 5564);
 
 
 INSERT INTO library_user (username, user_password, user_name, user_surname, user_email, user_age, user_sex, user_class) 
-VALUES  ('Karlie', 'Boltwood', 'kboltwood0@youku.com', 11, 'Female', 2);
-        ('groswarn0', 'jKz2cJ', 'Galvin', 'Roswarn', 'groswarn0@fotki.com', 14, 'Male', 6),
+VALUES  ('groswarn0', 'jKz2cJ', 'Galvin', 'Roswarn', 'groswarn0@fotki.com', 14, 'Male', 6),
         ('gmars1', 'F4E6Laij', 'Giselle', 'Mars', 'gmars1@cyberchimps.com', 16, 'Female', 11),
         ('bdelias2', 'jVw9TtT', 'Baryram', 'D''Elias', 'bdelias2@hp.com', 13, 'Male', 2),
         ('lblampy3', 'AT27tnTar', 'Leslie', 'Blampy', 'lblampy3@cmu.edu', 11, 'Female', 4),
