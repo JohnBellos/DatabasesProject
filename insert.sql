@@ -8,7 +8,7 @@ VALUES ('Dierdre', 'Millett', 33, 15151, '697816423', 'dmillett0@latimes.com', '
        ('Miller', 'Maunton', 64, 23421, '697816424', 'mmaunton1@cpanel.net', 'M', 5563),
        ('Emmy', 'Klima', 27, 54231, '697816425', 'eklima2@theguardian.com', 'F', 5564);
 
-INSERT INTO BOOK (ISBN, publisher, title, writer, num_of_pages, category)
+INSERT INTO BOOK (ISBN, title, publisher, writer, num_of_pages, summary, available_copies, category, language_of_book, key_word)
 VALUES  ('167610547-6', '1984', 'Macmillan Publishers', 'Ettie Grinley', 705, 'in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum', 79, 'Drama|Film-Noir', 'Haitian Creole', 'quis');
         ('360546962-0', 'Brave New World', 'Springer Nature', 'Leon Towey', 47, 'justo morbi ut odio cras mi pede malesuada in imperdiet', 48, 'Action|Crime|Horror|Mystery|Thriller', 'Burmese', 'odio');
         ('702442664-0', 'Animal Farm', 'Princeton University Press', 'Brandtr Collington', 600, 'felis donec semper sapien a libero nam dui proin leo', 72, 'Drama', 'Thai', 'justo');
