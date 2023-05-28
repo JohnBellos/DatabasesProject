@@ -38,28 +38,6 @@ CREATE TABLE IF NOT EXISTS book (
   PRIMARY KEY (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS student (
-  student_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  student_name VARCHAR(15) NOT NULL,
-  student_surname VARCHAR(15) NOT NULL,
-  student_age INT UNSIGNED NOT NULL,
-  student_email VARCHAR(45) NOT NULL,
-  student_class INT UNSIGNED NOT NULL,
-  student_sex ENUM('M','F','NB') NOT NULL,
-  PRIMARY KEY (student_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS professor (
-  professor_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  professor_name  VARCHAR(15) NOT NULL,
-  professor_surname VARCHAR(15) NOT NULL,
-  professor_age INT UNSIGNED NOT NULL,
-  professor_email VARCHAR(45) NOT NULL,
-  professor_class INT UNSIGNED NOT NULL,
-  professor_sex ENUM('M','F','NB') NOT NULL,
-  PRIMARY KEY (professor_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE IF NOT EXISTS operator (
   operator_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (operator_id),
@@ -96,7 +74,6 @@ CREATE TABLE IF NOT EXISTS library_user (
   PRIMARY KEY (user_id),
   CONSTRAINT fk_school_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE IF NOT EXISTS author(
   author_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
