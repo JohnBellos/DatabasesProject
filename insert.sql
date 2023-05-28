@@ -123,8 +123,9 @@ VALUES (1, 'Dierdre', 'Millett', 33, 15151, 'dmillett0@latimes.com', 'Agender'),
        (2, 'Miller', 'Maunton', 64, 23421, 'mmaunton1@cpanel.net', 'Male'),
        (3, 'Emmy', 'Klima', 27, 54231, 'eklima2@theguardian.com', 'Female');
 
-INSERT INTO library_user (username, user_password, user_name, user_surname, user_email, user_age, user_sex, user_class) values ('Karlie', 'Boltwood', 'kboltwood0@youku.com', 11, 'Female', 2);
-VALUES  ('groswarn0', 'jKz2cJ', 'Galvin', 'Roswarn', 'groswarn0@fotki.com', 14, 'Male', 6),
+INSERT INTO library_user (username, user_password, user_name, user_surname, user_email, user_age, user_sex, user_class) 
+VALUES  ('Karlie', 'Boltwood', 'kboltwood0@youku.com', 11, 'Female', 2);
+        ('groswarn0', 'jKz2cJ', 'Galvin', 'Roswarn', 'groswarn0@fotki.com', 14, 'Male', 6),
         ('gmars1', 'F4E6Laij', 'Giselle', 'Mars', 'gmars1@cyberchimps.com', 16, 'Female', 11),
         ('bdelias2', 'jVw9TtT', 'Baryram', 'D''Elias', 'bdelias2@hp.com', 13, 'Male', 2),
         ('lblampy3', 'AT27tnTar', 'Leslie', 'Blampy', 'lblampy3@cmu.edu', 11, 'Female', 4),
