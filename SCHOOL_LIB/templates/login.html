@@ -37,7 +37,8 @@
           method: "POST",
           data: formData,
           success: function(response) {
-            console.log("Server response:", response);
+            console.log("booooo");
+            window.location.href = "/show_page?url=" + encodeURIComponent(response);
             // Handle the server response here
           },
           error: function(xhr, status, error) {

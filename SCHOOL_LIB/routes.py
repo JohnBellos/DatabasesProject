@@ -49,21 +49,6 @@ def books():
 def login():
     return render_template("login.html")
 
-@app.route('/login_r', methods=['POST'])
-def login_response():
-    username = request.form['username']
-    password = request.form['password']
-
-    # Perform authentication and database checks here
-    # You can use a database library like SQLAlchemy to interact with the database
-
-    if password == 'mypassword':
-        response = {'message': 'Login successful'}
-    else:
-        response = {'message': 'Incorrect password'}
-
-    return jsonify(response)
-
 @app.route('/process_data', methods=['POST'])
 def process_data():
     username = request.form['username']
@@ -71,7 +56,6 @@ def process_data():
 
     # Perform any necessary processing or database operations here
     table = 'library_user'
-    query = "SELECT * FROM {};".format(table)
     query = "SELECT * FROM {} WHERE username = '{}' AND user_password = '{}';".format(table, username, password)
     print(query)
     cur = db.connection.cursor()
