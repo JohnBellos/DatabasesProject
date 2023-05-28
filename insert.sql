@@ -62,7 +62,7 @@ VALUES  ('167610547-6', '1984', 'Macmillan Publishers', 'Ettie Grinley', 705, 'i
 
 
 INSERT INTO library_user (username, user_password, user_type, user_name, user_surname, user_email, user_age, user_sex, user_class) 
-VALUES  ('Karlie', 'Boltwood', 'student', 'kboltwood0@youku.com', 11, 'Female', 2);
+VALUES  
         ('groswarn0', 'jKz2cJ', 'student','Galvin', 'Roswarn', 'groswarn0@fotki.com', 14, 'Male', 6),
         ('gmars1', 'F4E6Laij', 'student', 'Giselle', 'Mars', 'gmars1@cyberchimps.com', 16, 'Female', 11),
         ('bdelias2', 'jVw9TtT', 'student', 'Baryram', 'D''Elias', 'bdelias2@hp.com', 13, 'Male', 2),
