@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS book (
   num_of_pages INT UNSIGNED NOT NULL,
   summary VARCHAR(1024) NOT NULL,
   available_copies INT UNSIGNED NOT NULL,
-  category VARCHAR(15) NOT NULL,
+  category VARCHAR(50) NOT NULL,
   language_of_book VARCHAR(15) NOT NULL,
   key_word VARCHAR(15) NOT NULL,
   PRIMARY KEY (book_id)
