@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, abort, jsonify
 from flask_mysqldb import MySQL
 from SCHOOL_LIB import app, db ## initially created by __init__.py, need to be used here
-
+import json
 @app.route("/")
 def index():
     try:
@@ -43,11 +43,23 @@ def books():
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
-    return str(rv)
+    bookList = list(rv)
+    print(bookList)
+    
+    # rv = rv[2:-2]
+    #bookList = rv.split("), (")
+    # print(bookList)
+    #bookList = [data.split(", ") for data in bookList]
+    
+    # books = json.loads(str(rv))
+    # print(books)
+    return render_template("userPage.html", books=bookList)
 
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+
 
 @app.route('/process_data', methods=['POST'])
 def process_data():
@@ -72,3 +84,4 @@ def dashboard():
 
 if __name__ == '__main__':
     app.run()
+
