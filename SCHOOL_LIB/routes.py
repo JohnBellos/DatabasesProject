@@ -25,9 +25,9 @@ def users():
     return str(rv)
 
 
-@app.route("/students")
+@app.route("/users")
 def students():
-    table = 'student'
+    table = 'library_user'
     query = "SELECT * FROM {};".format(table)
     
     cur = db.connection.cursor()
