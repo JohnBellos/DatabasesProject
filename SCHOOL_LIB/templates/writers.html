@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Available Writers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .writer-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .writer-list li {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .writer-list li .writer-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Available Writers</h1>
+  <ul class="writer-list">
+    {% for writer in writers %}
+      <li>
+        <div class="writer-name">{{ writer[0] }}</div>
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

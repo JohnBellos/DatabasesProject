@@ -116,4 +116,22 @@ if __name__ == '__main__':
     app.run()
 
 
+@app.route("/admin4")
+def available_admin4():
+    query = '''
+    SELECT DISTINCT b.writer
+    FROM book b
+    LEFT JOIN borrows br ON b.book_id = br.book_id
+    WHERE br.book_id IS NULL;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+   
+    return render_template('writers.html', writers=rv)
+
+   
+
+
 
