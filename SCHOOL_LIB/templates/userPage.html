@@ -1,13 +1,98 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Book Titles</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .button-container {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+    .button-container button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .button-container button.clicked {
+      background-color: darkgreen;
+    }
+  </style>
 </head>
 <body>
-  <h1>Book Titles</h1>
-  <ul>
-    {%for item in books%}
-    <li>{{item}}</li>
-    {% endfor %}
-  </ul>
+  <h1>3ο Γενικό Ελευσίνας Βιβλιοθήκη</h1>
+  
+  <div class="button-container">
+    <button id="toggleButton" onclick="toggleBooks()">Borrowed Books<br>first 10 books for now</button>
+  </div>
+  
+  <table id="bookTable">
+    <thead>
+      <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Writer</th>
+        <th>Publisher</th>
+        <th>Genre</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in books %}
+      <tr>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+        <td>{{ item[4] }}</td>
+        <td>{{ item[3] }}</td>
+        <td>{{ item[8] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <script>
+    function toggleBooks() {
+  var bookTable = document.getElementById("bookTable");
+  var bookRows = bookTable.getElementsByTagName("tr");
+  var toggleButton = document.getElementById("toggleButton");
+
+  if (toggleButton.classList.contains("clicked")) {
+    // Show all rows
+    for (var i = 0; i < bookRows.length; i++) {
+      bookRows[i].style.display = "";
+    }
+    toggleButton.classList.remove("clicked");
+  } else {
+    // Hide rows after the 10th book
+    for (var j = 11; j < bookRows.length; j++) {
+      bookRows[j].style.display = "none";
+    }
+    toggleButton.classList.add("clicked");
+  }
+}
+  </script>
 </body>
 </html>
