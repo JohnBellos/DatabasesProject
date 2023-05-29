@@ -151,6 +151,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS borrows (
   user_id INT UNSIGNED NOT NULL,
   book_id INT UNSIGNED NOT NULL,
+  date_of_borrow DATE NOT NULL,
   PRIMARY KEY (user_id, book_id),
   CONSTRAINT fk_user_borrows
     FOREIGN KEY (user_id)
