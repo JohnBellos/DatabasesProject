@@ -85,14 +85,27 @@ def login():
     return render_template("login.html")
 
 
-
-
-
 @app.route('/dashboard', methods=['POST'])
 def dashboard():
+    username = request.cookies.get('username')
+
+
+
     username = request.form['username']
     password = request.form['password']
+    user = authentication(username, password)
 
+    if user == []:
+        return render_template("login.html")
+    else:
+        # user = [60, 'valeveque9', 'password', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
+        webpage = render_template("dashboard.html", user = user)
+        resp = make_response(webpage)
+        resp.set_cookie('username', user[3])
+        return resp
+
+def authentication(username, password):
+    print("debug 1")
     # Perform any necessary processing or database operations here
     table = 'library_user'
     query = "SELECT * FROM {} WHERE username = '{}' AND user_password = '{}';".format(table, username, password)
@@ -101,15 +114,8 @@ def dashboard():
     cur.execute(query)
     rv = cur.fetchall()
     user = [item for sublist in rv for item in sublist]
-    if user == []:
-        return render_template("login.html")
-    else:
-        # user = [60, 'valeveque9', 'password', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
-        webpage = render_template("dashboard.html", name = user[3])
-        resp = make_response(webpage)
-        resp.set_cookie('username', user[3])
-        return resp
-    
+    return user
+
 @app.route('/admin1')
 def admin1():
     month = 6
@@ -215,6 +221,5 @@ def admin2():
 
 
    
-
 
 
