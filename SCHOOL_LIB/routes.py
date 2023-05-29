@@ -121,7 +121,9 @@ def admin1():
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
-    return list(rv)
+    borrowCount = list(rv)
+    print(borrowCount)
+    return render_template("adminPage1.html", borrowData = borrowCount)
 
 @app.route('/admin2')
 def admin2():
