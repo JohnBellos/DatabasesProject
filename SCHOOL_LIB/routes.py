@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, make_response, flash, redirec
 from flask_mysqldb import MySQL
 from SCHOOL_LIB import app, db ## initially created by __init__.py, need to be used here
 import json
+
+if __name__ == '__main__':
+    app.run()
+
 @app.route("/")
 def index():
     try:
@@ -125,12 +129,7 @@ def admin1():
     print(borrowCount)
     return render_template("adminPage1.html", borrowData = borrowCount)
 
-@app.route('/admin2')
-def admin2():
-    pass
 
-if __name__ == '__main__':
-    app.run()
 
 
 @app.route("/admin4")
@@ -167,6 +166,52 @@ def admin3():
     professor_books = [(row[0] + ' ' + row[1], row[2]) for row in rv]  # Extracting professor IDs and borrowed book counts
     
     return render_template("professors.html", professor_books=professor_books)
+
+
+@app.route("/admin2", methods=["GET"])
+def admin2():
+    # Retrieve all categories from the database
+    category_query = "SELECT DISTINCT category FROM book;"
+    cur = db.connection.cursor()
+    cur.execute(category_query)
+    categories = [row[0] for row in cur.fetchall()]
+    cur.close()
+
+    # Check if a category is selected by the user
+    chosen_category = request.args.get('category')
+
+    if chosen_category:
+        # Query to fetch the writers and professor names based on the chosen category
+        query = '''
+        SELECT b.writer, lu.user_name, lu.user_surname
+        FROM book b
+        JOIN borrows br ON b.book_id = br.book_id
+        JOIN library_user lu ON br.user_id = lu.user_id
+        WHERE b.category = '{}'
+          AND lu.user_type = 'professor'
+          AND br.date_of_borrow >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR);
+        '''.format(chosen_category)
+
+        cur = db.connection.cursor()
+        cur.execute(query)
+        rv = cur.fetchall()
+        cur.close()
+
+        writer_professors = [(row[0], row[1] + ' ' + row[2]) for row in rv]
+
+        return render_template("category.html", writer_professors=writer_professors, categories=categories, chosen_category=chosen_category)
+    else:
+        return render_template("category.html", categories=categories)
+
+
+
+
+
+
+
+
+
+
 
 
    
