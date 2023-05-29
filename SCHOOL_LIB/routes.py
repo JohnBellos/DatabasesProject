@@ -66,7 +66,9 @@ def books():
 #def books(ISBN):
 #    return
 
-
+@app.route("/page")
+def page():
+    return render_template("cursed.html")
 
 
 @app.route("/login")
