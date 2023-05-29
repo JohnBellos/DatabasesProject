@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, abort, jsonify
+from flask import Flask, render_template, request, make_response, flash, redirect, url_for, abort, jsonify
 from flask_mysqldb import MySQL
 from SCHOOL_LIB import app, db ## initially created by __init__.py, need to be used here
 import json
@@ -84,27 +84,28 @@ def login():
 
 
 
-@app.route('/process_data', methods=['POST'])
-def process_data():
+@app.route('/dashboard', methods=['POST'])
+def dashboard():
     username = request.form['username']
     password = request.form['password']
 
     # Perform any necessary processing or database operations here
     table = 'library_user'
     query = "SELECT * FROM {} WHERE username = '{}' AND user_password = '{}';".format(table, username, password)
-    print(query)
+    
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
-    return render_template("dashboard.html")
-    response = {'message': 'Data received successfully'}
-    return redirect()
-
-@app.route('/dashboard')
-def dashboard():
-    # Render the dashboard template
-    return render_template('dashboard.html')
-
+    user = [item for sublist in rv for item in sublist]
+    if user == []:
+        return render_template("login.html")
+    else:
+        # user = [60, 'valeveque9', 'password', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
+        webpage = render_template("dashboard.html", name = user[3])
+        resp = make_response(webpage)
+        resp.set_cookie('username', user[3])
+        return resp
+    
 @app.route('/admin1')
 def admin1():
     month = 6
@@ -146,6 +147,27 @@ def available_admin4():
     rv = cur.fetchall()
    
     return render_template('writers.html', writers=rv)
+
+@app.route("/admin3")
+def admin3():
+    query = '''
+    SELECT lu.user_id, COUNT(b.book_id) AS borrowed_books
+    FROM library_user lu
+    JOIN borrows br ON lu.user_id = br.user_id
+    JOIN book b ON br.book_id = b.book_id
+    WHERE lu.user_type = 'professor' AND lu.user_age < 40
+    GROUP BY lu.user_id
+    ORDER BY borrowed_books DESC;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    
+    professor_books = [(row[0], row[1]) for row in rv]  # Extracting professor IDs and borrowed book counts
+    
+    return render_template("professors.html", professor_books=professor_books)
+
 
    
 
