@@ -62,9 +62,14 @@ def books():
     # print(books)
     return render_template("userPage.html", books=bookList)
 
-#@app.route("/books/<string:ISBN>", methods=["GET"])
-#def books(ISBN):
-#    return
+@app.route("/books/<string:ISBN>", methods=["GET"])
+def bookView(ISBN):
+    
+    cur = db.connection.cursor()
+    cur.execute("SELECT * FROM book WHERE ISBN = %s", (ISBN,))
+    rv = cur.fetchone()
+    bookDetails = list(rv)
+    return render_template("bookPage.html", bookDetails = bookDetails)
 
 @app.route("/page")
 def page():
