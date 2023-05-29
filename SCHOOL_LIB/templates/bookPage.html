@@ -42,12 +42,12 @@
   <script>
     // Replace the following variables with the actual book details
     var book = {
-      isbn: "1234567890",
-      title: "Sample Book Title",
-      writer: "John Doe",
-      publisher: "Sample Publisher",
-      genre: "Fiction",
-      summary: "This is a sample book summary."
+      isbn: "{{bookDetails[1]}}",
+      title: "{{bookDetails[2]}}",
+      writer: "{{bookDetails[4]}}",
+      publisher: "{{bookDetails[3]}}",
+      genre: "{{bookDetails[8]}}",
+      summary: "{{bookDetails[6]}}"
     };
     
     // Update the HTML elements with the book details

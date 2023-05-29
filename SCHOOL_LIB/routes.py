@@ -62,9 +62,14 @@ def books():
     # print(books)
     return render_template("userPage.html", books=bookList)
 
-#@app.route("/books/<string:ISBN>", methods=["GET"])
-#def books(ISBN):
-#    return
+@app.route("/books/<string:ISBN>", methods=["GET"])
+def bookView(ISBN):
+    
+    cur = db.connection.cursor()
+    cur.execute("SELECT * FROM book WHERE ISBN = %s", (ISBN,))
+    rv = cur.fetchone()
+    bookDetails = list(rv)
+    return render_template("bookPage.html", bookDetails = bookDetails)
 
 @app.route("/page")
 def page():
@@ -123,4 +128,24 @@ def admin2():
 
 if __name__ == '__main__':
     app.run()
+
+
+@app.route("/admin4")
+def available_admin4():
+    query = '''
+    SELECT DISTINCT b.writer
+    FROM book b
+    LEFT JOIN borrows br ON b.book_id = br.book_id
+    WHERE br.book_id IS NULL;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+   
+    return render_template('writers.html', writers=rv)
+
+   
+
+
 
