@@ -44,7 +44,6 @@ def books():
     cur.execute(query)
     rv = cur.fetchall()
     bookList = list(rv)
-    print(bookList)
     
     # rv = rv[2:-2]
     #bookList = rv.split("), (")
