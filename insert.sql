@@ -112,7 +112,7 @@ VALUES  ('587093055-3', 'The Catcher in the Rye', 'HarperCollins', 'Adan Nial', 
         ('677931285-1', 'Brave New World', 'Oxford University Press', 'Patricia McCalister', 729, 'velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit', 86, 'Comedy', 'Estonian', 'luctus'),
         ('096277290-9', 'Shutter island', 'Scholastic Corporation', 'Becki Blakely', 390, 'volutpat eleifend donec ut dolor morbi vel lectus in quam', 7, 'Drama', 'Kurdish', 'integer'),
         ('436102994-6', 'To Kill a Mockingbird', 'Pearson Education', 'Rabbi Walster', 700, 'platea dictumst maecenas ut massa quis augue luctus tincidunt nulla', 8, 'Documentary', 'Armenian', 'erat');
-INSERT INTO library_user (username, user_password, user_type, user_name, user_surname, user_email, user_age, user_sex, user_class) 
+INSERT INTO library_user (username, user_password, user_type, user_name, user_surname, user_email, user_age, user_sex, user_class, school_id) 
 VALUES  ('jlefleming0', 'aovGiL', 'student', 'Jonah', 'Le Fleming', 'jlefleming0@usnews.com', 7, 'M', 12, 2),
         ('dandreasen1', '86S2TQml01tN', 'student', 'Dianne', 'Andreasen', 'dandreasen1@apache.org', 18, 'F', 4, 1),
         ('rranscome2', '9TcwECHn', 'student', 'Rosabel', 'Ranscome', 'rranscome2@mapquest.com', 11, 'F', 6, 2),
