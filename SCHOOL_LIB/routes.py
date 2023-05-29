@@ -103,10 +103,7 @@ def dashboard():
 @app.route('/admin1')
 def admin1():
     query = """
-        SELECT *
-        FROM borrows b
-        JOIN library_user lu ON b.user_id = lu.user_id
-        JOIN school s ON lu.school_id = s.school_id
+        SELECT * FROM borrows b JOIN library_user lu ON b.user_id = lu.user_id JOIN school s ON lu.school_id = s.school_id
     """
     cur = db.connection.cursor()
     cur.execute(query)

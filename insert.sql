@@ -163,16 +163,16 @@ VALUES  ('jlefleming0', 'aovGiL', 'student', 'Jonah', 'Le Fleming', 'jlefleming0
         ('rmosen1b', 'gnw28xWLlw', 'student', 'Robin', 'Mosen', 'rmosen1b@cam.ac.uk', 6, 'F', 11, 2),
         ('akubera1c', 'RCwLJh', 'student', 'Aloise', 'Kubera', 'akubera1c@bravesites.com', 6, 'F', 1, 3),
         ('mpinn1d', '3upAdi2A3qK8', 'student', 'Mart', 'Pinn', 'mpinn1d@ox.ac.uk', 7, 'M', 10, 3),
-        ('cleahair0', 'jnHz4OxL', 'teacher', 'Carrissa', 'Leahair', 'cleahair0@springer.com', 18, 'F', 1, 3),
-        ('ecorking1', 'pufiRM', 'teacher', 'Everard', 'Corking', 'ecorking1@163.com', 11, 'M', 1, 3),
-        ('imanoelli2', 'R6qZK06u8BF', 'teacher', 'Ichabod', 'Manoelli', 'imanoelli2@smh.com.au', 6, 'M', 8, 3),
-        ('rfitzroy3', 'FeYZ7mz', 'teacher', 'Rooney', 'Fitzroy', 'rfitzroy3@unc.edu', 9, 'M', 2, 2),
-        ('ipetracci4', 'd15AWrJ3qNo', 'teacher', 'Ivett', 'Petracci', 'ipetracci4@bbb.org', 8, 'F', 6, 3),
-        ('jbertrand5', 'VJFcETI6p', 'teacher', 'Jerry', 'Bertrand', 'jbertrand5@huffingtonpost.com', 17, 'M', 3, 1),
-        ('ageratt6', 'Fy5OOS', 'teacher', 'Alphard', 'Geratt', 'ageratt6@clickbank.net', 11, 'M', 1, 1),
-        ('gstuckes7', '6ZXCfOkNMji', 'teacher', 'Grayce', 'Stuckes', 'gstuckes7@themeforest.net', 16, 'F', 1, 3),
-        ('dlumley8', 'UOgygZjR2R', 'teacher', 'Devlen', 'Lumley', 'dlumley8@godaddy.com', 10, 'M', 3, 3),
-        ('valeveque9', 'RpHeZAR', 'teacher', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', 15, 'F', 9, 2);
+        ('cleahair0', 'jnHz4OxL', 'professor', 'Carrissa', 'Leahair', 'cleahair0@springer.com', 18, 'F', 1, 3),
+        ('ecorking1', 'pufiRM', 'professor', 'Everard', 'Corking', 'ecorking1@163.com', 11, 'M', 1, 3),
+        ('imanoelli2', 'R6qZK06u8BF', 'professor', 'Ichabod', 'Manoelli', 'imanoelli2@smh.com.au', 6, 'M', 8, 3),
+        ('rfitzroy3', 'FeYZ7mz', 'professor', 'Rooney', 'Fitzroy', 'rfitzroy3@unc.edu', 9, 'M', 2, 2),
+        ('ipetracci4', 'd15AWrJ3qNo', 'professor', 'Ivett', 'Petracci', 'ipetracci4@bbb.org', 8, 'F', 6, 3),
+        ('jbertrand5', 'VJFcETI6p', 'professor', 'Jerry', 'Bertrand', 'jbertrand5@huffingtonpost.com', 17, 'M', 3, 1),
+        ('ageratt6', 'Fy5OOS', 'professor', 'Alphard', 'Geratt', 'ageratt6@clickbank.net', 11, 'M', 1, 1),
+        ('gstuckes7', '6ZXCfOkNMji', 'professor', 'Grayce', 'Stuckes', 'gstuckes7@themeforest.net', 16, 'F', 1, 3),
+        ('dlumley8', 'UOgygZjR2R', 'professor', 'Devlen', 'Lumley', 'dlumley8@godaddy.com', 10, 'M', 3, 3),
+        ('valeveque9', 'RpHeZAR', 'professor', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', 15, 'F', 9, 2);
 
 
 INSERT INTO borrows (user_id, book_id, date_of_borrow)
