@@ -136,6 +136,27 @@ def available_admin4():
    
     return render_template('writers.html', writers=rv)
 
+@app.route("/admin3")
+def admin3():
+    query = '''
+    SELECT lu.user_id, COUNT(b.book_id) AS borrowed_books
+    FROM library_user lu
+    JOIN borrows br ON lu.user_id = br.user_id
+    JOIN book b ON br.book_id = b.book_id
+    WHERE lu.user_type = 'professor' AND lu.user_age < 40
+    GROUP BY lu.user_id
+    ORDER BY borrowed_books DESC;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    
+    professor_books = [(row[0], row[1]) for row in rv]  # Extracting professor IDs and borrowed book counts
+    
+    return render_template("professors.html", professor_books=professor_books)
+
+
    
 
 
