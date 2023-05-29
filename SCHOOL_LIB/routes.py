@@ -102,18 +102,25 @@ def dashboard():
 
 @app.route('/admin1')
 def admin1():
+    month = 6
+    year = 2023
     query = """
-        SELECT * FROM borrows b JOIN library_user lu ON b.user_id = lu.user_id JOIN school s ON lu.school_id = s.school_id
-    """
+        SELECT s.school_name, COUNT(*) AS borrow_count
+        FROM borrows b
+        JOIN library_user lu ON b.user_id = lu.user_id
+        JOIN school s ON lu.school_id = s.school_id
+        WHERE YEAR(b.date_of_borrow) = {} AND MONTH(b.date_of_borrow) = {}
+        GROUP BY s.school_name;
+    """.format(year, month)
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
-    print(rv)
     return list(rv)
 
+@app.route('/admin2')
+def admin2():
+    pass
 
 if __name__ == '__main__':
     app.run()
-
-
 
