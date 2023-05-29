@@ -169,7 +169,6 @@ def admin3():
     return render_template("professors.html", professor_books=professor_books)
 
 
-   
 
 
 
