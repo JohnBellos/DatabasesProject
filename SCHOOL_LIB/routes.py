@@ -15,14 +15,20 @@ def index():
         return render_template("index.html", pageTitle = "SCHOOL_LIB")
     
 @app.route("/schools")
-def users():
+def schools():
     table = 'school'
     query = "SELECT * FROM {};".format(table)
     
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
-    return str(rv)
+    cur.close()
+    schools=list(rv)
+    
+    return render_template('schools.html', schools=schools)
+
+if __name__ == '__main__':
+    app.run()
 
 
 @app.route("/users")
@@ -44,6 +50,8 @@ def books():
     cur.execute(query)
     rv = cur.fetchall()
     bookList = list(rv)
+    return render_template("userPage.html", books=bookList)
+    print(bookList)
     
     # rv = rv[2:-2]
     #bookList = rv.split("), (")
@@ -54,9 +62,18 @@ def books():
     # print(books)
     return render_template("userPage.html", books=bookList)
 
+#@app.route("/books/<string:ISBN>", methods=["GET"])
+#def books(ISBN):
+#    return
+
+
+
+
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+
 
 
 
