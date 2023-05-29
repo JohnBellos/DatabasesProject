@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .book-details {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .book-details p {
+      margin-bottom: 10px;
+    }
+    .book-details h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Book Details</h1>
+  
+  <div class="book-details">
+    <h2>ISBN: <span id="isbn"></span></h2>
+    <p><strong>Title:</strong> <span id="title"></span></p>
+    <p><strong>Writer:</strong> <span id="writer"></span></p>
+    <p><strong>Publisher:</strong> <span id="publisher"></span></p>
+    <p><strong>Genre:</strong> <span id="genre"></span></p>
+    <h2>Summary:</h2>
+    <p id="summary"></p>
+  </div>
+  
+  <script>
+    // Replace the following variables with the actual book details
+    var book = {
+      isbn: "1234567890",
+      title: "Sample Book Title",
+      writer: "John Doe",
+      publisher: "Sample Publisher",
+      genre: "Fiction",
+      summary: "This is a sample book summary."
+    };
+    
+    // Update the HTML elements with the book details
+    document.getElementById("isbn").textContent = book.isbn;
+    document.getElementById("title").textContent = book.title;
+    document.getElementById("writer").textContent = book.writer;
+    document.getElementById("publisher").textContent = book.publisher;
+    document.getElementById("genre").textContent = book.genre;
+    document.getElementById("summary").textContent = book.summary;
+  </script>
+</body>
+</html>

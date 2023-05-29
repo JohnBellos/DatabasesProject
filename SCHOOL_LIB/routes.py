@@ -55,9 +55,18 @@ def books():
     # print(books)
     return render_template("userPage.html", books=bookList)
 
+#@app.route("/books/<string:ISBN>", methods=["GET"])
+#def books(ISBN):
+#    return
+
+
+
+
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+
 
 
 

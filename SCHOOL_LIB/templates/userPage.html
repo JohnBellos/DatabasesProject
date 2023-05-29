@@ -41,6 +41,17 @@
     .button-container button.clicked {
       background-color: darkgreen;
     }
+    .view-button {
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -58,6 +69,7 @@
         <th>Writer</th>
         <th>Publisher</th>
         <th>Genre</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -68,6 +80,7 @@
         <td>{{ item[4] }}</td>
         <td>{{ item[3] }}</td>
         <td>{{ item[8] }}</td>
+        <td><button class="view-button" onclick="viewBook('{{ item[1] }}')">View</button></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -75,24 +88,30 @@
   
   <script>
     function toggleBooks() {
-  var bookTable = document.getElementById("bookTable");
-  var bookRows = bookTable.getElementsByTagName("tr");
-  var toggleButton = document.getElementById("toggleButton");
+      var bookTable = document.getElementById("bookTable");
+      var bookRows = bookTable.getElementsByTagName("tr");
+      var toggleButton = document.getElementById("toggleButton");
 
-  if (toggleButton.classList.contains("clicked")) {
-    // Show all rows
-    for (var i = 0; i < bookRows.length; i++) {
-      bookRows[i].style.display = "";
+      if (toggleButton.classList.contains("clicked")) {
+        // Show all rows
+        for (var i = 0; i < bookRows.length; i++) {
+          bookRows[i].style.display = "";
+        }
+        toggleButton.classList.remove("clicked");
+      } else {
+        // Hide rows after the 10th book
+        for (var j = 11; j < bookRows.length; j++) {
+          bookRows[j].style.display = "none";
+        }
+        toggleButton.classList.add("clicked");
+      }
     }
-    toggleButton.classList.remove("clicked");
-  } else {
-    // Hide rows after the 10th book
-    for (var j = 11; j < bookRows.length; j++) {
-      bookRows[j].style.display = "none";
+    
+    function viewBook(isbn) {
+      // Replace the 'specific_link' with the actual link for the specific book
+      window.location.href = 'books/' + isbn;
     }
-    toggleButton.classList.add("clicked");
-  }
-}
   </script>
 </body>
 </html>
+
