@@ -209,7 +209,20 @@ def admin2():
     else:
         return render_template("category.html", categories=categories)
 
+@app.route("/admin7") #we need more data
+def admin7():
+    query1 = '''
+    SELECT writer, COUNT(*) AS book_count
+    FROM book
+    GROUP BY writer
+    ORDER BY book_count DESC
+    LIMIT 1;'''
 
+    cur = db.connection.cursor()
+    cur.execute(query1)
+    rv = cur.fetchall()
+    print(rv)
+    return list(rv)
 
 
 
