@@ -24,6 +24,29 @@
     .book-details h2 {
       margin-top: 0;
     }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .button-container button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .button-borrow {
+      background-color: blue;
+      color: white;
+    }
+    .button-review {
+      background-color: yellow;
+      color: black;
+    }
+    .button-reserve {
+      background-color: lightblue;
+      color: black;
+    }
   </style>
 </head>
 <body>
@@ -37,6 +60,12 @@
     <p><strong>Genre:</strong> <span id="genre"></span></p>
     <h2>Summary:</h2>
     <p id="summary"></p>
+  </div>
+  
+  <div class="button-container">
+    <button class="button-borrow">Borrow</button>
+    <button class="button-review">Review</button>
+    <button class="button-reserve">Reserve</button>
   </div>
   
   <script>
