@@ -1,71 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Writers by Category</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-
-    .category-select {
-      margin-bottom: 20px;
-    }
-
-    .writer-list {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
-    }
-
-    .writer-list li {
-      background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    .writer-list li .writer-info {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-  </style>
+    <title>Category Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        select {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        p {
+            color: #888;
+        }
+    </style>
 </head>
 <body>
-  <h1>Writers by Category</h1>
+    <h1>Category Report</h1>
 
-  <form action="/admin2" method="GET">
-    <label for="category">Select a category:</label>
-    <select name="category" id="category" class="category-select">
-      {% for category in categories %}
-        <option value="{{ category }}" {% if category == chosen_category %}selected{% endif %}>{{ category }}</option>
-      {% endfor %}
-    </select>
-    <input type="submit" value="Submit">
-  </form>
+    <form action="/admin2" method="GET">
+        <label for="category">Select a category:</label>
+        <select name="category" id="category">
+            {% for category in categories %}
+            <option value="{{ category }}" {% if category == chosen_category %}selected{% endif %}>{{ category }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Submit">
+    </form>
 
-  <ul class="writer-list">
-    {% for writer, professor in writer_professors %}
-      <li>
-        <div class="writer-info">
-          <strong>Writer:</strong> {{ writer }}
-        </div>
-        <div class="writer-info">
-          <strong>Professor:</strong> {{ professor }}
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
+    {% if chosen_category %}
+    <h2>Selected Category: {{ chosen_category }}</h2>
+
+    {% if writers %}
+    <h3>Writers:</h3>
+    <ul>
+        {% for writer in writers %}
+        <li>{{ writer }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No writers found for this category.</p>
+    {% endif %}
+
+    {% if professors %}
+    <h3>Professors:</h3>
+    <ul>
+        {% for professor in professors %}
+        <li>{{ professor[0] }} {{ professor[1] }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No professors found for this category.</p>
+    {% endif %}
+
+    {% endif %}
 </body>
 </html>
-
-
-
