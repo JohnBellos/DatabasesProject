@@ -98,11 +98,19 @@ def dashboard():
     if user == []:
         return render_template("login.html")
     else:
-        # user = [60, 'valeveque9', 'password', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
-        webpage = render_template("dashboardProf.html", user = user)
-        resp = make_response(webpage)
-        resp.set_cookie('id', str(user[0]))
-        return resp
+        # user = [60, 'valeveque9', 'RpHeZAR', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
+        print(user[9])
+        if user[9] == 'professor':
+            webpage = render_template("dashboardProf.html", user = user)
+            resp = make_response(webpage)
+            resp.set_cookie('id', str(user[0]))
+            return resp
+        # user = [1, 'jlefleming0', 'aovGiL', 'Jonah', 'Le Fleming', 'jlefleming0@usnews.com', '7', 'M', '12', 'student', 2]
+        if user[9] == 'student':
+            webpage = render_template("dashboardStd.html", user = user)
+            resp = make_response(webpage)
+            resp.set_cookie('id', str(user[0]))
+            return resp
 
 def authentication(username, password):
     print("debug 1")
