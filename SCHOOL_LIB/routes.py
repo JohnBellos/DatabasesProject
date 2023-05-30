@@ -308,6 +308,24 @@ def admin7():
     return list(rv)
 
 
+@app.route("/admin5")
+def available_admin5():
+    query = '''
+    SELECT s.operator_name, COUNT(b.user_id) AS user_count
+    FROM school s
+    JOIN library_user u ON u.school_id = s.school_id
+    JOIN borrows b ON b.user_id = u.user_id
+    WHERE s.school_id IN (1, 2, 3)
+    GROUP BY s.operator_name
+    ORDER BY user_count DESC;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+
+    return render_template('adminPage5.html', operatorData=rv)
+
 
 
 
