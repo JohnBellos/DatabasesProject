@@ -7,11 +7,6 @@ DELETE FROM administrator;
 INSERT INTO administrator (administrator_id, administrator_username, administrator_password, administrator_name, administrator_surname, administrator_age, administrator_phone, administrator_postal_code, administrator_email, administrator_sex)
 VALUES (1, 'gggkoloko', 'ellas9#d', 'Georgios', 'Kolokotronis', 284, '1182111821', '12345', 'gerostoumoria@elladamono.gr', 'M');
 
-INSERT INTO operator (operator_name, operator_surname, operator_age, operator_postal_code, operator_phone, operator_email, operator_sex, school_id) 
-VALUES ('Carrissa', 'Leahair', 33, 15151, '697816423', 'cleahair0@springer.com', 'F', 1),
-       ('Everard', 'Corking', 64, 23421, '697816424', 'ecorking1@163.com', 'M', 2),
-       ('Ichabod', 'Manoelli', 27, 54231, '697816425', 'imanoelli2@smh.com.au', 'M', 3);
-
 INSERT INTO BOOK (ISBN, title, publisher, writer, num_of_pages, summary, available_copies, category, language_of_book, key_word)
 VALUES  ('603020091-7', 'The Picture of Dorian Gray', 'Penguin Random House', 'Meggie Dannehl', 724, 'omnis dolor repellendus', 93, 'Young adult', 'Belarusian', 'PPC'),
         ('613640324-2', 'The Call of the Wild', 'Wolters Kluwer', 'Sharlene Edyson', 221, 'similique sunt in culpa qui officia', 49, 'Fantasy', 'Danish', 'outdoors'),

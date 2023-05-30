@@ -40,21 +40,7 @@ CREATE TABLE IF NOT EXISTS book (
   key_word VARCHAR(50) NOT NULL,
   PRIMARY KEY (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-SHOW WARNINGS;
 
-CREATE TABLE IF NOT EXISTS operator (
-  operator_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (operator_id),
-  operator_name VARCHAR(15) NOT NULL,
-  operator_surname VARCHAR(15) NOT NULL,
-  operator_age INT UNSIGNED NOT NULL,
-  operator_postal_code CHAR(5) NOT NULL,
-  operator_phone INT UNSIGNED NOT NULL,
-  operator_email VARCHAR(45) NOT NULL,
-  operator_sex ENUM('M','F','NB') NOT NULL,
-  school_id INT UNSIGNED NOT NULL,
-  CONSTRAINT fk_OPschool_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS administrator(
@@ -64,8 +50,8 @@ CREATE TABLE IF NOT EXISTS administrator(
   administrator_name VARCHAR(15) NOT NULL,
   administrator_surname VARCHAR(15) NOT NULL,
   administrator_age INT UNSIGNED NOT NULL,
-  administrator_phone INT UNSIGNED NOT NULL,
-  administrator_postal_code INT UNSIGNED NOT NULL,
+  administrator_phone CHAR(10),
+  administrator_postal_code CHAR(5),
   administrator_email VARCHAR(45) NOT NULL,
   administrator_sex ENUM('M','F','NB') NOT NULL,
   PRIMARY KEY(administrator_id),
@@ -80,6 +66,8 @@ CREATE TABLE IF NOT EXISTS library_user (
   user_name VARCHAR(50),
   user_surname VARCHAR(50),
   user_email VARCHAR(50),
+  operator_postal_code CHAR(5),
+  phone CHAR(10),
   user_age VARCHAR(50),
   user_sex VARCHAR(50),
   user_class VARCHAR(50),
