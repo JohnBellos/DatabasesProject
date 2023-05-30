@@ -88,9 +88,6 @@ def login():
 @app.route('/dashboard', methods=['POST'])
 def dashboard():
     username = request.cookies.get('id')
-
-
-
     username = request.form['username']
     password = request.form['password']
     user = authentication(username, password)
@@ -101,10 +98,27 @@ def dashboard():
         # user = [60, 'valeveque9', 'RpHeZAR', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
         print(user[9])
         if user[9] == 'professor':
-            webpage = render_template("dashboardProf.html", user = user)
-            resp = make_response(webpage)
-            resp.set_cookie('id', str(user[0]))
-            return resp
+            query = '''SELECT EXISTS (
+                        SELECT 1
+                        FROM operator
+                        WHERE operator_name = {} AND operator_surname = {}
+                        ) AS record_exists;'''.format(user[3], user[4])
+           
+            cur = db.connection.cursor()
+            cur.execute(query)
+            rv = cur.fetchall()
+            exist = rv   # 1 if Operator - 0 if not Operator
+            if exist == 1:
+                webpage = render_template("dashboardOp.html", user = user)
+                resp = make_response(webpage)
+                resp.set_cookie('id', str(user[0]))
+                return resp
+            else:
+                webpage = render_template("dashboardProf.html", user = user)
+                resp = make_response(webpage)
+                resp.set_cookie('id', str(user[0]))
+                return resp
+
         # user = [1, 'jlefleming0', 'aovGiL', 'Jonah', 'Le Fleming', 'jlefleming0@usnews.com', '7', 'M', '12', 'student', 2]
         if user[9] == 'student':
             webpage = render_template("dashboardStd.html", user = user)

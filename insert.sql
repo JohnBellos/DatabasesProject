@@ -164,9 +164,9 @@ VALUES  ('jlefleming0', 'aovGiL', 'student', 'Jonah', 'Le Fleming', 'jlefleming0
         ('akubera1c', 'RCwLJh', 'student', 'Aloise', 'Kubera', 'akubera1c@bravesites.com', 6, 'F', 1, 3),
         ('mpinn1d', '3upAdi2A3qK8', 'student', 'Mart', 'Pinn', 'mpinn1d@ox.ac.uk', 7, 'M', 10, 3),
 
-        ('cleahair0', 'jnHz4OxL', 'professor', 'Carrissa', 'Leahair', 'cleahair0@springer.com', 33, 'F', 1, 1),    --operator
-        ('ecorking1', 'pufiRM', 'professor', 'Everard', 'Corking', 'ecorking1@163.com', 64, 'M', 1, 2),            --operator
-        ('imanoelli2', 'R6qZK06u8BF', 'professor', 'Ichabod', 'Manoelli', 'imanoelli2@smh.com.au', 27, 'M', 8, 3), --operator
+        ('cleahair0', 'jnHz4OxL', 'professor', 'Carrissa', 'Leahair', 'cleahair0@springer.com', 33, 'F', 1, 1),    
+        ('ecorking1', 'pufiRM', 'professor', 'Everard', 'Corking', 'ecorking1@163.com', 64, 'M', 1, 2),            
+        ('imanoelli2', 'R6qZK06u8BF', 'professor', 'Ichabod', 'Manoelli', 'imanoelli2@smh.com.au', 27, 'M', 8, 3), 
         ('rfitzroy3', 'FeYZ7mz', 'professor', 'Rooney', 'Fitzroy', 'rfitzroy3@unc.edu', 9, 'M', 2, 2),
         ('ipetracci4', 'd15AWrJ3qNo', 'professor', 'Ivett', 'Petracci', 'ipetracci4@bbb.org', 8, 'F', 6, 3),
         ('jbertrand5', 'VJFcETI6p', 'professor', 'Jerry', 'Bertrand', 'jbertrand5@huffingtonpost.com', 17, 'M', 3, 1),
