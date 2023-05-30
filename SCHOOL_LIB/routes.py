@@ -91,12 +91,18 @@ def dashboard():
     username = request.form['username']
     password = request.form['password']
     user = authentication(username, password)
-
+    print(user)
     if user == []:
         return render_template("login.html")
     else:
         # user = [60, 'valeveque9', 'RpHeZAR', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
-        print(user[9])
+        print(user)
+        if len(user) == 10:
+            # it is the admin
+            webpage = render_template("dashboardAdmin.html", user = user)
+            resp = make_response(webpage)
+            resp.set_cookie('id', 'admin')
+            return resp
         if user[9] == 'professor':
             query = '''SELECT EXISTS (
                         SELECT 1
@@ -126,6 +132,7 @@ def dashboard():
             resp.set_cookie('id', str(user[0]))
             return resp
 
+
 def authentication(username, password):
     print("debug 1")
     # Perform any necessary processing or database operations here
@@ -136,6 +143,19 @@ def authentication(username, password):
     cur.execute(query)
     rv = cur.fetchall()
     user = [item for sublist in rv for item in sublist]
+    
+    if user == []: # check if user is admin
+        print('huuumus')
+        table = 'administrator'
+        query = "SELECT * FROM {} WHERE administrator_username = '{}' AND administrator_password = '{}';".format(table, username, password)
+        cur = db.connection.cursor()
+        cur.execute(query)
+        rv = cur.fetchall()
+        print(query)
+        print(rv)
+        user = [item for sublist in rv for item in sublist]
+        print(user)
+    
     return user
 
 @app.route('/edit_info')
@@ -178,6 +198,9 @@ def save_info():
 
 @app.route('/admin1')
 def admin1():
+    id = request.cookies.get('id')
+    if id != 'admin':
+        return render_template('noaccess.html')
     month = 6
     year = 2023
     query = """
