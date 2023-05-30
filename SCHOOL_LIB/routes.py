@@ -255,43 +255,6 @@ def admin1():
 
 
 
-
-@app.route("/admin4")
-def available_admin4():
-    query = '''
-    SELECT DISTINCT b.writer
-    FROM book b
-    LEFT JOIN borrows br ON b.book_id = br.book_id
-    WHERE br.book_id IS NULL;
-    '''
-
-    cur = db.connection.cursor()
-    cur.execute(query)
-    rv = cur.fetchall()
-   
-    return render_template('writers.html', writers=rv)
-
-@app.route("/admin3")
-def admin3():
-    query = '''
-    SELECT lu.user_name, lu.user_surname, COUNT(b.book_id) AS borrowed_books
-    FROM library_user lu
-    JOIN borrows br ON lu.user_id = br.user_id
-    JOIN book b ON br.book_id = b.book_id
-    WHERE lu.user_type = 'professor' AND lu.user_age < 40
-    GROUP BY lu.user_id
-    ORDER BY borrowed_books DESC;
-    '''
-
-    cur = db.connection.cursor()
-    cur.execute(query)
-    rv = cur.fetchall()
-    print (rv)
-    professor_books = [(row[0] + ' ' + row[1], row[2]) for row in rv]  # Extracting professor IDs and borrowed book counts
-    
-    return render_template("professors.html", professor_books=professor_books)
-
-
 @app.route("/admin2", methods=["GET"])
 def admin2():
     # Retrieve all categories from the database
@@ -348,27 +311,40 @@ def admin2():
         return render_template("category.html", categories=categories)
 
 
-
-
-
-
-
-
-@app.route("/admin7") #we need more data
-def admin7():
-    query1 = '''
-    SELECT writer, COUNT(*) AS book_count
-    FROM book
-    GROUP BY writer
-    ORDER BY book_count DESC
-    LIMIT 1;'''
+@app.route("/admin3")
+def admin3():
+    query = '''
+    SELECT lu.user_name, lu.user_surname, COUNT(b.book_id) AS borrowed_books
+    FROM library_user lu
+    JOIN borrows br ON lu.user_id = br.user_id
+    JOIN book b ON br.book_id = b.book_id
+    WHERE lu.user_type = 'professor' AND lu.user_age < 40
+    GROUP BY lu.user_id
+    ORDER BY borrowed_books DESC;
+    '''
 
     cur = db.connection.cursor()
-    cur.execute(query1)
+    cur.execute(query)
     rv = cur.fetchall()
-    print(rv)
-    return list(rv)
+    print (rv)
+    professor_books = [(row[0] + ' ' + row[1], row[2]) for row in rv]  # Extracting professor IDs and borrowed book counts
+    
+    return render_template("professors.html", professor_books=professor_books)
 
+@app.route("/admin4")
+def available_admin4():
+    query = '''
+    SELECT DISTINCT b.writer
+    FROM book b
+    LEFT JOIN borrows br ON b.book_id = br.book_id
+    WHERE br.book_id IS NULL;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+   
+    return render_template('writers.html', writers=rv)
 
 @app.route("/admin5")
 def available_admin5():
@@ -387,6 +363,37 @@ def available_admin5():
     rv = cur.fetchall()
 
     return render_template('adminPage5.html', operatorData=rv)
+
+@app.route("/admin7")
+def admin7():
+    # Retrieve all writers and their book counts from the database
+    writer_query = "SELECT writer FROM book;"
+    cur = db.connection.cursor()
+    cur.execute(writer_query)
+    writers = [row[0] for row in cur.fetchall()]
+    cur.close()
+
+    # Count the number of books for each writer
+    writer_counts = dict(Counter(writers))
+
+    # Find the maximum book count
+    max_count = max(writer_counts.values())
+
+    # Find the threshold for including writers (at least 5 books less than the maximum)
+    threshold = max_count - 5
+
+    # Filter the writers who have written at least 5 books less than the maximum
+    selected_writers = [writer for writer, count in writer_counts.items() if count >= threshold and count != max_count]
+
+    return render_template("admin7.html", writers=selected_writers)
+
+
+
+
+from collections import Counter
+
+from collections import Counter
+
 
 
 
