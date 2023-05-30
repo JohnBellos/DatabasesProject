@@ -91,30 +91,35 @@ def dashboard():
     username = request.form['username']
     password = request.form['password']
     user = authentication(username, password)
+    print("User(or not) identified")
     print(user)
     if user == []:
+        print("I am nobody")
         return render_template("login.html")
     else:
         # user = [60, 'valeveque9', 'RpHeZAR', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
-        print(user)
+        
         if len(user) == 10:
+            print("I am an admin")
             # it is the admin
             webpage = render_template("dashboardAdmin.html", user = user)
             resp = make_response(webpage)
             resp.set_cookie('id', 'admin')
             return resp
-        if user[9] == 'professor':
-            query = '''SELECT EXISTS (
-                        SELECT 1
-                        FROM operator
-                        WHERE operator_name = '{}' AND operator_surname = '{}'
-                        ) AS record_exists;'''.format(user[3], user[4])
+        if user[11] == 'professor':
+            print("I am a Professor")
+            query = '''SELECT is_operator
+                    FROM library_user
+                    WHERE user_name = '{}' AND user_surname = '{}';'''.format(user[3], user[4])
            
             cur = db.connection.cursor()
             cur.execute(query)
             rv = cur.fetchall()
-            exist = rv   # 1 if Operator - 0 if not Operator
-            if exist == 1:
+            
+            print(rv)
+            isOperator = rv[0][0]  # 1 if Operator - 0 if not Operator
+            if isOperator == 1:
+                print("I am a Professor and an Operator")
                 webpage = render_template("dashboardOp.html", user = user)
                 resp = make_response(webpage)
                 resp.set_cookie('id', str(user[0]))
@@ -126,15 +131,16 @@ def dashboard():
                 return resp
 
         # user = [1, 'jlefleming0', 'aovGiL', 'Jonah', 'Le Fleming', 'jlefleming0@usnews.com', '7', 'M', '12', 'student', 2]
-        if user[9] == 'student':
+        if user[11] == 'student':
+            print("I am a Student")
             webpage = render_template("dashboardStd.html", user = user)
             resp = make_response(webpage)
             resp.set_cookie('id', str(user[0]))
             return resp
-
+    return "Invalid User Type"
 
 def authentication(username, password):
-    print("debug 1")
+    
     # Perform any necessary processing or database operations here
     table = 'library_user'
     query = "SELECT * FROM {} WHERE username = '{}' AND user_password = '{}';".format(table, username, password)
@@ -145,16 +151,16 @@ def authentication(username, password):
     user = [item for sublist in rv for item in sublist]
     
     if user == []: # check if user is admin
-        print('huuumus')
+        
         table = 'administrator'
         query = "SELECT * FROM {} WHERE administrator_username = '{}' AND administrator_password = '{}';".format(table, username, password)
         cur = db.connection.cursor()
         cur.execute(query)
         rv = cur.fetchall()
-        print(query)
-        print(rv)
+        
+        
         user = [item for sublist in rv for item in sublist]
-        print(user)
+       
     
     return user
 
@@ -195,6 +201,12 @@ def save_info():
     rv = cur.fetchall()
     user = [item for sublist in rv for item in sublist]
     return render_template('dashboard.html', user = user)
+
+@app.route('/register')
+def register():
+    pass
+
+
 
 @app.route('/admin1')
 def admin1():
