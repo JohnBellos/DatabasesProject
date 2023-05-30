@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS book (
   available_copies INT UNSIGNED NOT NULL,
   category VARCHAR(50) NOT NULL,
   language_of_book VARCHAR(15) NOT NULL,
-  key_word VARCHAR(15) NOT NULL,
+  key_word VARCHAR(50) NOT NULL,
   PRIMARY KEY (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SHOW WARNINGS;
