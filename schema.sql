@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS author(
 
 CREATE TABLE IF NOT EXISTS category(
   category_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  category_name VARCHAR(20) NOT NULL,
+  category_name VARCHAR(50) NOT NULL,
   PRIMARY KEY (category_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

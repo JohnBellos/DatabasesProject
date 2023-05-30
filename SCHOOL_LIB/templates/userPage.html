@@ -79,8 +79,8 @@
         <td>{{ item[2] }}</td>
         <td>{{ item[4] }}</td>
         <td>{{ item[3] }}</td>
-        <td>{{ item[8] }}</td>
-        <td><button class="view-button" onclick="viewBook('{{ item[1] }}')">View</button></td>
+        <td>{{ item[9] }}</td>
+        <td><button class="view-button" onclick="viewBook('{{ item[0] }}')">View</button></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -107,9 +107,9 @@
       }
     }
     
-    function viewBook(isbn) {
+    function viewBook(id) {
       // Replace the 'specific_link' with the actual link for the specific book
-      window.location.href = 'books/' + isbn;
+      window.location.href = 'books/' + id;
     }
   </script>
 </body>
