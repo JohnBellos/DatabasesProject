@@ -56,7 +56,11 @@ def books():
 
 
     table = 'book'
-    query = "SELECT * FROM {};".format(table)
+    query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
+            FROM book b
+            JOIN has_category hc ON b.book_id = hc.book_id
+            JOIN category c ON hc.category_id = c.category_id
+            GROUP BY b.book_id;""".format(table)
     
     cur = db.connection.cursor()
     cur.execute(query)
@@ -74,13 +78,24 @@ def books():
     # print(books)
     return render_template("userPage.html", books=bookList)
 
-@app.route("/books/<string:ISBN>", methods=["GET"])
-def bookView(ISBN):
-    
+@app.route("/books/<string:book_id>", methods=["GET"])
+def bookView(book_id):
+    query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
+            FROM book b
+            JOIN has_category hc ON b.book_id = hc.book_id
+            JOIN category c ON hc.category_id = c.category_id
+            WHERE b.book_id = {}
+            GROUP BY b.book_id;""".format(book_id)
+    print(query)
+    print("check1")
     cur = db.connection.cursor()
-    cur.execute("SELECT * FROM book WHERE ISBN = %s", (ISBN,))
-    rv = cur.fetchone()
-    bookDetails = list(rv)
+    print("check111")
+    cur.execute(query)
+    print("check222")
+    rv = cur.fetchall()
+    print("check2")
+    bookDetails = list(rv[0])
+    print(bookDetails)
     return render_template("bookPage.html", bookDetails = bookDetails)
 
 @app.route("/page")
@@ -280,7 +295,7 @@ def admin3():
 @app.route("/admin2", methods=["GET"])
 def admin2():
     # Retrieve all categories from the database
-    category_query = "SELECT DISTINCT category FROM book;"
+    category_query = "SELECT DISTINCT category_name FROM category;"
     cur = db.connection.cursor()
     cur.execute(category_query)
     categories = [row[0] for row in cur.fetchall()]
@@ -332,7 +347,7 @@ def admin7():
 def available_admin5():
     query = '''
     SELECT s.operator_name, COUNT(b.user_id) AS user_count
-    FROM school s
+    FROM school s  
     JOIN library_user u ON u.school_id = s.school_id
     JOIN borrows b ON b.user_id = u.user_id
     WHERE s.school_id IN (1, 2, 3)
