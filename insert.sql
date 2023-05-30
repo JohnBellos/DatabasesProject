@@ -365,6 +365,7 @@ VALUES  ('Fiction'),
 
 INSERT INTO has_category (category_id, book_id)
 VALUES  (1,1),
+        (3,1),
         (2,2),
         (3,3),
         (4,4),
