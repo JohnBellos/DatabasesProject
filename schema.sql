@@ -35,9 +35,7 @@ CREATE TABLE IF NOT EXISTS book (
   num_of_pages INT UNSIGNED NOT NULL,
   summary VARCHAR(1024) NOT NULL,
   available_copies INT UNSIGNED NOT NULL,
-  category VARCHAR(50) NOT NULL,
   language_of_book VARCHAR(15) NOT NULL,
-  key_word VARCHAR(50) NOT NULL,
   PRIMARY KEY (book_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -72,7 +70,8 @@ CREATE TABLE IF NOT EXISTS library_user (
   user_sex VARCHAR(50),
   user_class VARCHAR(50),
   user_type ENUM('student', 'professor') NOT NULL,
-  is_operator BOOLEAN NOT NULL DEFAULT false,
+  is_operator BOOLEAN NOT NULL DEFAULT FALSE,
+  able_status ENUM('new', 'OK', 'disabled') NOT NULL DEFAULT 'OK',
   school_id INT UNSIGNED,
   PRIMARY KEY (user_id),
   CONSTRAINT fk_school_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -202,7 +201,8 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS contains (
   school_id INT UNSIGNED NOT NULL,
-  book_id     INT UNSIGNED NOT NULL,
+  book_id INT UNSIGNED NOT NULL,
+  number_of_copies INT NOT NULL,
   PRIMARY KEY (school_id, book_id),
   CONSTRAINT
     FOREIGN KEY (school_id)

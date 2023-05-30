@@ -196,6 +196,12 @@ def save_info():
     user = [item for sublist in rv for item in sublist]
     return render_template('dashboard.html', user = user)
 
+@app.route('/register')
+def register():
+    pass
+
+
+
 @app.route('/admin1')
 def admin1():
     id = request.cookies.get('id')
