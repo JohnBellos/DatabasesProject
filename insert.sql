@@ -111,7 +111,9 @@ VALUES  ('603020091-7', 'The Picture of Dorian Gray', 'Penguin Random House', 'M
 
 
 INSERT INTO library_user (username, user_password, user_type, user_name, user_surname, user_email, user_age, user_sex, user_class, school_id, is_operator) 
-VALUES  ('jlefwefeing0', 'aovfweg', 'professor', 'Matis', 'Flng', 'jleflem0@usnews.com', 37, 'M', 12, 2, TRUE);
+VALUES  ('jlefwefeing0', 'aovfweg', 'professor', 'Matis', 'Flng', 'jleflem0@usnews.com', 37, 'M', 12, 1, TRUE),
+        ('op2textx', 'pswd22', 'professor', 'Martha', 'Stewart', 'mstuw@usnews.com', 54, 'F', 8, 2, TRUE),
+        ('op3testx', 'pswd33', 'professor', 'Alexander', 'Great', 'asiaking0@usnews.com', 28, 'M', 3, 3, TRUE);
 
 INSERT INTO library_user (username, user_password, user_type, user_name, user_surname, user_email, user_age, user_sex, user_class, school_id) 
 VALUES  ('jlefleming0', 'aovGiL', 'student', 'Jonah', 'Le Fleming', 'jlefleming0@usnews.com', 7, 'M', 12, 2),
