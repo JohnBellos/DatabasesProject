@@ -14,3 +14,6 @@ app.config["WTF_CSRF_SECRET_KEY"] = 'key' ## token for csrf protection of forms.
 db = MySQL(app)
 
 from SCHOOL_LIB import routes
+from SCHOOL_LIB import routes_admin
+from SCHOOL_LIB import routes_register
+from SCHOOL_LIB import routes_edit_info

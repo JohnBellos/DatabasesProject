@@ -2,4 +2,167 @@ from flask import Flask, render_template, request, make_response, flash, redirec
 from flask_mysqldb import MySQL
 from SCHOOL_LIB import app, db ## initially created by __init__.py, need to be used here
 import json
+from collections import Counter
+
+@app.route('/admin1')
+def admin1():
+    id = request.cookies.get('id')
+    if id != 'admin':
+        return render_template('noaccess.html')
+    month = 6
+    year = 2023
+    query = """
+        SELECT s.school_name, COUNT(*) AS borrow_count
+        FROM borrows b
+        JOIN library_user lu ON b.user_id = lu.user_id
+        JOIN school s ON lu.school_id = s.school_id
+        WHERE YEAR(b.date_of_borrow) = {} AND MONTH(b.date_of_borrow) = {}
+        GROUP BY s.school_name;
+    """.format(year, month)
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    borrowCount = list(rv)
+    print(borrowCount)
+    return render_template("adminPage1.html", borrowData = borrowCount)
+
+
+
+@app.route("/admin2", methods=["GET"])
+def admin2():
+    # Retrieve all categories from the database
+    category_query = "SELECT DISTINCT category_name FROM category;"
+    cur = db.connection.cursor()
+    cur.execute(category_query)
+    categories = [row[0] for row in cur.fetchall()]
+    cur.close()
+
+    # Check if a category is selected by the user
+    chosen_category = request.args.get('category')
+
+    if chosen_category:
+        # Query to fetch the writers and professor names based on the chosen category
+        writer_query = '''
+        SELECT DISTINCT b.writer
+        FROM book b
+        JOIN has_category hc ON b.book_id = hc.book_id
+        JOIN category c ON hc.category_id = c.category_id
+        WHERE c.category_name = %s;
+        '''
+
+        professor_query = '''
+        SELECT DISTINCT lu.user_name, lu.user_surname
+        FROM library_user lu
+        JOIN borrows br ON lu.user_id = br.user_id
+        JOIN book b ON br.book_id = b.book_id
+        JOIN has_category hc ON b.book_id = hc.book_id
+        JOIN category c ON hc.category_id = c.category_id
+        WHERE c.category_name = %s
+          AND lu.user_type = 'professor'
+          AND br.date_of_borrow >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR);
+        '''
+
+        cur = db.connection.cursor()
+        cur.execute(writer_query, (chosen_category,))
+        writers = [row[0] for row in cur.fetchall()]
+
+        print("Chosen Category:", chosen_category)
+        print("Writers:", writers)
+
+        cur.execute(professor_query, (chosen_category,))
+        professor_results = cur.fetchall()
+        professors = [(professor[0], professor[1]) for professor in professor_results]
+
+        print("Professors Query:")
+        print(professor_query)
+        print("Professors:", professors)
+
+        cur.close()
+
+        return render_template("category.html", writers=writers, professors=professors, categories=categories, chosen_category=chosen_category)
+    else:
+        return render_template("category.html", categories=categories)
+
+
+@app.route("/admin3")
+def admin3():
+    query = '''
+    SELECT lu.user_name, lu.user_surname, COUNT(b.book_id) AS borrowed_books
+    FROM library_user lu
+    JOIN borrows br ON lu.user_id = br.user_id
+    JOIN book b ON br.book_id = b.book_id
+    WHERE lu.user_type = 'professor' AND lu.user_age < 40
+    GROUP BY lu.user_id
+    ORDER BY borrowed_books DESC;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    print (rv)
+    professor_books = [(row[0] + ' ' + row[1], row[2]) for row in rv]  # Extracting professor IDs and borrowed book counts
+    
+    return render_template("professors.html", professor_books=professor_books)
+
+@app.route("/admin4")
+def available_admin4():
+    query = '''
+    SELECT DISTINCT b.writer
+    FROM book b
+    LEFT JOIN borrows br ON b.book_id = br.book_id
+    WHERE br.book_id IS NULL;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+   
+    return render_template('writers.html', writers=rv)
+
+@app.route("/admin5")
+def available_admin5():
+    query = '''
+    SELECT s.operator_name, COUNT(b.user_id) AS user_count
+    FROM school s  
+    JOIN library_user u ON u.school_id = s.school_id
+    JOIN borrows b ON b.user_id = u.user_id
+    WHERE s.school_id IN (1, 2, 3)
+    GROUP BY s.operator_name
+    ORDER BY user_count DESC;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+
+    return render_template('adminPage5.html', operatorData=rv)
+
+@app.route("/admin7")
+def admin7():
+    # Retrieve all writers and their book counts from the database
+    writer_query = "SELECT writer FROM book;"
+    cur = db.connection.cursor()
+    cur.execute(writer_query)
+    writers = [row[0] for row in cur.fetchall()]
+    cur.close()
+
+    # Count the number of books for each writer
+    writer_counts = dict(Counter(writers))
+
+    # Find the maximum book count
+    max_count = max(writer_counts.values())
+
+    # Find the threshold for including writers (at least 5 books less than the maximum)
+    threshold = max_count - 5
+
+    # Filter the writers who have written at least 5 books less than the maximum
+    selected_writers = [writer for writer, count in writer_counts.items() if count >= threshold and count != max_count]
+
+    return render_template("admin7.html", writers=selected_writers)
+
+
+
+
+   
+
 
