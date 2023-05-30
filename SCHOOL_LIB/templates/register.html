@@ -46,7 +46,7 @@
 </head>
 <body>
   <h1>User Registration - School Library</h1>
-  <form action="process_registration.php" method="POST">
+  <form action="process_registration" method="POST">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
     
@@ -87,17 +87,6 @@
       <option value="">Select</option>
       <option value="student">Student</option>
       <option value="professor">Professor</option>
-    </select>
-    
-    <label for="is_operator">Operator:</label>
-    <input type="checkbox" id="is_operator" name="is_operator">
-    
-    <label for="able_status">Status:</label>
-    <select id="able_status" name="able_status" required>
-      <option value="">Select</option>
-      <option value="new">New</option>
-      <option value="OK">OK</option>
-      <option value="disabled">Disabled</option>
     </select>
     
     <label for="school_id">School ID:</label>
