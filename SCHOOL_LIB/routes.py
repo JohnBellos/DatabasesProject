@@ -101,7 +101,7 @@ def dashboard():
             query = '''SELECT EXISTS (
                         SELECT 1
                         FROM operator
-                        WHERE operator_name = {} AND operator_surname = {}
+                        WHERE operator_name = '{}' AND operator_surname = '{}'
                         ) AS record_exists;'''.format(user[3], user[4])
            
             cur = db.connection.cursor()
