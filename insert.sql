@@ -332,3 +332,107 @@ VALUES  (10, 40, '2023-06-16'),
         (15, 11, '2023-06-19'),
         (60, 26, '2023-06-15'),
         (28, 18, '2023-06-17');
+
+INSERT INTO category (category_name)
+VALUES  ('Fiction'),
+        ('Non-Fiction'),
+        ('Mystery'),
+        ('Thriller'),
+        ('Romance'),
+        ('Science Fiction'),
+        ('Fantasy'),
+        ('Horror'),
+        ('Biography'),
+        ('Autobiography'),
+        ('Memoir'),
+        ('History'),
+        ('Travel'),
+        ('Cooking'),
+        ('Art'),
+        ('Poetry'),
+        ('Religion'),
+        ('Self-Help'),
+        ('Business'),
+        ('Finance'),
+        ('Science'),
+        ('Nature'),
+        ('Sports'),
+        ('Health'),
+        ('Fitness'),
+        ('Parenting'),
+        ('Children''s Books'),
+        ('Young Adult'),
+        ('Graphic Novels'),
+        ('Comics'),
+        ('Biography & Memoir - History'),
+        ('Cooking - Health & Fitness'),
+        ('Business - Self-Help'),
+        ('Travel - Photography'),
+        ('Science - Nature'),
+        ('Art - Music'),
+        ('Religion - Philosophy'),
+        ('Sports - Games'),
+        ('Reference - Politics'),
+        ('Education - Parenting'),
+        ('Fiction - Romance'),
+        ('Non-Fiction - History'),
+        ('Fiction - Mystery'),
+        ('Non-Fiction - Self Help'),
+        ('Fiction - Science Fiction'),
+        ('Non-Fiction - Biography'),
+        ('Fiction - Thriller'),
+        ('Non-Fiction - Business'),
+        ('Fiction - Fantasy'),
+        ('Non-Fiction - Psychology');
+
+
+INSERT INTO has_category (category_id, book_id)
+VALUES  (1,1)
+(2,2)
+(3,3)
+(4,4)
+(5,5)
+(6,6)
+(7,7)
+(8,8)
+(9,9)
+(10,10)
+(11,11)
+(12,12)
+(13,13)
+(14,14)
+(15,15)
+(16,16)
+(17,17)
+(18,18)
+(19,19)
+(20,20)
+(21,21)
+(22,22)
+(23,23)
+(24,24)
+(25,25)
+(26,26)
+(27,27)
+(28,28)
+(29,29)
+(30,30)
+(31,31)
+(32,32)
+(33,33)
+(34,34)
+(35,35)
+(36,36)
+(37,37)
+(38,38)
+(39,39)
+(40,40)
+(41,41)
+(42,42)
+(43,43)
+(44,44)
+(45,45)
+(46,46)
+(47,47)
+(48,48)
+(49,49)
