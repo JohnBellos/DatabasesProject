@@ -58,6 +58,7 @@ def books():
     cur.execute(query)
     rv = cur.fetchall()
     bookList = list(rv)
+    print(bookList)
  
     return render_template("userPage.html", books=bookList)
     
@@ -71,13 +72,24 @@ def books():
     # print(books)
     return render_template("userPage.html", books=bookList)
 
-@app.route("/books/<string:ISBN>", methods=["GET"])
-def bookView(ISBN):
-    
+@app.route("/books/<string:book_id>", methods=["GET"])
+def bookView(book_id):
+    query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
+            FROM book b
+            JOIN has_category hc ON b.book_id = hc.book_id
+            JOIN category c ON hc.category_id = c.category_id
+            WHERE b.book_id = {}
+            GROUP BY b.book_id;""".format(book_id)
+    print(query)
+    print("check1")
     cur = db.connection.cursor()
-    cur.execute("SELECT * FROM book WHERE ISBN = %s", (ISBN,))
-    rv = cur.fetchone()
-    bookDetails = list(rv)
+    print("check111")
+    cur.execute(query)
+    print("check222")
+    rv = cur.fetchall()
+    print("check2")
+    bookDetails = list(rv[0])
+    print(bookDetails)
     return render_template("bookPage.html", bookDetails = bookDetails)
 
 @app.route("/page")
