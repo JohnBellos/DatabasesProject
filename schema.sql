@@ -84,9 +84,11 @@ CREATE TABLE IF NOT EXISTS library_user (
   user_sex VARCHAR(50),
   user_class VARCHAR(50),
   user_type ENUM('student', 'professor') NOT NULL,
+  is_operator BOOLEAN NOT NULL DEFAULT false,
   school_id INT UNSIGNED,
   PRIMARY KEY (user_id),
-  CONSTRAINT fk_school_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT fk_school_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT chk_is_operator CHECK (user_type = 'professor' OR is_operator = FALSE)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS author(
@@ -160,13 +162,7 @@ CREATE TABLE IF NOT EXISTS borrows (
   user_id INT UNSIGNED NOT NULL,
   book_id INT UNSIGNED NOT NULL,
   date_of_borrow DATE NOT NULL,
-  operator_id INT UNSIGNED NOT NULL,
-  PRIMARY KEY (user_id, book_id, operator_id),
-  CONSTRAINT fk_operator_borrows
-  FOREIGN KEY (operator_id)
-  REFERENCES operator (operator_id)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE,
+  PRIMARY KEY (user_id, book_id),
   CONSTRAINT fk_user_borrows
     FOREIGN KEY (user_id)
     REFERENCES library_user (user_id)
