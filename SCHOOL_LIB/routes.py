@@ -83,7 +83,7 @@ def login():
 
 @app.route('/dashboard', methods=['POST'])
 def dashboard():
-    username = request.cookies.get('username')
+    username = request.cookies.get('id')
 
 
 
@@ -97,7 +97,7 @@ def dashboard():
         # user = [60, 'valeveque9', 'password', 'Valentine', 'Aleveque', 'valeveque9@arstechnica.com', '15', 'F', '9', 'professor', 2]
         webpage = render_template("dashboard.html", user = user)
         resp = make_response(webpage)
-        resp.set_cookie('username', user[3])
+        resp.set_cookie('id', str(user[0]))
         return resp
 
 def authentication(username, password):
@@ -111,6 +111,44 @@ def authentication(username, password):
     rv = cur.fetchall()
     user = [item for sublist in rv for item in sublist]
     return user
+
+@app.route('/edit_info')
+def edit_info():
+    id = int(request.cookies.get('id'))
+    query = "SELECT * FROM {} WHERE user_id = '{}';".format('library_user', id)
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    user = [item for sublist in rv for item in sublist]
+    
+    return render_template('edit_info.html', user = user)
+
+@app.route('/save_info', methods = ['POST'])
+def save_info():
+    id = int(request.cookies.get('id'))
+    username = request.form['username']
+    password = request.form['password']
+    name = request.form['name']
+    surname = request.form['surname']
+    email = request.form['email']
+    uclass = request.form['class']
+    name = request.form['name']
+
+    # update database
+    # show /dashboard
+    query = "UPDATE library_user SET username = '{}', user_password = '{}', user_email = '{}', user_class = '{}' WHERE user_id = {};".format(username, password, email, uclass, id)
+    print(query)
+    cur = db.connection.cursor()
+    cur.execute(query)
+    db.connection.commit()
+    cur.close()
+
+    query = "SELECT * FROM {} WHERE user_id = '{}';".format('library_user', id)
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    user = [item for sublist in rv for item in sublist]
+    return render_template('dashboard.html', user = user)
 
 @app.route('/admin1')
 def admin1():
