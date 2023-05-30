@@ -11,6 +11,10 @@
       color: #333;
       text-align: center;
     }
+    h2 {
+      color: #333;
+      text-align: center;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -56,7 +60,9 @@
 </head>
 <body>
   <h1>3ο Γενικό Ελευσίνας Βιβλιοθήκη</h1>
-  
+  {% for usr in user %}
+  <h2>Welcome {{ usr[11] }} {{ usr[4] }}</h2>
+  {% endfor %}
   <div class="button-container">
     <button id="toggleButton" onclick="toggleBooks()">Borrowed Books<br>first 10 books for now</button>
   </div>

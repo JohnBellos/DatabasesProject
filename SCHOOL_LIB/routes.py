@@ -47,6 +47,14 @@ def students():
 
 @app.route("/books")
 def books():
+    id = request.cookies.get('id')
+    usr = db.connection.cursor()
+    usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
+    currentUser = usr.fetchall()
+    currentUser = list(currentUser)
+    print(currentUser)
+
+
     table = 'book'
     query = "SELECT * FROM {};".format(table)
     
@@ -54,7 +62,7 @@ def books():
     cur.execute(query)
     rv = cur.fetchall()
     bookList = list(rv)
-    return render_template("userPage.html", books=bookList)
+    return render_template("bookList.html", books=bookList, user=currentUser)
     
     
     # rv = rv[2:-2]
