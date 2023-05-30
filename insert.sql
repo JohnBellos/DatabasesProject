@@ -3,6 +3,9 @@ VALUES ('Example School', '12345', 'New York', '1234567890', 'example@email.com'
        ('Example School2', '12342', 'New York2', '1234567892', 'example@email.com2', 'John Smith2', 'Jane Doe2'),
        ('Example School3', '12343', 'New York3', '1234567893', 'example@email.com3', 'John Smith3', 'Jane Doe3');
 
+INSERT INTO administrator (administrator_id, administrator_username, administrator_password, administrator_name, administrator_surname, administrator_age, administrator_phone, administrator_postal_code, administrator_email, administrator_sex)
+VALUES (1, 'gggkoloko', 'ellas9#d', 'Georgios', 'Kolokotronis', 284, '1182111821', '12345', 'gerostoumoria@elladamono.gr', 'M');
+
 INSERT INTO operator (operator_name, operator_surname, operator_age, operator_postal_code, operator_phone, operator_email, operator_sex, school_id) 
 VALUES ('Dierdre', 'Millett', 33, 15151, '697816423', 'dmillett0@latimes.com', 'F', 5562),
        ('Miller', 'Maunton', 64, 23421, '697816424', 'mmaunton1@cpanel.net', 'M', 5563),
