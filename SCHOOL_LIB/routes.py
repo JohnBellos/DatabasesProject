@@ -48,12 +48,17 @@ def students():
 @app.route("/books")
 def books():
     table = 'book'
-    query = "SELECT * FROM {};".format(table)
+    query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
+            FROM book b
+            JOIN has_category hc ON b.book_id = hc.book_id
+            JOIN category c ON hc.category_id = c.category_id
+            GROUP BY b.book_id;""".format(table)
     
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
     bookList = list(rv)
+ 
     return render_template("userPage.html", books=bookList)
     
     
