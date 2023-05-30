@@ -55,9 +55,12 @@ CREATE TABLE IF NOT EXISTS operator (
   school_id INT UNSIGNED NOT NULL,
   CONSTRAINT fk_OPschool_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS administrator(
   administrator_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  administrator_username VARCHAR(50),
+  administrator_password VARCHAR(50),
   administrator_name VARCHAR(15) NOT NULL,
   administrator_surname VARCHAR(15) NOT NULL,
   administrator_age INT UNSIGNED NOT NULL,
@@ -65,7 +68,8 @@ CREATE TABLE IF NOT EXISTS administrator(
   administrator_postal_code INT UNSIGNED NOT NULL,
   administrator_email VARCHAR(45) NOT NULL,
   administrator_sex ENUM('M','F','NB') NOT NULL,
-  PRIMARY KEY(administrator_id)
+  PRIMARY KEY(administrator_id),
+  CONSTRAINT unique_row_constraint UNIQUE (administrator_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Create the 'library_user' table

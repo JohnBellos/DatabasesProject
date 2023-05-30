@@ -3,6 +3,9 @@ VALUES ('Example School', '12345', 'New York', '1234567890', 'example@email.com'
        ('Example School2', '12342', 'New York2', '1234567892', 'example@email.com2', 'John Smith2', 'Jane Doe2'),
        ('Example School3', '12343', 'New York3', '1234567893', 'example@email.com3', 'John Smith3', 'Jane Doe3');
 
+INSERT INTO administrator (administrator_id, administrator_username, administrator_password, administrator_name, administrator_surname, administrator_age, administrator_phone, administrator_postal_code, administrator_email, administrator_sex)
+VALUES (1, 'gggkoloko', 'ellas9#d', 'Georgios', 'Kolokotronis', 284, '1182111821', '12345', 'gerostoumoria@elladamono.gr', 'M');
+
 INSERT INTO operator (operator_name, operator_surname, operator_age, operator_postal_code, operator_phone, operator_email, operator_sex, school_id) 
 VALUES ('Carrissa', 'Leahair', 33, 15151, '697816423', 'cleahair0@springer.com', 'F', 1),
        ('Everard', 'Corking', 64, 23421, '697816424', 'ecorking1@163.com', 'M', 2),
@@ -163,7 +166,7 @@ VALUES  ('jlefleming0', 'aovGiL', 'student', 'Jonah', 'Le Fleming', 'jlefleming0
         ('rmosen1b', 'gnw28xWLlw', 'student', 'Robin', 'Mosen', 'rmosen1b@cam.ac.uk', 6, 'F', 11, 2),
         ('akubera1c', 'RCwLJh', 'student', 'Aloise', 'Kubera', 'akubera1c@bravesites.com', 6, 'F', 1, 3),
         ('mpinn1d', '3upAdi2A3qK8', 'student', 'Mart', 'Pinn', 'mpinn1d@ox.ac.uk', 7, 'M', 10, 3),
-
+        
         ('cleahair0', 'jnHz4OxL', 'professor', 'Carrissa', 'Leahair', 'cleahair0@springer.com', 33, 'F', 1, 1),    
         ('ecorking1', 'pufiRM', 'professor', 'Everard', 'Corking', 'ecorking1@163.com', 64, 'M', 1, 2),            
         ('imanoelli2', 'R6qZK06u8BF', 'professor', 'Ichabod', 'Manoelli', 'imanoelli2@smh.com.au', 27, 'M', 8, 3), 
