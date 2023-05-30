@@ -277,7 +277,7 @@ def admin3():
 @app.route("/admin2", methods=["GET"])
 def admin2():
     # Retrieve all categories from the database
-    category_query = "SELECT DISTINCT category FROM book;"
+    category_query = "SELECT DISTINCT category_name FROM category;"
     cur = db.connection.cursor()
     cur.execute(category_query)
     categories = [row[0] for row in cur.fetchall()]

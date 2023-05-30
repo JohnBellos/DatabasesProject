@@ -359,8 +359,11 @@ VALUES  ('Fiction'),
         ('Sports'),
         ('Health'),
         ('Fitness'),
-        ('Parenting');
-        
+        ('Parenting'),
+        ('Drama'),
+        ('Comedy'),
+        ('Adventure'),
+        ('Engineering');
 
 
 INSERT INTO has_category (category_id, book_id)
