@@ -339,26 +339,53 @@ def admin2():
 
     if chosen_category:
         # Query to fetch the writers and professor names based on the chosen category
-        query = '''
-        SELECT b.writer, lu.user_name, lu.user_surname
+        writer_query = '''
+        SELECT DISTINCT b.writer
         FROM book b
-        JOIN borrows br ON b.book_id = br.book_id
-        JOIN library_user lu ON br.user_id = lu.user_id
-        WHERE b.category = '{}'
+        JOIN has_category hc ON b.book_id = hc.book_id
+        JOIN category c ON hc.category_id = c.category_id
+        WHERE c.category_name = %s;
+        '''
+
+        professor_query = '''
+        SELECT DISTINCT lu.user_name, lu.user_surname
+        FROM library_user lu
+        JOIN borrows br ON lu.user_id = br.user_id
+        JOIN book b ON br.book_id = b.book_id
+        JOIN has_category hc ON b.book_id = hc.book_id
+        JOIN category c ON hc.category_id = c.category_id
+        WHERE c.category_name = %s
           AND lu.user_type = 'professor'
           AND br.date_of_borrow >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR);
-        '''.format(chosen_category)
+        '''
 
         cur = db.connection.cursor()
-        cur.execute(query)
-        rv = cur.fetchall()
+        cur.execute(writer_query, (chosen_category,))
+        writers = [row[0] for row in cur.fetchall()]
+
+        print("Chosen Category:", chosen_category)
+        print("Writers:", writers)
+
+        cur.execute(professor_query, (chosen_category,))
+        professor_results = cur.fetchall()
+        professors = [(professor[0], professor[1]) for professor in professor_results]
+
+        print("Professors Query:")
+        print(professor_query)
+        print("Professors:", professors)
+
         cur.close()
 
-        writer_professors = [(row[0], row[1] + ' ' + row[2]) for row in rv]
-
-        return render_template("category.html", writer_professors=writer_professors, categories=categories, chosen_category=chosen_category)
+        return render_template("category.html", writers=writers, professors=professors, categories=categories, chosen_category=chosen_category)
     else:
         return render_template("category.html", categories=categories)
+
+
+
+
+
+
+
 
 @app.route("/admin7") #we need more data
 def admin7():
