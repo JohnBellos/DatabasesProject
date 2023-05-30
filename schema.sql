@@ -156,7 +156,13 @@ CREATE TABLE IF NOT EXISTS borrows (
   user_id INT UNSIGNED NOT NULL,
   book_id INT UNSIGNED NOT NULL,
   date_of_borrow DATE NOT NULL,
-  PRIMARY KEY (user_id, book_id),
+  operator_id INT UNSIGNED NOT NULL,
+  PRIMARY KEY (user_id, book_id, operator_id),
+  CONSTRAINT fk_operator_borrows
+  FOREIGN KEY (operator_id)
+  REFERENCES operator (operator_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
   CONSTRAINT fk_user_borrows
     FOREIGN KEY (user_id)
     REFERENCES library_user (user_id)
