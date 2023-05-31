@@ -60,7 +60,9 @@
   </style>
 </head>
 <body>
-  <h1>3ο Γενικό Ελευσίνας Βιβλιοθήκη</h1>
+  {% for scl in school %}
+  <h1>{{ scl[1] }}</h1>
+  {% endfor %}
   {% for usr in user %}
   <h2>Welcome {{ usr[11] }} {{ usr[4] }}</h2>
   {% endfor %}
