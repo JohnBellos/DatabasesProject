@@ -79,9 +79,9 @@ def admin2():
 
         cur.close()
 
-        return render_template("category.html", writers=writers, professors=professors, categories=categories, chosen_category=chosen_category)
+        return render_template("adminPage2.html", writers=writers, professors=professors, categories=categories, chosen_category=chosen_category)
     else:
-        return render_template("category.html", categories=categories)
+        return render_template("adminPage2.html", categories=categories)
 
 
 @app.route("/admin3")
@@ -102,7 +102,7 @@ def admin3():
     print (rv)
     professor_books = [(row[0] + ' ' + row[1], row[2]) for row in rv]  # Extracting professor IDs and borrowed book counts
     
-    return render_template("professors.html", professor_books=professor_books)
+    return render_template("adminPage3.html", professor_books=professor_books)
 
 @app.route("/admin4")
 def available_admin4():
@@ -117,7 +117,7 @@ def available_admin4():
     cur.execute(query)
     rv = cur.fetchall()
    
-    return render_template('writers.html', writers=rv)
+    return render_template('adminPage4.html', writers=rv)
 
 @app.route("/admin5")
 def available_admin5():
@@ -136,6 +136,36 @@ def available_admin5():
     rv = cur.fetchall()
 
     return render_template('adminPage5.html', operatorData=rv)
+
+@app.route("/admin6")
+def admin6():
+    query = '''
+    SELECT category_combination, COUNT(*) AS combination_count
+    FROM (
+        SELECT GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ',') AS category_combination
+        FROM book b
+        JOIN has_category hc ON b.book_id = hc.book_id
+        JOIN category c ON hc.category_id = c.category_id
+        JOIN borrows br ON b.book_id = br.book_id
+        GROUP BY b.book_id
+    ) AS subquery
+    GROUP BY category_combination
+    ORDER BY combination_count DESC
+    LIMIT 3;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+
+    combinations = [(index + 1, row[0], row[1]) for index, row in enumerate(rv)]
+
+    return render_template("adminPage6.html", combinations=combinations)
+
+
+
+
+
 
 @app.route("/admin7")
 def admin7():
@@ -158,7 +188,7 @@ def admin7():
     # Filter the writers who have written at least 5 books less than the maximum
     selected_writers = [writer for writer, count in writer_counts.items() if count >= threshold and count != max_count]
 
-    return render_template("admin7.html", writers=selected_writers)
+    return render_template("adminPage7.html", writers=selected_writers)
 
 
 
