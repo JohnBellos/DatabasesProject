@@ -36,6 +36,7 @@ def books():
     print(currentUser)
 
 
+
     table = 'book'
     query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
             FROM book b
@@ -55,7 +56,66 @@ def books():
     school = scl.fetchall()
     school = list(school)
 
+    query3 = """SELECT b.*
+                      FROM book b
+                      JOIN borrows bor ON b.book_id = bor.book_id
+                      WHERE user_id = {};
+                      """.format(currentUser[0][0])
+
+    borrows_cur = db.connection.cursor()
+    borrows_cur.execute(query3)
+    borrowed_books = borrows_cur.fetchall()
+    borrowed_books = list(borrowed_books)
+    print(borrowed_books)
+
+    if currentUser[0][14] == 1:
+        return render_template("bookListOP.html", books=bookList, user=currentUser, school = school)
+    
     return render_template("bookList.html", books=bookList, user=currentUser, school = school)
+
+@app.route("/books/borrowed")
+def booksBorrowed():
+    id = request.cookies.get('id')
+    usr = db.connection.cursor()
+    usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
+    currentUser = usr.fetchall()
+    currentUser = list(currentUser)
+    print(currentUser)
+
+
+    table = 'book'
+    query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
+            FROM book b
+            JOIN has_category hc ON b.book_id = hc.book_id
+            JOIN category c ON hc.category_id = c.category_id
+            GROUP BY b.book_id;""".format(table)
+    
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    bookList = list(rv)
+    
+    
+    query2 = "SELECT * FROM school WHERE school_id = {};".format(currentUser[0][14])
+    scl = db.connection.cursor()
+    scl.execute(query2)
+    school = scl.fetchall()
+    school = list(school)
+
+    query3 = """SELECT b.*
+                      FROM book b
+                      JOIN borrows bor ON b.book_id = bor.book_id
+                      WHERE user_id = {};
+                      """.format(currentUser[0][0])
+
+    borrows_cur = db.connection.cursor()
+    borrows_cur.execute(query3)
+    borrowed_books = borrows_cur.fetchall()
+    borrowed_books = list(borrowed_books)
+    print(borrowed_books)
+
+
+    return render_template("bookList.html", books=borrowed_books, user=currentUser, school = school)
     
 @app.route("/books/<string:book_id>", methods=["GET"])
 def bookView(book_id):
@@ -76,3 +136,24 @@ def bookView(book_id):
     bookDetails = list(rv[0])
     print(bookDetails)
     return render_template("bookPage.html", bookDetails = bookDetails)
+
+@app.route("/books/books/<string:book_id>", methods=["GET"])
+def bookView2(book_id):
+    query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
+            FROM book b
+            JOIN has_category hc ON b.book_id = hc.book_id
+            JOIN category c ON hc.category_id = c.category_id
+            WHERE b.book_id = {}
+            GROUP BY b.book_id;""".format(book_id)
+    print(query)
+    print("check1")
+    cur = db.connection.cursor()
+    print("check111")
+    cur.execute(query)
+    print("check222")
+    rv = cur.fetchall()
+    print("check2")
+    bookDetails = list(rv[0])
+    print(bookDetails)
+    return render_template("bookPage.html", bookDetails = bookDetails)
+
