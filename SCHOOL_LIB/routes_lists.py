@@ -35,6 +35,7 @@ def books():
     currentUser = list(currentUser)
     print(currentUser)
 
+
     table = 'book'
     query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
             FROM book b
@@ -46,7 +47,15 @@ def books():
     cur.execute(query)
     rv = cur.fetchall()
     bookList = list(rv)
-    return render_template("bookList.html", books=bookList, user=currentUser)
+    
+    
+    query2 = "SELECT * FROM school WHERE school_id = {};".format(currentUser[0][14])
+    scl = db.connection.cursor()
+    scl.execute(query2)
+    school = scl.fetchall()
+    school = list(school)
+
+    return render_template("bookList.html", books=bookList, user=currentUser, school = school)
     
 @app.route("/books/<string:book_id>", methods=["GET"])
 def bookView(book_id):
