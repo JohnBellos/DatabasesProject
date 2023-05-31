@@ -9,7 +9,7 @@ from flask import request
 @app.route("/admin1", methods=["GET", "POST"])
 def available_admin1():
     if request.method == "POST": 
-        print('debug1') 
+        print('debug1')
     query = '''
     SELECT s.school_id, s.school_name, COUNT(b.user_id) AS borrow_count
     FROM school s
