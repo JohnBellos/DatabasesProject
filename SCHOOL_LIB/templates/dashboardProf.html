@@ -57,6 +57,23 @@
     .btn-books:hover {
       background-color: #0069d9;
     }
+    .btn-books-borrow {
+      background-color: #f08b08;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    .btn-books-borrow:hover {
+      background-color: #f08b08;
+    }
   </style>
 </head>
 <body>
@@ -79,7 +96,11 @@
       <div>
         <button onclick="location.href='/books'" class="btn-books" type="button">View Books</button>
       </div>
+      <div>
+        <button onclick="location.href='/books/borrowed'" class="btn-books-borrow" type="button">View Borrowed Books</button>
+      </div>
     </div>
+    
   </div>
 </body>
 </html>

@@ -75,7 +75,7 @@
         <th onclick="sortTable(1)">Title</th>
         <th onclick="sortTable(2)">Writer</th>
         <th>Publisher</th>
-        <th onclick="sortTable(4)">Genre</th>
+        <th onclick="sortTable(4)">Copies</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -86,7 +86,7 @@
         <td>{{ item[2] }}</td>
         <td>{{ item[4] }}</td>
         <td>{{ item[3] }}</td>
-        <td>{{ item[9] }}</td>
+        <td>{{ item[7] }}</td>
         <td><button class="view-button" onclick="viewBook('{{ item[0] }}')">View</button></td>
       </tr>
       {% endfor %}
