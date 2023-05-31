@@ -26,6 +26,7 @@
     }
     th {
       background-color: #f2f2f2;
+      cursor: pointer;  /* Add cursor style to indicate clickable header */
     }
     .button-container {
       text-align: right;
@@ -70,17 +71,17 @@
   <table id="bookTable">
     <thead>
       <tr>
-        <th>ISBN</th>
-        <th>Title</th>
-        <th>Writer</th>
+        <th onclick="sortTable(0)">ISBN</th>
+        <th onclick="sortTable(1)">Title</th>
+        <th onclick="sortTable(2)">Writer</th>
         <th>Publisher</th>
-        <th>Genre</th>
+        <th onclick="sortTable(4)">Genre</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
       {% for item in books %}
-      <tr>
+      <tr {% if item[6] %}class="borrowed"{% endif %}>
         <td>{{ item[1] }}</td>
         <td>{{ item[2] }}</td>
         <td>{{ item[4] }}</td>
@@ -113,6 +114,39 @@
       }
     }
     
+    function sortTable(columnIndex) {
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("bookTable");
+      switching = true;
+
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+
+        for (i = 1; i < rows.length - 1; i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("td")[columnIndex];
+          y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+          // Check if the column is "ISBN" and prevent sorting
+          if (columnIndex === 0) {
+            continue;
+          }
+
+          // Compare as strings for other columns
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+    }
+    
     function viewBook(id) {
       // Replace the 'specific_link' with the actual link for the specific book
       window.location.href = 'books/' + id;
@@ -120,4 +154,3 @@
   </script>
 </body>
 </html>
-
