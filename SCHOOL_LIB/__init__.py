@@ -17,3 +17,4 @@ from SCHOOL_LIB import routes
 from SCHOOL_LIB import routes_admin
 from SCHOOL_LIB import routes_register
 from SCHOOL_LIB import routes_edit_info
+from SCHOOL_LIB import routes_lists
