@@ -49,17 +49,30 @@ def process_registration():
 
 @app.route('/new_users')
 def new_users():
-    uid = int(request.cookies.get('id'))
+    uid = request.cookies.get('id')
+    if uid == None:
+        return render_template('noaccess.html')
+    uid = int(uid)
     if not is_operator(uid):
         return render_template('noaccess.html')
-    return 'kokotas'
+
+    query = "SELECT lu2.* FROM library_user lu1 JOIN library_user lu2 ON lu1.school_id = lu2.school_id WHERE lu1.user_id = {} AND lu2.user_id <> {} AND lu2.able_status = 'new'".format(uid, uid)
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+
+    res = list(rv)
+    print(res)
+
+    return res
 
 def is_operator(uid):
     # returns 1 if uid user is operator, 0 if not
     query = 'SELECT is_operator FROM library_user WHERE user_id = {};'.format(uid)
+    print('check1')
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
     print(rv[0][0])
-    return rv[0][0]
+    return int(rv[0][0])
     
