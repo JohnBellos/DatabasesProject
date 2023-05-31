@@ -87,16 +87,6 @@ def bookView(book_id):
 def login():
     return render_template("login.html")
 
-@app.route('/authenticate', methods=['POST'])
-def authenticate():
-    username = request.form['username']
-    password = request.form['password']
-    user = authentication(username, password)
-    if user == []:
-        print("I am nobody")
-        return render_template("login.html")
-    
-
 @app.route('/dashboard', methods=['POST', 'GET'])
 def dashboard():
     print('start debug')
