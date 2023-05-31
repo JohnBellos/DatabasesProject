@@ -4,32 +4,35 @@ from SCHOOL_LIB import app, db ## initially created by __init__.py, need to be u
 import json
 from collections import Counter
 
-@app.route('/admin1')
-def admin1():
-    id = request.cookies.get('id')
-    if id != 'admin':
-        return render_template('noaccess.html')
-    month = 6
-    year = 2023
-    query = """
-        SELECT s.school_name, COUNT(*) AS borrow_count
-        FROM borrows b
-        JOIN library_user lu ON b.user_id = lu.user_id
-        JOIN school s ON lu.school_id = s.school_id
-        WHERE YEAR(b.date_of_borrow) = {} AND MONTH(b.date_of_borrow) = {}
-        GROUP BY s.school_name;
-    """.format(year, month)
+from flask import request
+
+@app.route("/admin1", methods=["GET", "POST"])
+def available_admin1():
+    if request.method == "POST": 
+        print('debug1') 
+    query = '''
+    SELECT s.school_id, s.school_name, COUNT(b.user_id) AS borrow_count
+    FROM school s
+    JOIN library_user u ON s.school_id = u.school_id
+    JOIN borrows b ON u.user_id = b.user_id
+    GROUP BY s.school_id, s.school_name;
+    '''
+
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
-    borrowCount = list(rv)
-    print(borrowCount)
-    return render_template("adminPage1.html", borrowData = borrowCount)
+
+    return render_template("adminPage1.html", school_borrows=rv)
+
+
 
 
 
 @app.route("/admin2", methods=["GET"])
 def admin2():
+    id = request.cookies.get('id')
+    if id != 'admin':
+        return render_template('noaccess.html')
     # Retrieve all categories from the database
     category_query = "SELECT DISTINCT category_name FROM category;"
     cur = db.connection.cursor()
@@ -86,6 +89,9 @@ def admin2():
 
 @app.route("/admin3")
 def admin3():
+    id = request.cookies.get('id')
+    if id != 'admin':
+        return render_template('noaccess.html')
     query = '''
     SELECT lu.user_name, lu.user_surname, COUNT(b.book_id) AS borrowed_books
     FROM library_user lu
@@ -106,6 +112,9 @@ def admin3():
 
 @app.route("/admin4")
 def available_admin4():
+    id = request.cookies.get('id')
+    if id != 'admin':
+        return render_template('noaccess.html')
     query = '''
     SELECT DISTINCT b.writer
     FROM book b
@@ -121,6 +130,9 @@ def available_admin4():
 
 @app.route("/admin5")
 def available_admin5():
+    id = request.cookies.get('id')
+    if id != 'admin':
+        return render_template('noaccess.html')
     query = '''
     SELECT s.operator_name, COUNT(b.user_id) AS user_count
     FROM school s  
@@ -139,6 +151,9 @@ def available_admin5():
 
 @app.route("/admin6")
 def admin6():
+    id = request.cookies.get('id')
+    if id != 'admin':
+        return render_template('noaccess.html')
     query = '''
     SELECT category_combination, COUNT(*) AS combination_count
     FROM (
@@ -169,6 +184,9 @@ def admin6():
 
 @app.route("/admin7")
 def admin7():
+    id = request.cookies.get('id')
+    if id != 'admin':
+        return render_template('noaccess.html')
     # Retrieve all writers and their book counts from the database
     writer_query = "SELECT writer FROM book;"
     cur = db.connection.cursor()

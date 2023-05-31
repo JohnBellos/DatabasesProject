@@ -1,52 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Schools and Borrow Counts</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      padding: 20px;
-    }
-    h1 {
-      color: #333;
-      text-align: center;
-    }
-    .school-container {
-      margin-top: 20px;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .school {
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .school-name {
-      font-weight: bold;
-      margin-right: 10px;
-    }
-    .student-count {
-      color: #080808;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Number of Borrows by School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        #month-select {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Schools and Borrow Counts</h1>
-  
-  <div class="school-container">
-    {% for school in borrowData %}
+    <h1>Number of Borrows by School</h1>
     <div>
-      <span class="school-name">{{ school[0] }}</span>
-      <span>  Has:</span>
-      <span class="student-count"><b>{{ school[1] }}</b></span>
-      <span>  Borrows</span>
+        <form action="/admin1" method="POST">
+            <label for="month-select">Select Month:</label>
+            <select id="month-select" name="month" onchange="this.form.submit()">
+              <option value="1" {% if selected_month == "1" %}selected{% endif %}>January</option>
+              <option value="2" {% if selected_month == "2" %}selected{% endif %}>February</option>
+              <option value="3" {% if selected_month == "3" %}selected{% endif %}>March</option>
+              <option value="4" {% if selected_month == "4" %}selected{% endif %}>April</option>
+              <option value="5" {% if selected_month == "5" %}selected{% endif %}>May</option>
+              <option value="6" {% if selected_month == "6" %}selected{% endif %}>June</option>
+              <option value="7" {% if selected_month == "7" %}selected{% endif %}>July</option>
+              <option value="8" {% if selected_month == "8" %}selected{% endif %}>August</option>
+              <option value="9" {% if selected_month == "9" %}selected{% endif %}>September</option>
+              <option value="10" {% if selected_month == "10" %}selected{% endif %}>October</option>
+              <option value="11" {% if selected_month == "11" %}selected{% endif %}>November</option>
+              <option value="12" {% if selected_month == "12" %}selected{% endif %}>December</option>
+            </select>
+        </form>
     </div>
-    {% endfor %}
-  </div>
-  
-</body>
-</html>
+    <table>
+        <tr>
+            <th>School ID</th>
+            <th>School Name</th>
+            <th>Borrow Count</th>
+        </tr>
+        {% for school_id, school_name, borrow_count in school_borrows %}
+        <tr>
+            <td>{{ school_id }}</td>
