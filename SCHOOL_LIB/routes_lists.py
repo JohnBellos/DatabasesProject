@@ -147,7 +147,26 @@ def bookView(book_id):
     print(bookDetails)
     return render_template("bookPage.html", bookDetails = bookDetails)
 
-@app.route("/books/books/<string:book_id>", methods=["GET"])
+@app.route("/books/<string:book_id>/borrow", methods=["POST"])
+def bookBorrow(book_id):
+    id = request.cookies.get('id')
+
+    # usr = db.connection.cursor()
+    # usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
+    # currentUser = usr.fetchall()
+    # currentUser = list(currentUser)
+    # print(currentUser)
+
+    query = '''INSERT INTO borrows(user_id, book_id, date_of_borrow) VALUES ({}, {}, CURDATE())'''.format(id, book_id)
+
+    br = db.connection.cursor()
+    br.execute(query)
+    db.connection.commit()
+    br.close()
+    print(query)
+    return '1'
+
+@app.route("/books/books/<string:book_id>", methods=["GET"])  #View Borrowed Book Details
 def bookView2(book_id):
     query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
             FROM book b
