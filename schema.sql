@@ -238,3 +238,9 @@ CREATE VIEW school_reservations AS
 SELECT res.user_id, res.book_id, res.deadline_of_reservation, res.approve_status, lu.school_id
 FROM reservations res
 JOIN library_user lu ON res.user_id = lu.user_id;
+
+CREATE VIEW review_categories AS
+SELECT r.user_id, r.book_id, r.review, r.review_score, r.approve_status, h.category_id
+FROM review r
+JOIN has_category h ON r.book_id = h.has_category;
+
