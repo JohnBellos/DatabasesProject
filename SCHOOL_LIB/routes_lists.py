@@ -30,12 +30,11 @@ def students():
 def books():
     id = request.cookies.get('id')
     usr = db.connection.cursor()
-    usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
-    currentUser = usr.fetchall()
-    currentUser = list(currentUser)
-    print(currentUser)
-
-
+    if id != 'admin':
+        usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
+        currentUser = usr.fetchall()
+        currentUser = list(currentUser)
+        print(currentUser)
 
     table = 'book'
     query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
@@ -43,12 +42,23 @@ def books():
             JOIN has_category hc ON b.book_id = hc.book_id
             JOIN category c ON hc.category_id = c.category_id
             GROUP BY b.book_id;""".format(table)
-    
+    ####
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
     bookList = list(rv)
-    
+    print(bookList)
+    # booklist has this form
+    # book_id
+    # ISBN
+    # title
+    # publisher
+    # writer
+    # num_of_pages
+    # summary
+    # num_of_copies
+    # language_of_book
+    # categories
     
     query2 = "SELECT * FROM school WHERE school_id = {};".format(currentUser[0][14])
     scl = db.connection.cursor()
@@ -56,19 +66,19 @@ def books():
     school = scl.fetchall()
     school = list(school)
 
-    query3 = """SELECT b.*
-                      FROM book b
-                      JOIN borrows bor ON b.book_id = bor.book_id
-                      WHERE user_id = {};
-                      """.format(currentUser[0][0])
+    # query3 = """SELECT b.*
+    #                   FROM book b
+    #                   JOIN borrows bor ON b.book_id = bor.book_id
+    #                   WHERE user_id = {};
+    #                   """.format(currentUser[0][0])
 
-    borrows_cur = db.connection.cursor()
-    borrows_cur.execute(query3)
-    borrowed_books = borrows_cur.fetchall()
-    borrowed_books = list(borrowed_books)
-    print(borrowed_books)
+    # borrows_cur = db.connection.cursor()
+    # borrows_cur.execute(query3)
+    # borrowed_books = borrows_cur.fetchall()
+    # borrowed_books = list(borrowed_books)
+    # print(borrowed_books)
 
-    if currentUser[0][14] == 1:
+    if id == 'admin':
         return render_template("bookListOP.html", books=bookList, user=currentUser, school = school)
     
     return render_template("bookList.html", books=bookList, user=currentUser, school = school)

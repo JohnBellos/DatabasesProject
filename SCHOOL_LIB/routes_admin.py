@@ -8,15 +8,24 @@ from flask import request
 
 @app.route("/admin1", methods=["GET", "POST"])
 def available_admin1():
+    year = 2022
+    month = 1
     if request.method == "POST": 
         print('debug1')
+        month = request.form['month']
+        year = request.form['year']
+        print(month)
+        print(year)
+        # we have to query the database for the selected month, year
+    
     query = '''
     SELECT s.school_id, s.school_name, COUNT(b.user_id) AS borrow_count
     FROM school s
     JOIN library_user u ON s.school_id = u.school_id
     JOIN borrows b ON u.user_id = b.user_id
+    WHERE YEAR(b.date_of_borrow) = {} AND MONTH(b.date_of_borrow) = {}
     GROUP BY s.school_id, s.school_name;
-    '''
+    '''.format(year, month)
 
     cur = db.connection.cursor()
     cur.execute(query)
