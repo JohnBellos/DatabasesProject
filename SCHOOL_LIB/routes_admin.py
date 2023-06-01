@@ -165,17 +165,17 @@ def admin6():
         return render_template('noaccess.html')
     query = '''
     SELECT category_combination, COUNT(*) AS combination_count
-    FROM (
-        SELECT GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ',') AS category_combination
-        FROM book b
-        JOIN has_category hc ON b.book_id = hc.book_id
-        JOIN category c ON hc.category_id = c.category_id
-        JOIN borrows br ON b.book_id = br.book_id
-        GROUP BY b.book_id
-    ) AS subquery
-    GROUP BY category_combination
-    ORDER BY combination_count DESC
-    LIMIT 3;
+FROM (
+    SELECT GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ',') AS category_combination
+    FROM book b
+    JOIN has_category hc ON b.book_id = hc.book_id
+    JOIN category c ON hc.category_id = c.category_id
+    JOIN borrows br ON b.book_id = br.book_id
+    GROUP BY br.book_id
+) AS subquery
+GROUP BY category_combination
+ORDER BY combination_count DESC
+LIMIT 3;
     '''
 
     cur = db.connection.cursor()
