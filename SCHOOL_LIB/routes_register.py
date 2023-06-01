@@ -88,8 +88,8 @@ def is_operator(uid):
 
 @app.route('/new_reviews', methods=['GET', 'POST'])
 def new_reviews():
+    operator_id = request.cookies['id']
     if request.method == 'POST':
-        operator_id = request.cookies['id']
         user_id = request.form['user_id']
         book_id = request.form['book_id']
         print(user_id)
@@ -116,8 +116,18 @@ def new_reviews():
     uid = int(uid)
     if not is_operator(uid):
         return render_template('noaccess.html')
+    
+    querySID = "SELECT school_id FROM library_user WHERE user_id = {};".format(operator_id) #which school am i in?
+    cur2 = db.connection.cursor()
+    cur2.execute(querySID)
+    rv2 = cur2.fetchall()
+    rv2=list(rv2)
+    rv2 = rv2[0][0]
+    print(rv2)
 
-    query = "SELECT * FROM reviews WHERE approve_status = 'Pending';"
+
+
+    query = "SELECT * FROM school_reviews WHERE approve_status = 'Pending' AND school_id = {};".format(rv2)
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
@@ -129,14 +139,15 @@ def new_reviews():
 
 @app.route('/new_borrows', methods=['GET', 'POST'])
 def new_borrows():
+    operator_id = request.cookies['id']
     if request.method == 'POST':
-        operator_id = request.cookies['id']
         user_id = request.form['user_id']
         book_id = request.form['book_id']
         print(user_id)
         print(book_id)
         query = "UPDATE borrows SET approve_status = 'Approved' WHERE user_id = {} AND book_id = {};".format(user_id, book_id)
         query2 = "UPDATE library_user SET  borrows_approved = borrows_approved + 1 WHERE user_id = {};".format(operator_id)
+        query3 = "UPDATE contains SET number_of_copies = number_of_copies - 1 WHERE book_id = {} AND school_id = {};".format(book_id, request.form['school_id'])
         
         print(query)
         cur = db.connection.cursor()
@@ -151,27 +162,45 @@ def new_borrows():
 
         print(query2)
 
+        cur3 = db.connection.cursor()
+        cur3.execute(query3)
+        db.connection.commit()
+        cur3.close()
+        print(query3)
+
     uid = request.cookies.get('id')
     if uid == None:
         return render_template('noaccess.html')
     uid = int(uid)
     if not is_operator(uid):
         return render_template('noaccess.html')
+    
+    querySID = "SELECT school_id FROM library_user WHERE user_id = {};".format(operator_id) #which school am i in?
+    cur2 = db.connection.cursor()
+    cur2.execute(querySID)
+    rv2 = cur2.fetchall()
+    rv2=list(rv2)
+    rv2 = rv2[0][0]
+    print(rv2)
 
-    query = "SELECT * FROM borrows WHERE approve_status = 'Pending';"
+    
+
+
+    query = "SELECT * FROM school_borrows WHERE approve_status = 'Pending' AND school_id = {};".format(rv2) #pending request from the RIGHT school
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
 
     res = list(rv)
-    
+    print(res)
 
-    return render_template('new_borrows.html', bookBorrow = res)
+
+    return render_template('new_borrows.html', bookBorrow = res, school_id = rv2)
 
 @app.route('/new_reservations', methods=['GET', 'POST'])
 def new_reservations():
+    operator_id = request.cookies['id']
     if request.method == 'POST':
-        operator_id = request.cookies['id']
         user_id = request.form['user_id']
         book_id = request.form['book_id']
         print(user_id)
@@ -198,13 +227,24 @@ def new_reservations():
     uid = int(uid)
     if not is_operator(uid):
         return render_template('noaccess.html')
+    
+    querySID = "SELECT school_id FROM library_user WHERE user_id = {};".format(operator_id) #which school am i in?
+    cur2 = db.connection.cursor()
+    cur2.execute(querySID)
+    rv2 = cur2.fetchall()
+    rv2=list(rv2)
+    rv2 = rv2[0][0]
+    print(rv2)
+    
 
-    query = "SELECT * FROM reservations WHERE approve_status = 'Pending';"
+    query = "SELECT * FROM school_reservations WHERE approve_status = 'Pending' AND school_id = {};".format(rv2)
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
 
     res = list(rv)
+
+
     
 
     return render_template('new_reservations.html', bookReservation = res)
