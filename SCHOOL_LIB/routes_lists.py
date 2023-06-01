@@ -47,7 +47,7 @@ def books():
     cur.execute(query)
     rv = cur.fetchall()
     bookList = list(rv)
-    print(bookList)
+    # print(bookList)
     # booklist has this form
     # book_id
     # ISBN
@@ -66,22 +66,28 @@ def books():
     school = scl.fetchall()
     school = list(school)
 
-    # query3 = """SELECT b.*
-    #                   FROM book b
-    #                   JOIN borrows bor ON b.book_id = bor.book_id
-    #                   WHERE user_id = {};
-    #                   """.format(currentUser[0][0])
-
-    # borrows_cur = db.connection.cursor()
-    # borrows_cur.execute(query3)
-    # borrowed_books = borrows_cur.fetchall()
-    # borrowed_books = list(borrowed_books)
-    # print(borrowed_books)
+    query3 = '''
+                SELECT b.book_id, b.title, b.publisher, b.writer, b.num_of_pages, b.summary, scb.number_of_copies, b.language_of_book, GROUP_CONCAT(c.category_name) AS categories
+                FROM school AS s
+                JOIN contains AS scb ON s.school_id = scb.school_id
+                JOIN book AS b ON scb.book_id = b.book_id
+                JOIN library_user AS lu ON lu.school_id = s.school_id
+                JOIN has_category hc ON b.book_id = hc.book_id
+                JOIN category c ON hc.category_id = c.category_id
+                WHERE lu.user_id = {}
+                GROUP BY b.book_id;
+            '''.format(2)
+    cur = db.connection.cursor()
+    cur.execute(query3)
+    rv = cur.fetchall()
+    print('Hello Barbie')
+    print(rv)
+    rv = list(rv)
 
     if id == 'admin':
         return render_template("bookListOP.html", books=bookList, user=currentUser, school = school)
     
-    return render_template("bookList.html", books=bookList, user=currentUser, school = school)
+    return render_template("bookList.html", books=rv, user=currentUser, school = school)
 
 @app.route("/books/borrowed")
 def booksBorrowed():
