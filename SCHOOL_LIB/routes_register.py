@@ -167,4 +167,46 @@ def new_borrows():
     
 
     return render_template('new_borrows.html', bookBorrow = res)
+
+@app.route('/new_reservations', methods=['GET', 'POST'])
+def new_reservations():
+    if request.method == 'POST':
+        operator_id = request.cookies['id']
+        user_id = request.form['user_id']
+        book_id = request.form['book_id']
+        print(user_id)
+        print(book_id)
+        query = "UPDATE reservations SET approve_status = 'Approved' WHERE user_id = {} AND book_id = {};".format(user_id, book_id)
+        query2 = "UPDATE library_user SET  reservations_approved = reservations_approved + 1 WHERE user_id = {};".format(operator_id)
+        
+        print(query)
+        cur = db.connection.cursor()
+        cur.execute(query)
+        db.connection.commit()
+        cur.close()
+
+        cur2 = db.connection.cursor()
+        cur2.execute(query2)
+        db.connection.commit()
+        cur.close()
+
+        print(query2)
+
+    uid = request.cookies.get('id')
+    if uid == None:
+        return render_template('noaccess.html')
+    uid = int(uid)
+    if not is_operator(uid):
+        return render_template('noaccess.html')
+
+    query = "SELECT * FROM reservations WHERE approve_status = 'Pending';"
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+
+    res = list(rv)
+    
+
+    return render_template('new_reservations.html', bookReservation = res)
+    
     

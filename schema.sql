@@ -190,6 +190,7 @@ CREATE TABLE IF NOT EXISTS reservations (
   user_id INT UNSIGNED NOT NULL,
   book_id INT UNSIGNED NOT NULL,
   deadline_of_reservation DATE,
+  approve_status ENUM('Pending', 'Approved') NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (user_id, book_id),
   CONSTRAINT fk_user_reservations
     FOREIGN KEY (user_id)
