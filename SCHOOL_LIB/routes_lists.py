@@ -177,6 +177,10 @@ def bookReserve(book_id):
     print(query)
     return '1'
 
+@app.route("/reviewBook")
+def reviewBook():
+    return render_template("reviewPage.html")
+
 @app.route("/books/books/<string:book_id>", methods=["GET"])  #View Borrowed Book Details
 def bookView2(book_id):
     query = """SELECT b.*, GROUP_CONCAT(c.category_name) AS categories
