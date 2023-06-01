@@ -31,6 +31,7 @@ def books():
     id = request.cookies.get('id')
     usr = db.connection.cursor()
     if id != 'admin':
+        print(id)
         usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
         currentUser = usr.fetchall()
         currentUser = list(currentUser)
@@ -67,25 +68,26 @@ def books():
     school = list(school)
 
     query3 = '''
-                SELECT b.book_id, b.title, b.publisher, b.writer, b.num_of_pages, b.summary, scb.number_of_copies, b.language_of_book, GROUP_CONCAT(c.category_name) AS categories
+                SELECT b.book_id, b.ISBN, b.title, b.publisher, b.writer, b.num_of_pages, b.summary, scb.number_of_copies, b.language_of_book, GROUP_CONCAT(c.category_name) AS categories
                 FROM school AS s
+                JOIN library_user AS lu ON lu.school_id = s.school_id
                 JOIN contains AS scb ON s.school_id = scb.school_id
                 JOIN book AS b ON scb.book_id = b.book_id
-                JOIN library_user AS lu ON lu.school_id = s.school_id
+                
                 JOIN has_category hc ON b.book_id = hc.book_id
                 JOIN category c ON hc.category_id = c.category_id
                 WHERE lu.user_id = {}
                 GROUP BY b.book_id;
-            '''.format(2)
+            '''.format(id)
     cur = db.connection.cursor()
     cur.execute(query3)
     rv = cur.fetchall()
     print('Hello Barbie')
-    print(rv)
     rv = list(rv)
 
-    if id == 'admin':
-        return render_template("bookListOP.html", books=bookList, user=currentUser, school = school)
+    if currentUser[0][12] == 1:
+        print('mamamou')
+        return render_template("bookListOP.html", books=rv, user=currentUser, school = school)
     
     return render_template("bookList.html", books=rv, user=currentUser, school = school)
 
