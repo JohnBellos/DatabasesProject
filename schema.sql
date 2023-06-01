@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS reviews (
   book_id INT UNSIGNED NOT NULL,
   review VARCHAR(2000) NOT NULL,
   review_score INT UNSIGNED NOT NULL,
-  approve_status ENUM('Pending', 'Approved') NOT NULL DEFAULT 'pending',
+  approve_status ENUM('Pending', 'Approved') NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (user_id, book_id),
   CONSTRAINT fk_user_reviews
     FOREIGN KEY (user_id)

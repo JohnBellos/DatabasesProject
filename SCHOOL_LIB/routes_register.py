@@ -85,4 +85,36 @@ def is_operator(uid):
     rv = cur.fetchall()
     print(rv[0][0])
     return int(rv[0][0])
+
+@app.route('/new_reviews', methods=['GET', 'POST'])
+def new_reviews():
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        book_id = request.form['book_id']
+        print(user_id)
+        print(book_id)
+        query = "UPDATE reviews SET approve_status = 'Approved' WHERE user_id = {} AND book_id = {};".format(user_id, book_id)
+        print(query)
+        cur = db.connection.cursor()
+        cur.execute(query)
+        db.connection.commit()
+        cur.close()
+
+    uid = request.cookies.get('id')
+    if uid == None:
+        return render_template('noaccess.html')
+    uid = int(uid)
+    if not is_operator(uid):
+        return render_template('noaccess.html')
+
+    query = "SELECT * FROM reviews WHERE approve_status = 'Pending';"
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+
+    res = list(rv)
+    
+
+    return render_template('new_reviews.html', bookReview = res)
+
     
