@@ -63,7 +63,9 @@
   </div>
   
   <div class="button-container">
-    <button class="button-borrow">Borrow</button>
+    <form action="/books/{{bookDetails[0]}}/borrow" method="POST">
+        <button class="button-borrow">Borrow</button>
+      </form>
     <button class="button-review">Review</button>
     <button class="button-reserve">Reserve</button>
   </div>
@@ -86,6 +88,10 @@
     document.getElementById("publisher").textContent = book.publisher;
     document.getElementById("genre").textContent = book.genre;
     document.getElementById("summary").textContent = book.summary;
+
+    function postBorrow(id) {
+      window.location.href = 'books/' + id + '/borrow';
+    }
   </script>
 </body>
 </html>
