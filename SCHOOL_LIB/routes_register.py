@@ -89,16 +89,26 @@ def is_operator(uid):
 @app.route('/new_reviews', methods=['GET', 'POST'])
 def new_reviews():
     if request.method == 'POST':
+        operator_id = request.cookies['id']
         user_id = request.form['user_id']
         book_id = request.form['book_id']
         print(user_id)
         print(book_id)
         query = "UPDATE reviews SET approve_status = 'Approved' WHERE user_id = {} AND book_id = {};".format(user_id, book_id)
+        query2 = "UPDATE library_user SET  reviews_approved = reviews_approved + 1 WHERE user_id = {};".format(operator_id)
+        
         print(query)
         cur = db.connection.cursor()
         cur.execute(query)
         db.connection.commit()
         cur.close()
+
+        cur2 = db.connection.cursor()
+        cur2.execute(query2)
+        db.connection.commit()
+        cur.close()
+
+        print(query2)
 
     uid = request.cookies.get('id')
     if uid == None:

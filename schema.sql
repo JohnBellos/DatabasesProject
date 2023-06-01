@@ -72,7 +72,10 @@ CREATE TABLE IF NOT EXISTS library_user (
   is_operator BOOLEAN NOT NULL DEFAULT FALSE,
   able_status ENUM('new', 'OK', 'disabled') NOT NULL DEFAULT 'OK',
   school_id INT UNSIGNED,
-  PRIMARY KEY (user_id),
+  borrows_approved INT UNSIGNED NOT NULL DEFAULT 0,
+  reviews_approved INT UNSIGNED NOT NULL DEFAULT 0,
+  reservations_approved INT UNSIGNED NOT NULL DEFAULT 0,
+    PRIMARY KEY (user_id),
   CONSTRAINT fk_school_id FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT chk_is_operator CHECK (user_type = 'professor' OR is_operator = FALSE)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
