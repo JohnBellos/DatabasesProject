@@ -151,7 +151,7 @@ def available_admin5():
     GROUP BY s.operator_name
     ORDER BY user_count DESC;
     '''
-
+   
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
@@ -160,22 +160,24 @@ def available_admin5():
 
 @app.route("/admin6")
 def admin6():
-    id = request.cookies.get('id')
-    if id != 'admin':
-        return render_template('noaccess.html')
     query = '''
-    SELECT category_combination, COUNT(*) AS combination_count
+    SELECT category_combination, combination_count
 FROM (
-    SELECT GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ',') AS category_combination
-    FROM book b
-    JOIN has_category hc ON b.book_id = hc.book_id
-    JOIN category c ON hc.category_id = c.category_id
-    JOIN borrows br ON b.book_id = br.book_id
-    GROUP BY br.book_id
-) AS subquery
-GROUP BY category_combination
-ORDER BY combination_count DESC
-LIMIT 3;
+    SELECT category_combination, COUNT(*) AS combination_count
+    FROM (
+        SELECT GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ',') AS category_combination
+        FROM book b
+        JOIN has_category hc ON b.book_id = hc.book_id
+        JOIN category c ON hc.category_id = c.category_id
+        JOIN borrows br ON b.book_id = br.book_id
+        GROUP BY b.book_id
+        HAVING COUNT(DISTINCT c.category_name) > 1
+    ) AS subquery
+    GROUP BY category_combination
+    ORDER BY combination_count DESC
+    LIMIT 3
+) AS top_combinations;
+
     '''
 
     cur = db.connection.cursor()
@@ -185,7 +187,6 @@ LIMIT 3;
     combinations = [(index + 1, row[0], row[1]) for index, row in enumerate(rv)]
 
     return render_template("adminPage6.html", combinations=combinations)
-
 
 
 
