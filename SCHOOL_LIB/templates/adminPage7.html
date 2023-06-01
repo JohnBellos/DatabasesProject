@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>List of Writers</title>
-  <a href="dashboard"><button class="connect-button">Back</button></a>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -21,9 +20,26 @@
     li {
       margin-bottom: 10px;
     }
+
+    .connect-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .connect-button:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
+  <a href="dashboard"><button class="connect-button">Back</button></a>
   <h1>List of Writers</h1>
   <ul>
     {% for writer in writers %}
