@@ -47,8 +47,18 @@ def process_registration():
     
     return username
 
-@app.route('/new_users')
+@app.route('/new_users', methods=['GET', 'POST'])
 def new_users():
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        print(user_id)
+        query = "UPDATE library_user SET able_status = 'OK' WHERE user_id = {};".format(user_id)
+        print(query)
+        cur = db.connection.cursor()
+        cur.execute(query)
+        db.connection.commit()
+        cur.close()
+
     uid = request.cookies.get('id')
     if uid == None:
         return render_template('noaccess.html')
@@ -56,7 +66,7 @@ def new_users():
     if not is_operator(uid):
         return render_template('noaccess.html')
 
-    query = "SELECT lu2.* FROM library_user lu1 JOIN library_user lu2 ON lu1.school_id = lu2.school_id WHERE lu1.user_id = {} AND lu2.user_id <> {} AND lu2.able_status = 'new'".format(uid, uid)
+    query = "SELECT lu2.*, s.school_name FROM library_user lu1 JOIN library_user lu2 ON lu1.school_id = lu2.school_id JOIN school s ON s.school_id = lu1.school_id WHERE lu1.user_id = {} AND lu2.user_id <> {} AND lu2.able_status = 'new'".format(uid, uid)
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
@@ -64,7 +74,7 @@ def new_users():
     res = list(rv)
     print(res)
 
-    return res
+    return render_template('new_users.html', library_users = res)
 
 def is_operator(uid):
     # returns 1 if uid user is operator, 0 if not
