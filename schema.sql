@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS borrows (
   user_id INT UNSIGNED NOT NULL,
   book_id INT UNSIGNED NOT NULL,
   date_of_borrow DATE NOT NULL,
+  approve_status ENUM('Pending', 'Approved') NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (user_id, book_id),
   CONSTRAINT fk_user_borrows
     FOREIGN KEY (user_id)
