@@ -30,32 +30,22 @@
             font-weight: bold;
         }
 
-        #month-select {
-            margin-bottom: 10px;
+        .calendar-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .calendar-container select {
+            padding: 5px;
+        }
+
+        .calendar-container button {
+            padding: 5px 10px;
         }
     </style>
 </head>
 <body>
     <h1>Number of Borrows by School</h1>
-    <div>
-        <form action="/admin1" method="POST">
-            <label for="month-select">Select Month:</label>
-            <select id="month-select" name="month" onchange="this.form.submit()">
-              <option value="1" {% if selected_month == "1" %}selected{% endif %}>January</option>
-              <option value="2" {% if selected_month == "2" %}selected{% endif %}>February</option>
-              <option value="3" {% if selected_month == "3" %}selected{% endif %}>March</option>
-              <option value="4" {% if selected_month == "4" %}selected{% endif %}>April</option>
-              <option value="5" {% if selected_month == "5" %}selected{% endif %}>May</option>
-              <option value="6" {% if selected_month == "6" %}selected{% endif %}>June</option>
-              <option value="7" {% if selected_month == "7" %}selected{% endif %}>July</option>
-              <option value="8" {% if selected_month == "8" %}selected{% endif %}>August</option>
-              <option value="9" {% if selected_month == "9" %}selected{% endif %}>September</option>
-              <option value="10" {% if selected_month == "10" %}selected{% endif %}>October</option>
-              <option value="11" {% if selected_month == "11" %}selected{% endif %}>November</option>
-              <option value="12" {% if selected_month == "12" %}selected{% endif %}>December</option>
-            </select>
-        </form>
-    </div>
     <table>
         <tr>
             <th>School ID</th>
@@ -65,3 +55,23 @@
         {% for school_id, school_name, borrow_count in school_borrows %}
         <tr>
             <td>{{ school_id }}</td>
+            <td>{{ school_name }}</td>
+            <td>{{ borrow_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="calendar-container">
+        <h3>Select Month:</h3>
+        <form action="/admin1" method="POST">
+            <select name="month" id="month">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <!-- Add more options for other months -->
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+
