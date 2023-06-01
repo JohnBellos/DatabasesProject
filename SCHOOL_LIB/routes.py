@@ -149,3 +149,29 @@ def authentication(username, password):
 @app.route("/limitReached")
 def limitReached():
     return render_template("limitReached.html")
+
+@app.route("/operator3")
+def operator3():
+    query_users = '''
+    SELECT u.user_name, u.user_surname, AVG(r.review_score) AS average_review_score
+    FROM library_user u
+    JOIN reviews r ON u.user_id = r.user_id
+    WHERE r.approve_status = 'Approved'
+    GROUP BY u.user_id, u.user_name, u.user_surname;
+    '''
+
+    query_categories = '''
+    SELECT category_name
+    FROM category;
+    '''
+
+    cur = db.connection.cursor()
+    cur.execute(query_users)
+    users = cur.fetchall()
+
+    cur.execute(query_categories)
+    categories = cur.fetchall()
+
+    return render_template('operator3.html', users=users, categories=categories)
+
+
