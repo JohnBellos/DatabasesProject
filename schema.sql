@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS library_user (
   user_type ENUM('student', 'professor') NOT NULL,
   is_operator BOOLEAN NOT NULL DEFAULT FALSE,
   able_status ENUM('new', 'OK', 'disabled') NOT NULL DEFAULT 'OK',
-  school_id INT UNSIGNED,
+  school_id INT UNSIGNED, 
   borrows_approved INT UNSIGNED NOT NULL DEFAULT 0,
   reviews_approved INT UNSIGNED NOT NULL DEFAULT 0,
   reservations_approved INT UNSIGNED NOT NULL DEFAULT 0,

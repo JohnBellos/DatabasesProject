@@ -557,13 +557,3 @@ INSERT INTO reviews (user_id, book_id, review, review_score, approve_status) VAL
 (8, 18, 'It had many words', 4, 'Pending'),
 (8, 19, 'It had many words', 3, 'Pending'),
 
-(9, 10, 'It was alright', 5, 'Approved'),
-(9, 11, 'It was alright', 3, 'Approved'),
-(9, 12, 'It was alright', 2, 'Approved'),
-(9, 13, 'It was alright', 4, 'Approved'),
-(9, 14, 'It was alright', 1, 'Approved'),
-(9, 15, 'It was alright', 1, 'Approved'),
-(9, 16, 'It was alright', 2, 'Approved'),
-(9, 17, 'It was alright', 4, 'Approved'),
-(9, 18, 'It was alright', 4, 'Approved'),
-(9, 19, 'It was alright', 3, 'Approved');

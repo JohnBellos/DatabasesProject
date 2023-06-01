@@ -143,19 +143,20 @@ def available_admin5():
     if id != 'admin':
         return render_template('noaccess.html')
     query = '''
-    SELECT s.operator_name, COUNT(b.user_id) AS user_count
-    FROM school s  
-    JOIN library_user u ON u.school_id = s.school_id
-    JOIN borrows b ON b.user_id = u.user_id
-    WHERE s.school_id IN (1, 2, 3)
-    GROUP BY s.operator_name
-    ORDER BY user_count DESC;
+   SELECT reviews_approved, user_name
+   FROM library_user
+   WHERE is_operator = 1
+   AND YEAR(created_at) = YEAR(CURRENT_DATE)
+   AND reviews_approved > 5;
+
+
     '''
    
     cur = db.connection.cursor()
     cur.execute(query)
     rv = cur.fetchall()
-
+    print(rv)
+    print (list(rv))
     return render_template('adminPage5.html', operatorData=rv)
 
 @app.route("/admin6")
@@ -187,6 +188,7 @@ FROM (
     combinations = [(index + 1, row[0], row[1]) for index, row in enumerate(rv)]
 
     return render_template("adminPage6.html", combinations=combinations)
+
 
 
 
