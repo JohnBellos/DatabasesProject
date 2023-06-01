@@ -62,21 +62,32 @@
   </style>
 </head>
 <body>
-  <h1>Write a Review</h1>
-  <form action="/submit-review" method="POST">
-    <label for="text-review">Text Review</label>
+  <h1>Write a Review for <br>{{bookDetails[0][2]}}</h1>
+  <form action="/books/{{bookDetails[0][0]}}/review" method="POST">
+    <label for="text-review">Comment on your Experience</label>
     <textarea id="text-review" name="text-review" placeholder="Write your review"></textarea>
 
-    <label for="likert-review">Likert Scale Review</label>
+    <label for="likert-review">Did you like the book?</label>
     <div class="likert-scale">
-      <label><input type="radio" name="likert-review" value="1">1</label>
-      <label><input type="radio" name="likert-review" value="2">2</label>
-      <label><input type="radio" name="likert-review" value="3">3</label>
-      <label><input type="radio" name="likert-review" value="4">4</label>
-      <label><input type="radio" name="likert-review" value="5">5</label>
+      <label><input type="radio" name="likert-review" value="1">No</label>
+      <label><input type="radio" name="likert-review" value="2">Meh</label>
+      <label><input type="radio" name="likert-review" value="3">Ok</label>
+      <label><input type="radio" name="likert-review" value="4">Good</label>
+      <label><input type="radio" name="likert-review" value="5">Great</label>
     </div>
 
-    <button type="submit">Submit Review</button>
+    <input type="hidden" name="hidden-text" id="hidden-text">
+    <input type="hidden" name="hidden-likert" id="hidden-likert">
+
+    <button type="submit" onclick="setHiddenValues()">Submit Review</button>
   </form>
+  <script>
+    function setHiddenValues() {
+      var textReview = document.getElementById("text-review").value;
+      var likertReview = document.querySelector('input[name="likert-review"]:checked').value;
+      document.getElementById("hidden-text").value = textReview;
+      document.getElementById("hidden-likert").value = likertReview;
+    }
+  </script>
 </body>
 </html>
