@@ -508,7 +508,7 @@ INSERT INTO contains (school_id,book_id,number_of_copies) VALUES
 (2, 31, 1),
 (2, 32, 1),
 (2, 38, 4),
-(3, 4, 5),
+(3, 4, 0),
 (3, 10, 10),
 (3, 14, 6),
 (3, 18, 6),

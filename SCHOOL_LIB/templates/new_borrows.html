@@ -70,6 +70,7 @@
                     <form class="confirm-form" method="post" action="/new_borrows">
                         <input type="hidden" name="user_id" value="{{ borrow[0] }}">
                         <input type="hidden" name="book_id" value="{{ borrow[1] }}">
+                        <input type="hidden" name="school_id" value="{{ school_id }}">
                         <button class="confirm-button">Confirm</button>
                     </form>
                 </td>
