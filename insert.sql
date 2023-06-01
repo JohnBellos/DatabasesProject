@@ -191,7 +191,7 @@ VALUES  (16, 4, '2023-06-25'),
         (53, 56, '2023-05-16'),
         (52, 4, '2023-04-07'),
         (54, 57, '2023-02-25'),
-        (3, 29, '2023-10-21'),
+        (2, 29, '2023-10-21'),
         (57, 33, '2023-12-27'),
         (13, 23, '2023-03-22'),
         (53, 58, '2023-10-16'),
@@ -555,5 +555,5 @@ INSERT INTO reviews (user_id, book_id, review, review_score, approve_status) VAL
 (8, 16, 'It had many words', 2, 'Pending'),
 (8, 17, 'It had many words', 4, 'Pending'),
 (8, 18, 'It had many words', 4, 'Pending'),
-(8, 19, 'It had many words', 3, 'Pending'),
+(8, 19, 'It had many words', 3, 'Pending');
 

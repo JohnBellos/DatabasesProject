@@ -143,12 +143,19 @@ def available_admin5():
     if id != 'admin':
         return render_template('noaccess.html')
     query = '''
-   SELECT reviews_approved, user_name
-   FROM library_user
-   WHERE is_operator = 1
-   AND YEAR(created_at) = YEAR(CURRENT_DATE)
-   AND reviews_approved > 5;
-
+   SELECT lu.borrows_approved, lu.user_name
+FROM library_user lu
+WHERE lu.is_operator = 1
+  AND lu.borrows_approved > 5
+  AND lu.borrows_approved IN (
+    SELECT lu2.borrows_approved
+    FROM borrows b
+    JOIN library_user lu2 ON b.user_id = lu2.user_id
+    WHERE lu2.is_operator = 1
+      AND b.date_of_borrow >= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR)
+    GROUP BY lu2.borrows_approved
+    HAVING COUNT(*) > 1
+  );
 
     '''
    
