@@ -146,3 +146,6 @@ def authentication(username, password):
         user = [item for sublist in rv for item in sublist]
        
     return user
+@app.route("/limitReached")
+def limitReached():
+    return render_template("limitReached.html")

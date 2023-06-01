@@ -158,6 +158,27 @@ def bookView(book_id):
 @app.route("/books/<string:book_id>/borrow", methods=["POST"])
 def bookBorrow(book_id):
     id = request.cookies.get('id')
+
+    usr = db.connection.cursor()
+    usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
+    currentUser = usr.fetchall()
+    currentUser = list(currentUser)
+
+    limit = """SELECT COUNT(*) AS borrow_count
+        FROM borrows
+        WHERE user_id = {};""".format(id)
+    
+    lm = db.connection.cursor()
+    lm.execute(limit)
+    totalBorrows = lm.fetchall()
+    totalBorrows = list(totalBorrows)
+    print(totalBorrows)
+    if totalBorrows[0][0] >=2:
+        return render_template("limitReached.html", borrowCount = totalBorrows[0][0])
+    
+    if totalBorrows[0][0] >=1 and currentUser[0][11] == 'professor':
+        return render_template("limitReached.html", borrowCount = totalBorrows[0][0])
+
     query = '''INSERT INTO borrows(user_id, book_id, date_of_borrow) VALUES ({}, {}, CURDATE())'''.format(id, book_id)
 
     br = db.connection.cursor()
