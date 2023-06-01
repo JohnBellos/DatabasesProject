@@ -150,14 +150,19 @@ def bookView(book_id):
 @app.route("/books/<string:book_id>/borrow", methods=["POST"])
 def bookBorrow(book_id):
     id = request.cookies.get('id')
-
-    # usr = db.connection.cursor()
-    # usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
-    # currentUser = usr.fetchall()
-    # currentUser = list(currentUser)
-    # print(currentUser)
-
     query = '''INSERT INTO borrows(user_id, book_id, date_of_borrow) VALUES ({}, {}, CURDATE())'''.format(id, book_id)
+
+    br = db.connection.cursor()
+    br.execute(query)
+    db.connection.commit()
+    br.close()
+    print(query)
+    return '1'
+
+@app.route("/books/<string:book_id>/reserve", methods=["POST"])
+def bookReserve(book_id):
+    id = request.cookies.get('id')
+    query = '''INSERT INTO reservations(user_id, book_id, deadline_of_reservation) VALUES ({}, {}, DATE_ADD(CURDATE(), INTERVAL 14 DAY))'''.format(id, book_id)
 
     br = db.connection.cursor()
     br.execute(query)
