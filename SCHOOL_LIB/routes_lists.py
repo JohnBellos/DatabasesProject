@@ -179,9 +179,35 @@ def bookReserve(book_id):
     print(query)
     return '1'
 
-@app.route("/reviewBook")
+@app.route("/reviewBook", methods=["POST"])
 def reviewBook():
-    return render_template("reviewPage.html")
+    id = request.cookies.get('id')
+    book_id = request.form['book_id']
+    print(id)
+    query = "SELECT * FROM book WHERE book_id = {};".format(book_id)
+
+    bk = db.connection.cursor()
+    bk.execute(query)
+    book = bk.fetchall()
+    book = list(book)
+    print(book)
+    return render_template("reviewPage.html", bookDetails = book, user_id = id)
+
+@app.route("/books/<string:book_id>/review", methods=["POST"])
+def bookReview(book_id):
+    id = request.cookies.get('id')
+    review = request.form['hidden-text']
+    reviewScore = request.form['hidden-likert']
+    print(review)
+    print(reviewScore)
+    query = '''INSERT INTO reviews(user_id, book_id, review, review_score, approve_status) VALUES ({}, {}, '{}', {}, 'Pending')'''.format(id, book_id, review, reviewScore)
+
+    br = db.connection.cursor()
+    br.execute(query)
+    db.connection.commit()
+    br.close()
+    print(query)
+    return '1'
 
 @app.route("/books/books/<string:book_id>", methods=["GET"])  #View Borrowed Book Details
 def bookView2(book_id):
