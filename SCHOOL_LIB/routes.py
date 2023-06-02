@@ -161,8 +161,12 @@ def operator3():
     '''
 
     query_categories = '''
-    SELECT category_name
-    FROM category;
+    SELECT c.category_name, AVG(r.review_score) AS average_review_score
+    FROM category c
+    JOIN has_category h ON c.category_id = h.category_id
+    JOIN reviews r ON r.book_id = h.book_id
+    WHERE r.approve_status = 'Approved'
+    GROUP BY c.category_id, c.category_name;
     '''
 
     cur = db.connection.cursor()
@@ -173,5 +177,4 @@ def operator3():
     categories = cur.fetchall()
 
     return render_template('operator3.html', users=users, categories=categories)
-
 

@@ -70,3 +70,67 @@ def save_info():
                 resp = make_response(webpage)
                 resp.set_cookie('id', str(user[0]))
                 return resp
+
+
+
+
+@app.route('/editBook', methods=['POST'])
+def editBook():
+    book_id = request.form['book_id']
+    query = "SELECT * FROM book WHERE book_id = %s;"
+    cur = db.connection.cursor()
+    cur.execute(query, (book_id,))
+    book = cur.fetchone()
+    cur.close()
+
+    if book[5] == 'student':
+        return render_template('edit_info_std.html', book=book)
+    else:
+        return render_template('edit_info_book.html', book=book)
+    
+    
+    
+@app.route('/save_book_info', methods = ['POST'])
+def save_book_info():
+    id = int(request.cookies.get('id'))
+    ISBN = request.form['ISBN']
+    Title = request.form['Title']
+    Publisher = request.form['Publisher']
+    Writer = request.form['Writer']
+    Summary = request.form['Summary']
+    # update database
+    # show /dashboard
+    query = "UPDATE book SET ISBN = '{}', Title = '{}', Publisher = '{}', Writer = '{}', Summary = '{}' WHERE book_id = {};".format(ISBN, Title, Publisher, Writer, Summary, id)
+    print(query)
+    cur = db.connection.cursor()
+    cur.execute(query)
+    db.connection.commit()
+    cur.close()
+
+    query = "SELECT * FROM {} WHERE book_id = '{}';".format('book', id)
+    cur = db.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    user = [item for sublist in rv for item in sublist]
+    print(user)        
+    if user[5] == 'student':
+        return render_template('dashboardStd.html', user = user)
+    else:
+        
+            print("I am a Professor")
+            query = '''SELECT is_operator
+                    FROM library_user
+                    WHERE user_name = '{}' AND user_surname = '{}';'''.format(user[3], user[4])
+           
+            cur = db.connection.cursor()
+            cur.execute(query)
+            rv = cur.fetchall()
+            
+            print(rv)
+           
+            print("I am a Professor and an Operator")
+            webpage = render_template("dashboardOp.html", user = user)
+            resp = make_response(webpage)
+            resp.set_cookie('id', str(user[0]))
+            return resp
+
