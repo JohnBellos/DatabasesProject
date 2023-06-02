@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, make_response, flash, redirec
 from flask_mysqldb import MySQL
 from SCHOOL_LIB import app, db ## initially created by __init__.py, need to be used here
 import json
-import mysql.connector
 import subprocess
 
 if __name__ == '__main__':
