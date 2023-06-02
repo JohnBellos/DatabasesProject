@@ -241,6 +241,6 @@ JOIN library_user lu ON res.user_id = lu.user_id;
 
 CREATE VIEW review_categories AS
 SELECT r.user_id, r.book_id, r.review, r.review_score, r.approve_status, h.category_id
-FROM review r
+FROM review r 
 JOIN has_category h ON r.book_id = h.has_category;
 
