@@ -180,12 +180,12 @@ def operator3():
 
 @app.route("/backup")
 def backup():
-    db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="library"
-    )
+    #db = mysql.connector.connect(
+    #    host="localhost",
+    #    user="root",
+    #    password="",
+    #    database="library"
+    #)
 
     command = f".\mysqldump -u {db.user} -p {db.database}"
 
