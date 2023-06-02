@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS borrows (
   user_id INT UNSIGNED NOT NULL,
   book_id INT UNSIGNED NOT NULL,
   date_of_borrow DATE NOT NULL,
-  approve_status ENUM('Pending', 'Approved') NOT NULL DEFAULT 'Pending',
+  approve_status ENUM('Pending', 'Approved', 'Overdue', 'Returned') NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (user_id, book_id),
   CONSTRAINT fk_user_borrows
     FOREIGN KEY (user_id)
@@ -159,6 +159,24 @@ CREATE TABLE IF NOT EXISTS borrows (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT fk_user_borrows2
+    FOREIGN KEY (book_id)
+    REFERENCES book (book_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS returned (
+  user_id INT UNSIGNED NOT NULL,
+  book_id INT UNSIGNED NOT NULL,
+  date_of_return DATE NOT NULL,
+  PRIMARY KEY (user_id, book_id),
+  CONSTRAINT fk_user_returns
+    FOREIGN KEY (user_id)
+    REFERENCES library_user (user_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT fk_user_returns2
     FOREIGN KEY (book_id)
     REFERENCES book (book_id)
     ON DELETE CASCADE
@@ -190,7 +208,7 @@ CREATE TABLE IF NOT EXISTS reservations (
   user_id INT UNSIGNED NOT NULL,
   book_id INT UNSIGNED NOT NULL,
   deadline_of_reservation DATE,
-  approve_status ENUM('Pending', 'Approved') NOT NULL DEFAULT 'Pending',
+  approve_status ENUM('Pending', 'Approved', 'On Hold', 'Overdue') NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (user_id, book_id),
   CONSTRAINT fk_user_reservations
     FOREIGN KEY (user_id)
@@ -241,6 +259,6 @@ JOIN library_user lu ON res.user_id = lu.user_id;
 
 CREATE VIEW review_categories AS
 SELECT r.user_id, r.book_id, r.review, r.review_score, r.approve_status, h.category_id
-FROM review r 
-JOIN has_category h ON r.book_id = h.has_category;
+FROM reviews r
+JOIN has_category h ON r.book_id = h.book_id;
 

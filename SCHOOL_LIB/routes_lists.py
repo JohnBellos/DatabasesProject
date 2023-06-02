@@ -230,6 +230,18 @@ def bookReserve(book_id):
 
     if copiesLeft[0][0] == 0:
         return render_template("bookDepleted.html", bookTitle = Title)
+    
+    Reservations = """SELECT COUNT(*) AS reservation_count
+                    FROM reservations
+                    WHERE user_id = {};""".format(id)
+    res = db.connection.cursor()
+    res.execute(Reservations)
+    userRes = res.fetchall()
+    userRes = list(userRes)
+    print(userRes)
+
+    if (userRes[0][0] >= 2 and currentUser[0][11] == 'student') or (userRes[0][0] >= 1 and currentUser[0][11] == 'professor'):
+        return render_template("limitReached.html", borrowCount = userRes[0][0])
 
     query = '''INSERT INTO reservations(user_id, book_id, deadline_of_reservation) VALUES ({}, {}, DATE_ADD(CURDATE(), INTERVAL 14 DAY))'''.format(id, book_id)
 
