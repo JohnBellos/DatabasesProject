@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Borrow Limit Exceeded</title>
+    <title>Book Storage Depleted</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,8 +37,9 @@
 </head>
 <body>
     <div>
-    <h1>You have exceeded your Borrow/Reserve Limit</h1>
-    <h2>{{borrowCount}}<br> Return your books</h2>
+    <h1>We have no more copies of</h1>
+
+    <h2>'{{bookTitle}}'<br><br> Check back later</h2>
     <div class="center">
         <button onclick="location.href='/books'" class="btn-change-info" type="button">Back to Book List</button>
       </div>

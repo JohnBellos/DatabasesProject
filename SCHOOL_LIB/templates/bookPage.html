@@ -64,6 +64,7 @@
   
   <div class="button-container">
     <form action="/books/{{bookDetails[0]}}/borrow" method="POST">
+        <input type="hidden" name="book_title" value="{{ bookDetails[2] }}">
         <button class="button-borrow">Borrow</button>
       </form>
       <form action="/reviewBook" method="POST">
@@ -71,6 +72,7 @@
     <button class="button-review">Review</button>
       </form>
       <form action="/books/{{bookDetails[0]}}/reserve" method="POST">
+        <input type="hidden" name="book_title" value="{{ bookDetails[2] }}">
     <button class="button-reserve">Reserve</button>
         </form>
   </div>

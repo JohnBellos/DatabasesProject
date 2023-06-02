@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Reviews</title>
+</head>
+<body>
+    <h1>User Reviews</h1>
+
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>User Surname</th>
+            <th>Average Review Score</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Categories</h2>
+    <ul>
+        {% for category in categories %}
+        <li>{{ category[0] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -173,12 +173,32 @@ def bookBorrow(book_id):
     totalBorrows = lm.fetchall()
     totalBorrows = list(totalBorrows)
     print(totalBorrows)
+
+    #Check Borrow Limit
     if totalBorrows[0][0] >=2:
         return render_template("limitReached.html", borrowCount = totalBorrows[0][0])
     
     if totalBorrows[0][0] >=1 and currentUser[0][11] == 'professor':
         return render_template("limitReached.html", borrowCount = totalBorrows[0][0])
+    
+    Capacity = """SELECT number_of_copies
+                FROM contains
+                WHERE book_id = {} AND school_id = {};""".format(book_id, currentUser[0][14])
+    
+    cp = db.connection.cursor()
+    cp.execute(Capacity)
+    copiesLeft = cp.fetchall()
+    copiesLeft = list(copiesLeft)
+    print(copiesLeft)
 
+    Title = request.form['book_title']
+
+    if copiesLeft[0][0] == 0:
+        return render_template("bookDepleted.html", bookTitle = Title)
+    
+    
+    
+    
     query = '''INSERT INTO borrows(user_id, book_id, date_of_borrow) VALUES ({}, {}, CURDATE())'''.format(id, book_id)
 
     br = db.connection.cursor()
@@ -191,6 +211,38 @@ def bookBorrow(book_id):
 @app.route("/books/<string:book_id>/reserve", methods=["POST"])
 def bookReserve(book_id):
     id = request.cookies.get('id')
+
+    usr = db.connection.cursor()
+    usr.execute("SELECT * FROM library_user WHERE user_id = {};".format(id))
+    currentUser = usr.fetchall()
+    currentUser = list(currentUser)
+
+    Capacity = """SELECT number_of_copies
+                FROM contains
+                WHERE book_id = {} AND school_id = {};""".format(book_id, currentUser[0][14])
+    
+    cp = db.connection.cursor()
+    cp.execute(Capacity)
+    copiesLeft = cp.fetchall()
+    copiesLeft = list(copiesLeft)
+
+    Title = request.form['book_title']
+
+    if copiesLeft[0][0] == 0:
+        return render_template("bookDepleted.html", bookTitle = Title)
+    
+    Reservations = """SELECT COUNT(*) AS reservation_count
+                    FROM reservations
+                    WHERE user_id = {};""".format(id)
+    res = db.connection.cursor()
+    res.execute(Reservations)
+    userRes = res.fetchall()
+    userRes = list(userRes)
+    print(userRes)
+
+    if (userRes[0][0] >= 2 and currentUser[0][11] == 'student') or (userRes[0][0] >= 1 and currentUser[0][11] == 'professor'):
+        return render_template("limitReached.html", borrowCount = userRes[0][0])
+
     query = '''INSERT INTO reservations(user_id, book_id, deadline_of_reservation) VALUES ({}, {}, DATE_ADD(CURDATE(), INTERVAL 14 DAY))'''.format(id, book_id)
 
     br = db.connection.cursor()
