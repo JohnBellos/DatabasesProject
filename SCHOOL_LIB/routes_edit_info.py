@@ -93,6 +93,7 @@ def editBook():
 @app.route('/save_book_info', methods = ['POST'])
 def save_book_info():
     id = int(request.cookies.get('id'))
+    book_id = request.form ['id']
     ISBN = request.form['ISBN']
     Title = request.form['Title']
     Publisher = request.form['Publisher']
@@ -100,7 +101,7 @@ def save_book_info():
     Summary = request.form['Summary']
     # update database
     # show /dashboard
-    query = "UPDATE book SET ISBN = '{}', Title = '{}', Publisher = '{}', Writer = '{}', Summary = '{}' WHERE book_id = {};".format(ISBN, Title, Publisher, Writer, Summary, id)
+    query = "UPDATE book SET ISBN = '{}', Title = '{}', Publisher = '{}', Writer = '{}', Summary = '{}' WHERE book_id = {};".format(ISBN, Title, Publisher, Writer, Summary, book_id)
     print(query)
     cur = db.connection.cursor()
     cur.execute(query)
