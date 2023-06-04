@@ -13,8 +13,10 @@ def index():
         ## create connection to database
         cur = db.connection.cursor()
         ## execute query
-        
-        return render_template("index.html", pageTitle = "SCHOOL_LIB")
+        webpage = render_template("index.html", pageTitle = "SCHOOL_LIB")
+        resp = make_response(webpage)
+        resp.response.set_cookie('id', expires=0)
+        return resp
     except Exception as e:
         print(e)
         return render_template("index.html", pageTitle = "SCHOOL_LIB")

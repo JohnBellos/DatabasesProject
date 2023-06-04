@@ -39,6 +39,23 @@
       background-color: #45a049;
     }
     
+    .button-logout {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .button-logout:hover {
+      background-color: #45a049;
+    }
+
     .btn-books {
       background-color: #007bff;
       color: white;
@@ -96,6 +113,9 @@
       </div>
       <div>
         <button onclick="location.href='/books/borrowed'" class="btn-books-borrow" type="button">View Borrowed Books</button>
+      </div>
+      <div>
+        <button onclick="location.href='/'" class="button-logout" type="button">Logout</button>
       </div>
     </div>
   </div>
