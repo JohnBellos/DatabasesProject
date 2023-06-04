@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Borrow Limit Exceeded</title>
+    <a href="/books/4" class="dashboard-button">Back to Book Details</a>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,23 +17,18 @@
         .center {
       text-align: center;
       margin-top: 20px;
-    }
-    .btn-change-info {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    
-    .btn-change-info:hover {
-      background-color: #45a049;
-    }
+        }
+      .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -40,7 +36,7 @@
     <h1>You have exceeded your Borrow/Reserve Limit</h1>
     <h2>{{borrowCount}}<br> Return your books</h2>
     <div class="center">
-        <button onclick="location.href='/books'" class="btn-change-info" type="button">Back to Book List</button>
+     
       </div>
     </div>
 </body>

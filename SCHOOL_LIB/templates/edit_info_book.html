@@ -13,6 +13,7 @@
   <h2>Edit Info</h2>
   
   <form action="/save_book_info" method="POST">
+    <input type="hidden" name="id" value="{{book[0]}}">
     <label for="name">ISBN:</label>
     <input type="text" name="ISBN" id="ISBN" value="{{ book[1] }}" required>
     <br><br>
