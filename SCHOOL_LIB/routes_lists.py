@@ -206,7 +206,9 @@ def bookBorrow(book_id):
     db.connection.commit()
     br.close()
     print(query)
-    return '1'
+    print(currentUser[0][11], ' ------------------', currentUser[0][12])
+    return redirect('/dashboard')
+    
 
 @app.route("/books/<string:book_id>/reserve", methods=["POST"])
 def bookReserve(book_id):

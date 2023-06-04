@@ -477,4 +477,3 @@ def new_reservations():
 
     return render_template('new_reservations.html', bookReservation = res)
     
-    
