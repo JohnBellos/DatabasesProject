@@ -5,7 +5,7 @@ How to start da:
 1. You create an environment and install dependencies with venv, pip:
     python -m venv env
     .\env\Scripts\activate (cmd) or .\env\Scripts\Activate.ps1 (powershell)
-    pip install flask, flask-mysqldb, mysqlclient
+    pip install -r requirements.txt
     
     [[[ if you want to deactivate it later type: deactivate ]]]
 
